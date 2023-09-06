@@ -1,7 +1,7 @@
 [//]: # (title: Collections)
 
 <microformat>
-    <p><img src="icon-1-done.svg" width="20" alt="First step" /> <a href="kotlin-tour-hello-world.md">Hello world</a><br />
+    <p><img src="icon-1-done.svg" width="20" alt="First step" /> <a href="docs/topics/tour/kotlin-tour-hello-world/kotlin-tour-hello-world.md">Hello world</a><br />
         <img src="icon-2-done.svg" width="20" alt="Second step" /> <a href="kotlin-tour-basic-types.md">Basic types</a><br />
         <img src="icon-3.svg" width="20" alt="Third step" /> <strong>Collections</strong><br />
         <img src="icon-4-todo.svg" width="20" alt="Fourth step" /> <a href="kotlin-tour-control-flow.md">Control flow</a><br />

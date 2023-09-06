@@ -10,7 +10,7 @@ Each chapter in this tour contains:
 * **Solutions** for your reference.
 
 In this tour you will learn about:
-* [Variables](kotlin-tour-hello-world.md)
+* [Variables](docs/topics/tour/kotlin-tour-hello-world/kotlin-tour-hello-world.md)
 * [Basic types](kotlin-tour-basic-types.md)
 * [Collections](kotlin-tour-collections.md)
 * [Control flow](kotlin-tour-control-flow.md)

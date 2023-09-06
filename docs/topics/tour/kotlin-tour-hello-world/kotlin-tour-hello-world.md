@@ -2,12 +2,12 @@
 
 <microformat>
     <p><img src="icon-1.svg" width="20" alt="First step" /> <strong>Hello world</strong><br />
-        <img src="icon-2-todo.svg" width="20" alt="Second step" /> <a href="kotlin-tour-basic-types.md">Basic types</a><br />
-        <img src="icon-3-todo.svg" width="20" alt="Third step" /> <a href="kotlin-tour-collections.md">Collections</a><br />
-        <img src="icon-4-todo.svg" width="20" alt="Fourth step" /> <a href="kotlin-tour-control-flow.md">Control flow</a><br />
-        <img src="icon-5-todo.svg" width="20" alt="Fifth step" /> <a href="kotlin-tour-functions.md">Functions</a><br />
-        <img src="icon-6-todo.svg" width="20" alt="Sixth step" /> <a href="kotlin-tour-classes.md">Classes</a><br />
-        <img src="icon-7-todo.svg" width="20" alt="Final step" /> <a href="kotlin-tour-null-safety.md">Null safety</a></p>
+        <img src="icon-2-todo.svg" width="20" alt="Second step" /> <a href="docs/topics/tour/kotlin-tour-basic-types.md">Basic types</a><br />
+        <img src="icon-3-todo.svg" width="20" alt="Third step" /> <a href="docs/topics/tour/kotlin-tour-collections.md">Collections</a><br />
+        <img src="icon-4-todo.svg" width="20" alt="Fourth step" /> <a href="docs/topics/tour/kotlin-tour-control-flow.md">Control flow</a><br />
+        <img src="icon-5-todo.svg" width="20" alt="Fifth step" /> <a href="docs/topics/tour/kotlin-tour-functions.md">Functions</a><br />
+        <img src="icon-6-todo.svg" width="20" alt="Sixth step" /> <a href="docs/topics/tour/kotlin-tour-classes.md">Classes</a><br />
+        <img src="icon-7-todo.svg" width="20" alt="Final step" /> <a href="docs/topics/tour/kotlin-tour-null-safety.md">Null safety</a></p>
 </microformat>
 
 Here is a simple program that prints "Hello, world!":
@@ -95,7 +95,7 @@ fun main() {
 For more information, see [String templates](strings.md).
 
 You will notice that there aren't any types declared for variables. Kotlin has inferred the type itself: `Int`. This tour
-explains the different Kotlin basic types and how to declare them in the [next chapter](kotlin-tour-basic-types.md).
+explains the different Kotlin basic types and how to declare them in the [next chapter](docs/topics/tour/kotlin-tour-basic-types.md).
 
 ## Practice
 
@@ -125,4 +125,4 @@ fun main() {
 
 ## Next step
 
-[Basic types](kotlin-tour-basic-types.md)
+[Basic types](docs/topics/tour/kotlin-tour-basic-types.md)
