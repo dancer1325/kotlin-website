@@ -5,9 +5,9 @@
         <img src="icon-2-done.svg" width="20" alt="Second step" /> <a href="docs/topics/tour/kotlin-tour-basic-types/kotlin-tour-basic-types.md">Basic types</a><br />
         <img src="icon-3-done.svg" width="20" alt="Third step" /> <a href="docs/topics/tour/kotlin-tour-collections/kotlin-tour-collections.md">Collections</a><br />
         <img src="icon-4.svg" width="20" alt="Fourth step" /> <strong>Control flow</strong><br />
-        <img src="icon-5-todo.svg" width="20" alt="Fifth step" /> <a href="kotlin-tour-functions.md">Functions</a><br />
-        <img src="icon-6-todo.svg" width="20" alt="Sixth step" /> <a href="kotlin-tour-classes.md">Classes</a><br />
-        <img src="icon-7-todo.svg" width="20" alt="Final step" /> <a href="kotlin-tour-null-safety.md">Null safety</a></p>
+        <img src="icon-5-todo.svg" width="20" alt="Fifth step" /> <a href="docs/topics/tour/kotlin-tour-functions.md">Functions</a><br />
+        <img src="icon-6-todo.svg" width="20" alt="Sixth step" /> <a href="docs/topics/tour/kotlin-tour-classes.md">Classes</a><br />
+        <img src="icon-7-todo.svg" width="20" alt="Final step" /> <a href="docs/topics/tour/kotlin-tour-null-safety.md">Null safety</a></p>
 </microformat>
 
 Like other programming languages, Kotlin is capable of making decisions based on whether a piece of code is evaluated to
@@ -267,7 +267,7 @@ fun main() {
 
 For more information and examples of conditional expressions and loops, see [Conditions and loops](control-flow.md).
 
-Now that you know the fundamentals of Kotlin control flow, it's time to learn how to write your own [functions](kotlin-tour-functions.md).
+Now that you know the fundamentals of Kotlin control flow, it's time to learn how to write your own [functions](docs/topics/tour/kotlin-tour-functions.md).
 
 ## Practice
 
@@ -447,4 +447,4 @@ fun main() {
 
 ## Next step
 
-[Functions](kotlin-tour-functions.md)
+[Functions](docs/topics/tour/kotlin-tour-functions.md)
