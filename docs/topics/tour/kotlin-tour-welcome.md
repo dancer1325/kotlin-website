@@ -12,7 +12,7 @@ Each chapter in this tour contains:
 In this tour you will learn about:
 * [Variables](docs/topics/tour/kotlin-tour-hello-world/kotlin-tour-hello-world.md)
 * [Basic types](docs/topics/tour/kotlin-tour-basic-types/kotlin-tour-basic-types.md)
-* [Collections](kotlin-tour-collections.md)
+* [Collections](docs/topics/tour/kotlin-tour-collections/kotlin-tour-collections.md)
 * [Control flow](kotlin-tour-control-flow.md)
 * [Functions](kotlin-tour-functions.md)
 * [Classes](kotlin-tour-classes.md)
