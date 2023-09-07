@@ -6,7 +6,7 @@
         <img src="icon-3-done.svg" width="20" alt="Third step" /> <a href="docs/topics/tour/kotlin-tour-collections/kotlin-tour-collections.md">Collections</a><br />
         <img src="icon-4-done.svg" width="20" alt="Fourth step" /> <a href="docs/topics/tour/kotlin-tour-control-flow/kotlin-tour-control-flow.md">Control flow</a><br />
         <img src="icon-5.svg" width="20" alt="Fifth step" /> <strong>Functions</strong><br />
-        <img src="icon-6-todo.svg" width="20" alt="Sixth step" /> <a href="docs/topics/tour/kotlin-tour-classes.md">Classes</a><br />
+        <img src="icon-6-todo.svg" width="20" alt="Sixth step" /> <a href="docs/topics/tour/kotlin-tour-classes/kotlin-tour-classes.md">Classes</a><br />
         <img src="icon-7-todo.svg" width="20" alt="Final step" /> <a href="docs/topics/tour/kotlin-tour-null-safety.md">Null safety</a></p>
 </microformat>
 
@@ -494,7 +494,7 @@ fun main() {
 
 For more information on lambda expressions, see [Lambda expressions and anonymous functions](lambdas.md#lambda-expressions-and-anonymous-functions).
 
-The next step in our tour is to learn about [classes](docs/topics/tour/kotlin-tour-classes.md) in Kotlin.
+The next step in our tour is to learn about [classes](docs/topics/tour/kotlin-tour-classes/kotlin-tour-classes.md) in Kotlin.
 
 ## Lambda expressions practice
 
@@ -563,4 +563,4 @@ fun main() {
 
 ## Next step
 
-[Classes](docs/topics/tour/kotlin-tour-classes.md)
+[Classes](docs/topics/tour/kotlin-tour-classes/kotlin-tour-classes.md)

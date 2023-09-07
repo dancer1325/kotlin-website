@@ -6,7 +6,7 @@
         <img src="icon-3-done.svg" width="20" alt="Third step" /> <a href="docs/topics/tour/kotlin-tour-collections/kotlin-tour-collections.md">Collections</a><br />
         <img src="icon-4.svg" width="20" alt="Fourth step" /> <strong>Control flow</strong><br />
         <img src="icon-5-todo.svg" width="20" alt="Fifth step" /> <a href="docs/topics/tour/kotlin-tour-functions/kotlin-tour-functions.md">Functions</a><br />
-        <img src="icon-6-todo.svg" width="20" alt="Sixth step" /> <a href="docs/topics/tour/kotlin-tour-classes.md">Classes</a><br />
+        <img src="icon-6-todo.svg" width="20" alt="Sixth step" /> <a href="docs/topics/tour/kotlin-tour-classes/kotlin-tour-classes.md">Classes</a><br />
         <img src="icon-7-todo.svg" width="20" alt="Final step" /> <a href="docs/topics/tour/kotlin-tour-null-safety.md">Null safety</a></p>
 </microformat>
 

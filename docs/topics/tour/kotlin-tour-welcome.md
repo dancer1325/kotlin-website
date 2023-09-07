@@ -15,7 +15,7 @@ In this tour you will learn about:
 * [Collections](docs/topics/tour/kotlin-tour-collections/kotlin-tour-collections.md)
 * [Control flow](docs/topics/tour/kotlin-tour-control-flow/kotlin-tour-control-flow.md)
 * [Functions](docs/topics/tour/kotlin-tour-functions/kotlin-tour-functions.md)
-* [Classes](kotlin-tour-classes.md)
+* [Classes](docs/topics/tour/kotlin-tour-classes/kotlin-tour-classes.md)
 * [Null safety](kotlin-tour-null-safety.md)
 
 To have the best experience, we recommend that you read through these chapters in order. But if you want, you can choose

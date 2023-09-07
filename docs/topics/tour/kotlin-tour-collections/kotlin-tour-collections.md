@@ -6,7 +6,7 @@
         <img src="icon-3.svg" width="20" alt="Third step" /> <strong>Collections</strong><br />
         <img src="icon-4-todo.svg" width="20" alt="Fourth step" /> <a href="docs/topics/tour/kotlin-tour-control-flow/kotlin-tour-control-flow.md">Control flow</a><br />
         <img src="icon-5-todo.svg" width="20" alt="Fifth step" /> <a href="docs/topics/tour/kotlin-tour-functions/kotlin-tour-functions.md">Functions</a><br />
-        <img src="icon-6-todo.svg" width="20" alt="Sixth step" /> <a href="docs/topics/tour/kotlin-tour-classes.md">Classes</a><br />
+        <img src="icon-6-todo.svg" width="20" alt="Sixth step" /> <a href="docs/topics/tour/kotlin-tour-classes/kotlin-tour-classes.md">Classes</a><br />
         <img src="icon-7-todo.svg" width="20" alt="Final step" /> <a href="docs/topics/tour/kotlin-tour-null-safety.md">Null safety</a></p>
 </microformat>
 
@@ -364,7 +364,7 @@ fun main() {
 > are examples of **properties** of an object. To access the property of an object, write the property name
 > after the object appended with a period `.`
 >
-> Properties are discussed in more detail in the [Classes](docs/topics/tour/kotlin-tour-classes.md) chapter.
+> Properties are discussed in more detail in the [Classes](docs/topics/tour/kotlin-tour-classes/kotlin-tour-classes.md) chapter.
 > At this point in the tour, you only need to know how to access them.
 >
 {type="note"}

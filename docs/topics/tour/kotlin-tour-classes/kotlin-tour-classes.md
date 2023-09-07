@@ -7,7 +7,7 @@
         <img src="icon-4-done.svg" width="20" alt="Fourth step" /> <a href="docs/topics/tour/kotlin-tour-control-flow/kotlin-tour-control-flow.md">Control flow</a><br />
         <img src="icon-5-done.svg" width="20" alt="Fifth step" /> <a href="docs/topics/tour/kotlin-tour-functions/kotlin-tour-functions.md">Functions</a><br />
         <img src="icon-6.svg" width="20" alt="Sixth step" /> <strong>Classes</strong><br />
-        <img src="icon-7-todo.svg" width="20" alt="Final step" /> <a href="kotlin-tour-null-safety.md">Null safety</a></p>
+        <img src="icon-7-todo.svg" width="20" alt="Final step" /> <a href="docs/topics/tour/kotlin-tour-null-safety.md">Null safety</a></p>
 </microformat>
 
 Kotlin supports object-oriented programming with classes and objects. Objects are useful for storing data in your program.
@@ -244,7 +244,7 @@ original instance isn't affected by the copy and what you do with it.
 
 For more information about data classes, see [Data classes](data-classes.md).
 
-The last chapter of this tour is about Kotlin's [null safety](kotlin-tour-null-safety.md).
+The last chapter of this tour is about Kotlin's [null safety](docs/topics/tour/kotlin-tour-null-safety.md).
 
 ## Practice
 
@@ -346,4 +346,4 @@ fun main() {
 
 ## Next step
 
-[Null safety](kotlin-tour-null-safety.md)
+[Null safety](docs/topics/tour/kotlin-tour-null-safety.md)
