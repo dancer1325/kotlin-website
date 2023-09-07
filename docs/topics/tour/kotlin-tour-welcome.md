@@ -14,7 +14,7 @@ In this tour you will learn about:
 * [Basic types](docs/topics/tour/kotlin-tour-basic-types/kotlin-tour-basic-types.md)
 * [Collections](docs/topics/tour/kotlin-tour-collections/kotlin-tour-collections.md)
 * [Control flow](docs/topics/tour/kotlin-tour-control-flow/kotlin-tour-control-flow.md)
-* [Functions](kotlin-tour-functions.md)
+* [Functions](docs/topics/tour/kotlin-tour-functions/kotlin-tour-functions.md)
 * [Classes](kotlin-tour-classes.md)
 * [Null safety](kotlin-tour-null-safety.md)
 
