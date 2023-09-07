@@ -1,7 +1,7 @@
 [//]: # (title: Learning materials overview)
 
 You can use the following materials and resources for learning Kotlin:
-* [Basic syntax](basic-syntax.md) – get a quick overview of the Kotlin syntax.
+* [Basic syntax](docs/topics/basic-syntax/basic-syntax.md) – get a quick overview of the Kotlin syntax.
 * [Idioms](idioms.md) – learn how to write idiomatic Kotlin code for popular cases.
   * [Java to Kotlin migration guide: Strings](java-to-kotlin-idioms-strings.md) – learn how to perform typical tasks with strings in Java and Kotlin.
   * [Java to Kotlin migration guide: Collections](java-to-kotlin-collections-guide.md) — learn how to perform typical tasks with collections in Java and Kotlin.

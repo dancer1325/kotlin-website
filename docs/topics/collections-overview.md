@@ -39,7 +39,7 @@ A pair of interfaces represent each collection type:
 * A _mutable_ interface that extends the corresponding read-only interface with write operations: adding, removing, and 
 updating its elements.
 
-Note that altering a mutable collection doesn't require it to be a [`var`](basic-syntax.md#variables): write operations
+Note that altering a mutable collection doesn't require it to be a [`var`](docs/topics/basic-syntax/basic-syntax.md#variables): write operations
 modify the same mutable collection object, so the reference doesn't change.
 Although, if you try to reassign a `val` collection, you'll get a compilation error.
 

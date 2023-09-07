@@ -47,7 +47,7 @@ fun f(x: Int) = removeZeroes(x + 1)
 
 Alternatively, you can write an imperative implementation of the function `f` using the traditional 
 [while loop](control-flow.md) and mutable variables that are denoted in Kotlin with 
-[var](basic-syntax.md#variables):
+[var](docs/topics/basic-syntax/basic-syntax.md#variables):
 
 ```kotlin
 fun f(x: Int): Int {
@@ -298,7 +298,7 @@ println(a.joinToString("\n")) // each element of array/list of a separate line
 
 Kotlin is easy to learn, especially for those who already know Java.
 A short introduction to the basic syntax of Kotlin for software developers can be found directly in the
-reference section of the website starting from [basic syntax](basic-syntax.md). 
+reference section of the website starting from [basic syntax](docs/topics/basic-syntax/basic-syntax.md). 
 
 IDEA has built-in 
 [Java-to-Kotlin converter](https://www.jetbrains.com/help/idea/converting-a-java-file-to-kotlin-file.html). 

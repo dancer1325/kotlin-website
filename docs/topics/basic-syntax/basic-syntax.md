@@ -20,7 +20,7 @@ import kotlin.text.*
 
 It is not required to match directories and packages: source files can be placed arbitrarily in the file system.
 
-See [Packages](packages.md).
+See [Packages](docs/topics/packages.md).
 
 ## Program entry point
 
@@ -129,7 +129,7 @@ fun main() {
 ```
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-function-omit-unit"}
 
-See [Functions](functions.md).
+See [Functions](docs/topics/functions.md).
 
 ## Variables
 
@@ -182,7 +182,7 @@ fun main() {
 ```
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-variable-top-level"}
 
-See also [Properties](properties.md).
+See also [Properties](docs/topics/properties.md).
 
 ## Creating classes and instances
 
@@ -225,7 +225,7 @@ class Rectangle(var height: Double, var length: Double): Shape() {
 }
 ```
 
-See [classes](classes.md) and [objects and instances](object-declarations.md).
+See [classes](docs/topics/classes.md) and [objects and instances](docs/topics/object-declarations.md).
 
 ## Comments
 
@@ -246,7 +246,7 @@ Block comments in Kotlin can be nested.
 and ends here. */
 ```
 
-See [Documenting Kotlin Code](kotlin-doc.md) for information on the documentation comment syntax.
+See [Documenting Kotlin Code](docs/topics/kotlin-doc.md) for information on the documentation comment syntax.
 
 ## String templates
 
@@ -266,7 +266,7 @@ fun main() {
 ```
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-string-templates"}
 
-See [String templates](strings.md#string-templates) for details.
+See [String templates](docs/topics/strings.md#string-templates) for details.
 
 ## Conditional expressions
 
@@ -300,7 +300,7 @@ fun main() {
 ```
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-if-expression"}
 
-See [`if`-expressions](control-flow.md#if-expression).
+See [`if`-expressions](docs/topics/control-flow.md#if-expression).
 
 ## for loop
 
@@ -330,7 +330,7 @@ fun main() {
 ```
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-for-loop-indices"}
 
-See [for loop](control-flow.md#for-loops).
+See [for loop](docs/topics/control-flow.md#for-loops).
 
 ## while loop
 
@@ -348,7 +348,7 @@ fun main() {
 ```
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-while-loop"}
 
-See [while loop](control-flow.md#while-loops).
+See [while loop](docs/topics/control-flow.md#while-loops).
 
 ## when expression
 
@@ -374,7 +374,7 @@ fun main() {
 ```
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-when-expression"}
 
-See [when expression](control-flow.md#when-expression).
+See [when expression](docs/topics/control-flow.md#when-expression).
 
 ## Ranges
 
@@ -441,7 +441,7 @@ fun main() {
 ```
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-iterate-progression"}
 
-See [Ranges and progressions](ranges.md).
+See [Ranges and progressions](docs/topics/ranges.md).
 
 ## Collections
 
@@ -490,7 +490,7 @@ fun main() {
 ```
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-collection-filter-map"}
 
-See [Collections overview](collections-overview.md).
+See [Collections overview](docs/topics/collections-overview.md).
 
 ## Nullable values and null checks
 
@@ -570,7 +570,7 @@ fun main() {
 ```
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-function-null-check"}
 
-See [Null-safety](null-safety.md).
+See [Null-safety](docs/topics/null-safety.md).
 
 ## Type checks and automatic casts
 
@@ -649,5 +649,5 @@ fun main() {
 ```
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-is-operator-logic"}
 
-See [Classes](classes.md) and [Type casts](typecasts.md).
+See [Classes](docs/topics/classes.md) and [Type casts](docs/topics/typecasts.md).
 
