@@ -75,7 +75,7 @@ Direct subclasses may be top-level or nested inside any number of other named cl
 
 The subclasses of a sealed class must have a name that is properly qualified – they cannot be local or anonymous objects.
 
-[Learn more about sealed class hierarchies](sealed-classes.md#location-of-direct-subclasses).
+[Learn more about sealed class hierarchies](sealed-classes.md#inheritance).
 
 ### Inline classes
 
@@ -791,5 +791,5 @@ To start a new project with Kotlin 1.5.0, update the Kotlin plugin and run the P
 
 The new command-line compiler is available for downloading on the [GitHub release page](https://github.com/JetBrains/kotlin/releases/tag/v1.5.0).
 
-Kotlin 1.5.0 is a [feature release](kotlin-evolution.md#feature-releases-and-incremental-releases) and therefore can
+Kotlin 1.5.0 is a [feature release](kotlin-evolution.md#language-and-tooling-releases) and therefore can
 bring incompatible changes to the language. Find the detailed list of such changes in the [Compatibility Guide for Kotlin 1.5](compatibility-guide-15.md).

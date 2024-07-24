@@ -26,13 +26,29 @@ object BuildJsAssets: BuildType({
         #!/bin/bash
         set -e -x -u
         
+        # for node:18 we caught exception:
+        #   unhandledRejection TypeError: Failed to parse URL from /mnt/agent/work/75f6fbaeb8c41e25/node_modules/@wasm-codecs/mozjpeg/lib/mozjpeg.wasm
+        #   at Object.fetch (node:internal/deps/undici/undici:11730:11) {
+        #   [cause]: TypeError: Invalid URL
+        export NODE_OPTIONS=--no-experimental-fetch
+        
         yarn install --frozen-lockfile
         
         NODE_ENV=production yarn run build
       """.trimIndent()
-      dockerImage = "node:14"
+      dockerImage = "node:18"
       dockerImagePlatform = ScriptBuildStep.ImagePlatform.Linux
       dockerPull = true
+    }
+  }
+
+  dependencies {
+    artifacts(FetchBlogNews) {
+      buildRule = lastSuccessful(branch = "+:<default>")
+      artifactRules = """
+        +:latest-news.zip!** => latest-news/
+      """.trimIndent()
+      cleanDestination = true
     }
   }
 })

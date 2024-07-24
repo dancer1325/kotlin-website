@@ -1,57 +1,170 @@
 [//]: # (title:  Kotlin releases)
 
-We ship different types of releases:
+Since Kotlin 2.0.0, we ship the following types of releases:
 
-* _Feature releases_ (1._x_) that bring major changes in the language.
-* _Incremental releases_ (1._x_._y_) that are shipped between feature releases and include updates in the tooling,
-  performance improvements, and bug fixes.
-* _Bug fix releases_ (1._x_._yz_) that include bug fixes for incremental releases.
+* _Language releases_ (2._x_._0_) that bring major changes in the language and include tooling updates. Released once in 6 months.
+* _Tooling releases_ (2._x_._20_) that are shipped between language releases and include updates in the tooling,
+    performance improvements, and bug fixes.
+    Released in 3 months after corresponding _language release_.
+* _Bug fix releases_ (2._x_._yz_) that include bug fixes for _tooling releases_. There is no exact release schedule for these releases.
 
-For example, for the feature release 1.3 we had several incremental releases including 1.3.10, 1.3.20, and 1.3.70.
-For 1.3.70, we had 2 bug fix releases – 1.3.71 and 1.3.72.
+<!-- TODO: uncomment with 2.1.0 release
+> For example, for the feature release 1.8.0, we had only one tooling release 1.8.20,
+> and several bugfix releases including 1.8.21, 1.8.22.
+>
+{type="tip"}
+-->
 
-For each incremental and feature release, we also ship several preview (_EAP_) versions for you to try
+For each language and tooling release, we also ship several preview (_EAP_) versions for you to try
 new features before they are released. See [Early Access Preview](eap.md) for details.
-
-Learn more about [types of Kotlin releases and their compatibility](kotlin-evolution.md#feature-releases-and-incremental-releases).
 
 ## Update to a new release
 
-IntelliJ IDEA and Android Studio suggest updating to a new release once it is out. When you accept the suggestion,
-it automatically updates the Kotlin plugin to the new version. You can check the Kotlin version in **Tools** | **Kotlin**
-| **Configure Kotlin Plugin Updates**.
+To upgrade your project to a new release, you need to update your build script file.
+For example, to update to Kotlin %kotlinVersion%, change the version of the Kotlin Gradle plugin in your
+`build.gradle(.kts)` file:
+
+<tabs group="build-script">
+<tab title="Kotlin" group-key="kotlin">
+
+```kotlin
+plugins {
+    // Replace `<...>` with the plugin name appropriate for your target environment
+    kotlin("<...>") version "%kotlinVersion%"
+    // For example, if your target environment is JVM:
+    // kotlin("jvm") version "%kotlinVersion%"
+    // If you target is Kotlin Multiplatform
+    // kotlin("multiplatform") version "%kotlinVersion%"
+}
+```
+
+</tab>
+<tab title="Groovy" group-key="groovy">
+
+```groovy
+plugins {
+    // Replace `<...>` with the plugin name appropriate for your target environment
+    id 'org.jetbrains.kotlin.<...>' version '%kotlinVersion%'
+    // For example, if your target environment is JVM: 
+    // id 'org.jetbrains.kotlin.jvm' version '%kotlinVersion%'
+    // If you target is Kotlin Multiplatform
+    // id 'org.jetbrains.kotlin.multiplatform' version '%kotlinVersion%'
+}
+```
+
+</tab>
+</tabs>
 
 If you have projects created with earlier Kotlin versions, change the Kotlin version in your projects and update kotlinx
 libraries if necessary.
 
-If you are migrating to the new feature release, Kotlin plugin's migration tools will help you with the migration.
+If you are migrating to the new language release, Kotlin plugin's migration tools will help you with the migration.
 
 ## IDE support
 
-The IDE support for the latest version of the language is available for the following versions of IntelliJ IDEA and Android Studio:
-* IntelliJ IDEA:
-    * Latest stable
-    * Previous stable
-    * [Early access](https://www.jetbrains.com/resources/eap/) versions
-* Android Studio:
-    * [Latest released](https://developer.android.com/studio) version
-    * [Early access](https://developer.android.com/studio/preview) versions
+Even with the release of the K2 compiler, IntelliJ IDEA and Android Studio still use the previous compiler by default 
+for code analysis, code completion, highlighting, and other IDE-related features.
 
-> Learn more about the latest Kotlin-related updates in IntelliJ IDEA in the **Kotlin** section of the
-> [What's new in IntelliJ IDEA page](https://www.jetbrains.com/idea/whatsnew/).
-> 
-{type="tip"}
+Starting from 2024.1, IntelliJ IDEA can use the new K2 compiler to analyze your code with its K2 Kotlin mode.
+To enable it, go to **Settings** | **Languages & Frameworks** | **Kotlin** and select the **Enable K2 Kotlin Mode** option.
+
+> The K2 Kotlin mode is in Alpha. The performance and stability of code highlighting and code completion have been significantly improved,
+> but not all IDE features are supported yet.
+>
+{type="warning"}
+
+After enabling K2 mode, you may notice differences in IDE analysis due to changes in compiler behavior.
+Learn how the new K2 compiler differs from the previous one in the [migration guide](k2-compiler-migration-guide.md).
+
+## Kotlin release compatibility
+
+Learn more about [types of Kotlin releases and their compatibility](kotlin-evolution.md#language-and-tooling-releases)
 
 ## Release details
 
-The following table lists details of the latest Kotlin releases.
+The following table lists details of the latest Kotlin releases:
 
-You can also use [preview versions of Kotlin](eap.md#build-details).
+> You can also use [preview versions of Kotlin](eap.md#build-details).
+> 
+{type="tip"}
 
 <table>
     <tr>
         <th>Build info</th>
         <th>Build highlights</th>
+    </tr>
+    <tr>
+        <td><strong>2.0.0</strong>
+            <p>Released: <strong>May 21, 2024</strong></p>
+            <p><a href="https://github.com/JetBrains/kotlin/releases/tag/v2.0.0" target="_blank">Release on GitHub</a></p>
+        </td>
+        <td>
+            <p>A language release with the Stable Kotlin K2 compiler.</p>
+            <p>Learn more about Kotlin 2.0.0 in <a href="whatsnew20.md" target="_blank">What's new in Kotlin 2.0.0</a>.</p>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>1.9.25</strong>
+            <p>Released: <strong>July 19, 2024</strong></p>
+            <p><a href="https://github.com/JetBrains/kotlin/releases/tag/v1.9.25" target="_blank">Release on GitHub</a></p>
+        </td>
+        <td>
+            <p>A bug fix release for Kotlin 1.9.20, 1.9.21, 1.9.22, 1.9.23, and 1.9.24</p>
+            <p>Learn more about Kotlin 1.9.20 in <a href="whatsnew1920.md" target="_blank">What's new in Kotlin 1.9.20</a>.</p>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>1.9.24</strong>
+            <p>Released: <strong>May 7, 2024</strong></p>
+            <p><a href="https://github.com/JetBrains/kotlin/releases/tag/v1.9.24" target="_blank">Release on GitHub</a></p>
+        </td>
+        <td>
+            <p>A bug fix release for Kotlin 1.9.20, 1.9.21, 1.9.22, and 1.9.23.</p>
+            <p>Learn more about Kotlin 1.9.20 in <a href="whatsnew1920.md" target="_blank">What's new in Kotlin 1.9.20</a>.</p>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>1.9.23</strong>
+            <p>Released: <strong>March 7, 2024</strong></p>
+            <p><a href="https://github.com/JetBrains/kotlin/releases/tag/v1.9.23" target="_blank">Release on GitHub</a></p>
+        </td>
+        <td>
+            <p>A bug fix release for Kotlin 1.9.20, 1.9.21, and 1.9.22.</p>
+            <p>Learn more about Kotlin 1.9.20 in <a href="whatsnew1920.md" target="_blank">What's new in Kotlin 1.9.20</a>.</p>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>1.9.22</strong>
+            <p>Released: <strong>December 21, 2023</strong></p>
+            <p><a href="https://github.com/JetBrains/kotlin/releases/tag/v1.9.22" target="_blank">Release on GitHub</a></p>
+        </td>
+        <td>
+            <p>A bug fix release for Kotlin 1.9.20 and 1.9.21.</p>
+            <p>Learn more about Kotlin 1.9.20 in <a href="whatsnew1920.md" target="_blank">What's new in Kotlin 1.9.20</a>.</p>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>1.9.21</strong>
+            <p>Released: <strong>November 23, 2023</strong></p>
+            <p><a href="https://github.com/JetBrains/kotlin/releases/tag/v1.9.21" target="_blank">Release on GitHub</a></p>
+        </td>
+        <td>
+            <p>A bug fix release for Kotlin 1.9.20.</p>
+            <p>Learn more about Kotlin 1.9.20 in <a href="whatsnew1920.md" target="_blank">What's new in Kotlin 1.9.20</a>.</p>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>1.9.20</strong>
+            <p>Released: <strong>November 1, 2023</strong></p>
+            <p><a href="https://github.com/JetBrains/kotlin/releases/tag/v1.9.20" target="_blank">Release on GitHub</a></p>
+        </td>
+        <td>
+            <p>A feature release with Kotlin K2 compiler in Beta and Stable Kotlin Multiplatform.</p>
+            <p>Learn more in:</p>
+            <list>
+                <li><a href="whatsnew1920.md" target="_blank">What's new in Kotlin 1.9.20</a></li>
+            </list>
+        </td>
     </tr>
     <tr>
         <td><strong>1.9.10</strong>
@@ -70,7 +183,10 @@ You can also use [preview versions of Kotlin](eap.md#build-details).
             <p><a href="https://github.com/JetBrains/kotlin/releases/tag/v1.9.0" target="_blank">Release on GitHub</a></p>
         </td>
         <td>
-            <p>A feature release with Kotlin K2 compiler updates, new enum class values function, new operator for open-ended ranges, preview of Gradle configuration cache in Kotlin Multiplatform, changes to Android target support in Kotlin Multiplatform, preview of custom memory allocator in Kotlin/Native.</p>
+            <p>A feature release with Kotlin K2 compiler updates, new enum class values function,
+                new operator for open-ended ranges, preview of Gradle configuration cache in Kotlin Multiplatform, 
+                changes to Android target support in Kotlin Multiplatform, preview of custom memory allocator in Kotlin/Native.
+            </p>
             <p>Learn more in:</p>
             <list>
                 <li><a href="whatsnew19.md" target="_blank">What's new in Kotlin 1.9.0</a></li>
@@ -105,7 +221,9 @@ You can also use [preview versions of Kotlin](eap.md#build-details).
             <p><a href="https://github.com/JetBrains/kotlin/releases/tag/v1.8.20" target="_blank">Release on GitHub</a></p>
         </td>
         <td>
-            <p>A feature release with Kotlin K2 compiler updates, AutoCloseable interface and Base64 encoding in stdlib, new JVM incremental compilation enabled by default, new Kotlin/Wasm compiler backend.</p>
+            <p>A feature release with Kotlin K2 compiler updates, AutoCloseable interface and Base64 encoding in stdlib,
+                new JVM incremental compilation enabled by default, new Kotlin/Wasm compiler backend.
+            </p>
             <p>Learn more in:</p>
             <list>
                 <li><a href="whatsnew1820.md" target="_blank">What's new in Kotlin 1.8.20</a></li>
@@ -155,7 +273,9 @@ You can also use [preview versions of Kotlin](eap.md#build-details).
             <p><a href="https://github.com/JetBrains/kotlin/releases/tag/v1.7.20" target="_blank">Release on GitHub</a></p>
         </td>
         <td>
-          <p>An incremental release with new language features, the support for several compiler plugins in the Kotlin K2 compiler, the new Kotlin/Native memory manager enabled by default, and the support for Gradle 7.1.</p>
+            <p>An incremental release with new language features, the support for several compiler plugins in the Kotlin K2 compiler,
+                the new Kotlin/Native memory manager enabled by default, and the support for Gradle 7.1.
+            </p>
             <p>Learn more in:</p>
             <list>
                 <li><a href="whatsnew1720.md" target="_blank">What's new in Kotlin 1.7.20</a></li>

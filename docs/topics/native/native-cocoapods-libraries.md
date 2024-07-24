@@ -3,7 +3,7 @@
 To add dependencies between a Kotlin project and a Pod library, [complete the initial configuration](native-cocoapods.md#set-up-an-environment-to-work-with-cocoapods).
 You can then add dependencies on different types of Pod libraries.
 
-When you add a new dependency and re-import the project in IntelliJ IDEA, the new dependency will be added automatically.
+When you add a new dependency and re-import the project in your IDE, the new dependency will be added automatically.
 No additional steps are required.
 
 To use your Kotlin project with Xcode, you should [make changes in your project Podfile](native-cocoapods.md#update-podfile-for-xcode).
@@ -42,19 +42,20 @@ version of the library, you can just omit this parameter altogether.
             summary = "CocoaPods test library"
             homepage = "https://github.com/JetBrains/kotlin"
 
-            pod("Alamofire") {
-                version = "5.7.0"
+            pod("FirebaseAuth") {
+                version = "10.16.0"
             }
         }
     }
     ```
 
-3. Re-import the project.
+3. Run **Reload All Gradle Projects** in IntelliJ IDEA (or **Sync Project with Gradle Files** in Android Studio)
+   to re-import the project.
 
 To use these dependencies from the Kotlin code, import the packages `cocoapods.<library-name>`:
 
 ```kotlin
-import cocoapods.Alamofire.*
+import cocoapods.FirebaseAuth.*
 ```
 
 ## On a locally stored library
@@ -89,8 +90,8 @@ import cocoapods.Alamofire.*
                 version = "1.0"
                 source = path(project.file("../subspec_dependency"))
             }
-            pod("Alamofire") {
-                version = "5.7.0"
+            pod("FirebaseAuth") {
+                version = "10.16.0"
             }
         }
     }
@@ -101,14 +102,15 @@ import cocoapods.Alamofire.*
    >
    {type="note"}
 
-3. Re-import the project.
+3. Run **Reload All Gradle Projects** in IntelliJ IDEA (or **Sync Project with Gradle Files** in Android Studio)
+   to re-import the project.
 
 To use these dependencies from the Kotlin code, import the packages `cocoapods.<library-name>`:
 
 ```kotlin
 import cocoapods.pod_dependency.*
 import cocoapods.subspec_dependency.*
-import cocoapods.Alamofire.*
+import cocoapods.FirebaseAuth.*
 ```
 
 ## From a custom Git repository
@@ -141,9 +143,9 @@ import cocoapods.Alamofire.*
 
             ios.deploymentTarget = "13.5"
 
-            pod("Alamofire") {
-                source = git("https://github.com/Alamofire/Alamofire") {
-                    tag = "5.7.0"
+            pod("FirebaseAuth") {
+                source = git("https://github.com/firebase/firebase-ios-sdk") {
+                    tag = "10.16.0"
                 }
             }
 
@@ -162,7 +164,8 @@ import cocoapods.Alamofire.*
     }
     ```
 
-3. Re-import the project.
+3. Run **Reload All Gradle Projects** in IntelliJ IDEA (or **Sync Project with Gradle Files** in Android Studio)
+   to re-import the project.
 
 To use these dependencies from the Kotlin code, import the packages `cocoapods.<library-name>`:
 
@@ -198,7 +201,8 @@ import cocoapods.CocoaLumberjack.*
     }
     ```
 
-4. Re-import the project.
+4. Run **Reload All Gradle Projects** in IntelliJ IDEA (or **Sync Project with Gradle Files** in Android Studio)
+   to re-import the project.
 
 > To work correctly with Xcode, you should specify the location of specs at the beginning of your Podfile.
 > For example,
@@ -242,7 +246,8 @@ import cocoapods.example.*
     }
     ```
 
-3. Re-import the project.
+3. Run **Reload All Gradle Projects** in IntelliJ IDEA (or **Sync Project with Gradle Files** in Android Studio)
+   to re-import the project.
 
 To use these dependencies from the Kotlin code, import the packages `cocoapods.<library-name>`:
    

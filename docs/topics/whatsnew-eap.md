@@ -1,264 +1,362 @@
-[//]: # (title: What's new in Kotlin 1.9.0-RC)
+[//]: # (title: What's new in Kotlin %kotlinEapVersion%)
 
 _[Released: %kotlinEapReleaseDate%](eap.md#build-details)_
 
-> This document doesn't cover all of the features of the Early Access Preview (EAP) release, but it highlights the latest
-> ones and some major improvements.
+> This document doesn't cover all of the features of the Early Access Preview (EAP) release, 
+> but it highlights some major improvements.
 >
-> See the full list of changes in the [GitHub changelog](https://github.com/JetBrains/kotlin/releases/tag/v1.9.0-RC).
+> See the full list of changes in the [GitHub changelog](https://github.com/JetBrains/kotlin/releases/tag/v%kotlinEapVersion%).
 >
 {type="note"}
 
-The Kotlin 1.9.0-RC release is out! Here are some highlights from this preview version of Kotlin:
+The Kotlin %kotlinEapVersion% release is out!
+Here are some details of this EAP release:
 
-* [New Kotlin K2 compiler updates](#new-kotlin-k2-compiler-updates)
-* [Stable replacement of the enum class values function](#stable-replacement-of-the-enum-class-values-function)
-* [Stable ..< operator for open-ended ranges](#stable-operator-for-open-ended-ranges)
-* [New common function to get regex capture group by name](#new-common-function-to-get-regex-capture-group-by-name)
-* [New path utility to create parent directories](#new-path-utility-to-create-parent-directories)
-* [Preview of Gradle configuration cache in Kotlin Multiplatform](#preview-of-gradle-configuration-cache-in-kotlin-multiplatform)
-* [Changes for Android target support in Kotlin Multiplatform](#changes-for-android-target-support-in-kotlin-multiplatform)
-* [No object initialization when accessing constant values in Kotlin/Native](#no-object-initialization-when-accessing-constant-values-in-kotlin-native)
-* [Ability to configure standalone mode for iOS simulator tests in Kotlin/Native](#ability-to-configure-standalone-mode-for-ios-simulator-tests-in-kotlin-native)
+* [Language: Data class copy function to have the same visibility as constructor](#data-class-copy-function-to-have-the-same-visibility-as-constructor)
+* [Kotlin Multiplatform: Static accessors for source sets from the default target hierarchy](#static-accessors-for-source-sets-from-the-default-target-hierarchy)
+* [Kotlin Multiplatform: Deprecated compatibility with Gradle Java plugins](#deprecated-compatibility-with-gradle-java-plugins)
+* [Kotlin/Native: Concurrent marking in garbage collector](#concurrent-marking-in-garbage-collector)
+* [Kotlin/Native: Support for bitcode embedding removed](#support-for-bitcode-embedding-removed)
+* [Kotlin/Wasm: Error in default export usage](#error-in-default-export-usage)
+* [Kotlin/Wasm: New location of ExperimentalWasmDsl annotation](#new-location-of-experimentalwasmdsl-annotation)
+* [Gradle improvements: Support for versions 8.6–8.8](#gradle-support-for-versions-8-6-8-8)
+* [Gradle improvements: Deprecated incremental compilation based on JVM history files](#deprecated-incremental-compilation-based-on-jvm-history-files)
+* [Gradle improvements: Added task dependency for a rare case when compile task is missing one on an artifact](#added-task-dependency-for-a-rare-case-when-compile-task-is-missing-one-on-an-artifact)
 
 ## IDE support
 
-The Kotlin plugins that support 1.9.0-RC are available for:
+The Kotlin plugins that support %kotlinEapVersion% are bundled in the latest IntelliJ IDEA and Android Studio. 
+You don't need to update the Kotlin plugin in your IDE. 
+All you need to do is to [change the Kotlin version](configure-build-for-eap.md) to %kotlinEapVersion% in your build scripts.
 
-| IDE            | Supported versions            |
-|----------------|-------------------------------|
-| IntelliJ IDEA  | 2022.3.x, 2023.1.x            |
-| Android Studio | Giraffe (223), Hedgehog (231) |
+See [Update to a new release](releases.md#update-to-a-new-release) for details.
 
-## New Kotlin K2 compiler updates
+## Language
 
-The Kotlin team continues to stabilize the K2 compiler. The 1.9.0-RC release introduces further advancements, including
-basic support for Kotlin/Native and improved Kotlin/JS stability in the K2 compiler. It's an important step towards full
-support of multiplatform projects. We would appreciate [your feedback](#share-your-feedback-on-the-new-k2-compiler) to
-help us with it.
+### Data class copy function to have the same visibility as constructor
 
-Also, starting with 1.9.0-RC and until the release of Kotlin 2.0, you can easily test the K2 compiler in your projects.
-Add `kotlin.experimental.tryK2=true` to your `gradle.properties` file or run the following command:
+Currently, if you create a data class using a `private` constructor, 
+the automatically generated `.copy()` function doesn't have the same visibility. 
+This can cause problems later in your code. 
+In future Kotlin releases, we will introduce the behavior that the default visibility of the `.copy()` function is the same as the constructor.
+This change will be introduced gradually to help you migrate your code as smoothly as possible.
 
-```shell
-./gradlew assemble -Pkotlin.experimental.tryK2=true
+Our migration plan starts with Kotlin %kotlinEapVersion%, 
+where we issue warnings in your code where the visibility will change in the future. 
+For example:
+
+```kotlin
+// Triggers a warning in %kotlinEapVersion%
+data class PositiveInteger private constructor(val number: Int) {
+    companion object {
+        fun create(number: Int): PositiveInteger? = if (number > 0) PositiveInteger(number) else null
+    }
+}
+
+fun main() {
+    val positiveNumber = PositiveInteger.create(42) ?: return
+    // Triggers a warning in %kotlinEapVersion%
+    val negativeNumber = positiveNumber.copy(number = -1)
+    // warning: non-public primary constructor is exposed via the generated 'copy()' method of the 'data' class.
+    // The generated 'copy()' will change its visibility in future releases.
+}
 ```
 
-This Gradle property automatically sets the language version to 2.0 and updates the build report with the number of
-Kotlin tasks compiled using the K2 compiler compared to the current compiler:
+For the latest information about our migration plan,
+see the corresponding issue in [YouTrack](https://youtrack.jetbrains.com/issue/KT-11914).
+
+To give you more control over this behavior, in Kotlin %kotlinEapVersion% we’ve introduced two annotations:
+
+* `@ConsistentCopyVisibility` to opt in to the behavior now before we make it the default in a later release.
+* `@ExposedCopyVisibility` to opt out of the behavior and suppress warnings at the declaration site. 
+Note that even with this annotation, the compiler still reports warnings when the `.copy()` function is called.
+
+If you want to opt in to the new behavior already in %kotlinEapVersion% for a whole module rather than in individual classes,
+you can use the `-Xconsistent-data-class-copy-visibility` compiler option.
+This option has the same effect as adding the `@ConsistentCopyVisibility` annotation to all data classes in a module.
+
+## Kotlin Multiplatform
+
+### Static accessors for source sets from the default target hierarchy
+
+Since Kotlin 1.9.20, the [default hierarchy template](multiplatform-hierarchy.md#default-hierarchy-template) 
+is automatically applied to all Kotlin Multiplatform projects. 
+And for all of the source sets from the default hierarchy template, the Kotlin Gradle plugin provided type-safe accessors.
+That way you could finally access source sets for all the specified targets without having to use `by getting` or `by creating` constructions.
+
+Kotlin 2.0.20 aims to improve your IDE experience even further. It now provides static assessors in 
+the `sourceSets {}` block for all the source sets from the default hierarchy template. 
+We believe this change will make accessing source sets by name easier and more predictable.
+
+Each such source set now has a detailed KDoc comment with a sample and a diagnostic message with a warning 
+in case you try to access the source set without declaring the corresponding target first:
+
+```kotlin
+kotlin {
+    jvm()
+    linuxX64()
+    linuxArm64()
+    mingwX64()
+  
+    sourceSets {
+        commonMain.languageSettings {
+            progressiveMode = true
+        }
+
+
+        jvmMain { }
+        linuxX64Main { }
+        linuxArm64Main { }
+        iosX64Main { } // Warning: accessing source set
+                       // without registering the target
+    }
+}
+```
+
+![Accessing the source sets by name](accessing-sourse-sets.png){width=700}
+
+Learn more about the [hierarchical project structure in Kotlin Multiplatform](multiplatform-hierarchy.md).
+
+### Deprecated compatibility with Gradle Java plugins
+
+Due to compatibility issues between the Kotlin Multiplatform Gradle plugin and the Gradle plugins 
+[Java](https://docs.gradle.org/current/userguide/java_plugin.html), 
+[Java Library](https://docs.gradle.org/current/userguide/java_library_plugin.html), 
+and [Application](https://docs.gradle.org/current/userguide/application_plugin.html), 
+Kotlin %kotlinEapVersion% introduces a deprecation warning when you apply these plugins in the same project.
+In future Kotlin releases, the warning will be increased to an error.
+
+If you want to use both the Kotlin Multiplatform Gradle plugin in combination with these Gradle plugins for Java in your multiplatform project, 
+we recommend that you:
+
+1. Create a separate subproject in your multiplatform project.
+2. In your subproject, apply the Gradle plugin for Java.
+3. In your subproject, add a dependency on your parent multiplatform project.
+
+> Your subproject must **not** be a multiplatform project, and you must only use it to set up a dependency on your multiplatform project.
+>
+{type="warning"}
+
+For example, you have a multiplatform project called `my-main-project` and you want 
+to use the [Application](https://docs.gradle.org/current/userguide/application_plugin.html) Gradle plugin to run a JVM application.
+
+Once you've created a subproject, let's call it `subproject-A`, your parent project structure should look like this:
+
+```text
+.
+├── build.gradle
+├── settings.gradle
+├── subproject-A
+    └── build.gradle
+    └── src
+        └── Main.java
+```
+
+In your subproject's `build.gradle.kts` file, apply the Application plugin in the `plugins {}` block:
+
+<tabs group="build-script">
+<tab title="Kotlin" group-key="kotlin">
+
+```kotlin
+plugins {
+    id("application")
+}
+```
+
+</tab>
+<tab title="Groovy" group-key="groovy">
+
+```groovy
+plugins {
+    id('application')
+}
+```
+
+</tab>
+</tabs>
+
+In your subproject's `build.gradle.kts` file, add a dependency on your parent multiplatform project:
+
+<tabs group="build-script">
+<tab title="Kotlin" group-key="kotlin">
+
+```kotlin
+dependencies {
+    implementation(project(":my-main-project")) // The name of your parent multiplatform project
+}
+```
+
+</tab>
+<tab title="Groovy" group-key="groovy">
+
+```groovy
+dependencies {
+    implementation project(':my-main-project') // The name of your parent multiplatform project
+}
+```
+
+</tab>
+</tabs>
+
+
+Your parent project is now set up to work with both plugins.
+
+## Kotlin/Native
+
+### Concurrent marking in garbage collector
+
+In Kotlin %kotlinEapVersion%, the JetBrains team takes another step toward improving Kotlin/Native runtime performance.
+We add experimental support for concurrent marking in the garbage collector (GC).
+
+By default, application threads must be paused when GC is marking objects in the heap. 
+This greatly affects the duration of the GC pause time,
+which is important for the performance of latency-critical applications,
+such as UI applications built with Compose Multiplatform.
+
+Now, the marking phase of the garbage collection can be run simultaneously with application threads.
+This should significantly shorten the GC pause time and help improve app responsiveness.
+
+#### How to enable
+
+The feature is currently [Experimental](components-stability.md#stability-levels-explained). 
+To enable it, set the following option in your `gradle.properties` file:
 
 ```none
-##### 'kotlin.experimental.tryK2' results (Kotlin/Native not checked) #####
-:lib:compileKotlin: 2.0 language version
-:app:compileKotlin: 2.0 language version
-##### 100% (2/2) tasks have been compiled with Kotlin 2.0 #####
+kotlin.native.binary.gc=cms
 ```
 
-### Share your feedback on the new K2 compiler
+Please report any problems to our issue tracker [YouTrack](https://kotl.in/issue).
 
-We'd appreciate any feedback you might have!
+### Support for bitcode embedding removed
 
-* Provide your feedback directly to K2 developers in the Kotlin Slack – [get an invite](https://surveys.jetbrains.com/s3/kotlin-slack-sign-up?_gl=1*ju6cbn*_ga*MTA3MTk5NDkzMC4xNjQ2MDY3MDU4*_ga_9J976DJZ68*MTY1ODMzNzA3OS4xMDAuMS4xNjU4MzQwODEwLjYw)
-  and join the [#k2-early-adopters](https://kotlinlang.slack.com/archives/C03PK0PE257) channel.
-* Report any problems you've faced with the new K2 compiler via [our issue tracker](https://kotl.in/issue).
-* [Enable the **Send usage statistics** option](https://www.jetbrains.com/help/idea/settings-usage-statistics.html) to
-  allow JetBrains to collect anonymous data about K2 usage.
+Starting with Kotlin %kotlinEapVersion%, the Kotlin/Native compiler no longer supports bitcode embedding.
+Bitcode embedding was deprecated in Xcode 14 and removed in Xcode 15 for all Apple targets.
 
-## Stable replacement of the enum class values function
+Now, the `embedBitcode` parameter for the framework configuration, 
+as well as the `-Xembed-bitcode` and `-Xembed-bitcode-marker` command line arguments are deprecated.
 
-In 1.8.20, the `entries` property for enum classes was introduced as an Experimental feature. The `entries` property is intended to be a modern and performant replacement for the synthetic `values()` function. In 1.9.0-RC, the `entries` property is [Stable](components-stability.md#stability-levels-explained).
+If you still use earlier versions of Xcode but want to upgrade to %kotlinEapVersion%, 
+disable bitcode embedding in your Xcode projects.
 
-> The `values()` function is still supported, but we recommend that you use the `entries` property instead.
->
-{type="tip"}
+## Kotlin/Wasm
+
+### Error in default export usage
+
+As part of the migration towards named exports, 
+a warning message was previously printed to the console when using a default import for Kotlin/Wasm exports in JavaScript.
+
+To fully support named exports, this warning has now upgraded to an error. 
+If you use a default import, you encounter the following error message:
+
+```text
+Do not use default import. Use the corresponding named import instead.
+```
+
+This change is part of a deprecation cycle to migrate towards named exports. Here's what you can expect during each phase:
+
+* **In version 2.0.0**: a warning message is printed to the console, explaining that exporting entities via default exports is deprecated.
+* **In version 2.0.20**: an error occurs, requesting the use of the corresponding named import.
+* **In version 2.1.0**: the use of default imports is completely removed.
+
+### New location of ExperimentalWasmDsl annotation
+
+Previously, the `@ExperimentalWasmDsl` annotation for WebAssembly (Wasm) 
+features was placed in this location within the Kotlin Gradle plugin:
+
+```Kotlin
+org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
+```
+
+In %kotlinEapVersion%, the `@ExperimentalWasmDsl` annotation has been relocated to:
+
+```Kotlin
+org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+```
+
+The previous location is now deprecated and might lead to build failures with unresolved references.
+
+To reflect the new location of the `@ExperimentalWasmDsl` annotation, 
+update the import statement in your Gradle build scripts. 
+Use an explicit import for the new `@ExperimentalWasmDsl` location:
 
 ```kotlin
-enum class Color(val colorName: String, val rgb: String) {
-    RED("Red", "#FF0000"),
-    ORANGE("Orange", "#FF7F00"),
-    YELLOW("Yellow", "#FFFF00")
-}
-
-fun findByRgb(rgb: String): Color? = Color.entries.find { it.rgb == rgb }
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 ```
-{validate="false"}
 
-For more information about the `entries` property for enum classes, see [What's new in Kotlin 1.8.20](whatsnew1820.md#a-modern-and-performant-replacement-of-the-enum-class-values-function).
-
-## Stable ..< operator for open-ended ranges
-
-The new `..<` operator for open-ended ranges that was introduced in [Kotlin 1.7.20](whatsnew1720.md#preview-of-the-operator-for-creating-open-ended-ranges)
-is Stable in 1.9.0-RC. The standard library API for working with open-ended ranges is also Stable in this release.
-
-Our research shows that the new `..<` operator makes it easier to understand when an open-ended range is declared. If 
-you use the [`until`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/until.html) infix function, it's easy 
-to make the mistake of assuming that the upper bound is included.
-
-Here is an example using the `until` function:
+Alternatively, remove this star import statement from the old package:
 
 ```kotlin
-fun main() {
-    for (number in 2 until 10) {
-        if (number % 2 == 0) {
-            print("$number ")
-        }
-    }
-    // 2 4 6 8
-}
+import org.jetbrains.kotlin.gradle.targets.js.dsl.*
 ```
-{validate="false"}
 
-And here is an example using the new `..<` operator:
+## Gradle improvements
+
+### Gradle support for versions 8.6–8.8
+
+Kotlin %kotlinEapVersion% is fully compatible with Gradle 6.8.3 through 8.6. 
+Gradle 8.7 and 8.8 are also supported, with only one exception: if you use the Kotlin Multiplatform Gradle plugin, 
+you may see deprecation warnings in your multiplatform projects
+if you use the [`withJava()` function in the JVM target](multiplatform-dsl-reference.md#jvm-targets). 
+We plan to fix this issue as soon as possible. 
+
+For more information, see the issue in [YouTrack](https://youtrack.jetbrains.com/issue/KT-66542/Gradle-JVM-target-with-withJava-produces-a-deprecation-warning).
+
+### Deprecated incremental compilation based on JVM history files
+
+In Kotlin %kotlinEapVersion%, the incremental compilation approach based on JVM history files is deprecated in favor of 
+the [new incremental compilation approach](gradle-compilation-and-caches.md#a-new-approach-to-incremental-compilation) 
+that has been enabled by default since Kotlin 1.8.20.
+
+The incremental compilation approach based on JVM history files suffered from limitations, 
+such as not working with [Gradle's build cache](https://docs.gradle.org/current/userguide/build_cache.html) 
+and not supporting compilation avoidance. 
+In contrast, the new incremental compilation approach overcomes these limitations and has performed well since its introduction.
+
+Given that the new incremental compilation approach has been used by default for the last two major Kotlin releases, 
+the `kotlin.incremental.useClasspathSnapshot` Gradle property is deprecated in Kotlin %kotlinEapVersion%.
+Therefore, if you use it to opt out, you will see a deprecation warning.
+
+### Added task dependency for a rare case when compile task is missing one on an artifact
+
+Prior to %kotlinEapVersion%, 
+we found that there were scenarios where a compile task was missing a task dependency for one of its artifact inputs.
+This meant that the result of the dependent compile task was unstable, as sometimes the artifact had been generated in time,
+but sometimes it hadn't.
+
+To fix this issue, the Kotlin Gradle plugin now automatically adds the required task dependency in these scenarios.
+
+In very rare cases, we've found that this new behavior can cause a circular dependency error.
+For example, if you have multiple compilations where one compilation can see all internal declarations of the other,
+and the generated artifact relies on the output of both compilation tasks, you could see an error like:
+
+```none
+FAILURE: Build failed with an exception.
+
+What went wrong:
+Circular dependency between the following tasks:
+:lib:compileKotlinJvm
+--- :lib:jvmJar
+     \--- :lib:compileKotlinJvm (*)
+(*) - details omitted (listed previously)
+```
+
+To fix this circular dependency error, we've added a Gradle property: `archivesTaskOutputAsFriendModule`.
+
+By default, this property is set to `true` to track the task dependency. 
+To disable the use of the artifact in the compilation task, so that no task dependency is required, 
+add the following in your `gradle.properties` file:
 
 ```kotlin
-fun main() {
-    for (number in 2..<10) {
-        if (number % 2 == 0) {
-            print("$number ")
-        }
-    }
-    // 2 4 6 8
-}
-```
-{validate="false"}
-
-> Starting with version 2023.1.1, IntelliJ IDEA has a new code inspection that highlights when you can use the `..<` operator.
->
-{type="note"}
-
-For more information about what you can do with this operator, see [What's new in Kotlin 1.7.20](whatsnew1720.md#preview-of-the-operator-for-creating-open-ended-ranges).
-
-## New common function to get regex capture group by name
-
-Prior to 1.9.0-RC, every platform had its own extension to get a regular expression capture group by its name from a regular expression match.
-However, there was no common function. It wasn't possible to implement prior to Kotlin 1.8.0,
-because the standard library still supported JVM targets 1.6 and 1.7.
-
-As of Kotlin 1.8.0, the standard library is compiled with JVM target 1.8. So in 1.9.0-RC,
-there is now a **common** function [`groups`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-match-result/groups.html)
-that retrieves group's contents by its name for a regular expression match.
-This is useful when you want to access the results of regular expression matches belonging to a particular capture group.
-
-Here is an example with a regular expression containing three capture groups: `city`, `state`, and `areaCode`.
-You can use these group names to access the matched values:
-
-```kotlin
-fun main() {
-    val regex = """\b(?<city>[A-Za-z\s]+),\s(?<state>[A-Z]{2}):\s(?<areaCode>[0-9]{3})\b""".toRegex()
-    val input = "Coordinates: Austin, TX: 123"
-
-
-    val match = regex.find(input)!!
-    println(match.groups["city"]?.value) 
-    // Austin
-    println(match.groups["state"]?.value)
-    // TX
-    println(match.groups["areaCode"]?.value)
-    // 123
-}
-```
-{validate="false"}
-
-## New path utility to create parent directories
-
-In 1.9.0-RC there is a new extension function `createParentDirectories()` that you can use to create a new file with 
-all the necessary parent directories. When you provide a file path to `createParentDirectories()`, it checks whether the parent
-directories already exist. If they do, it does nothing. However, if they do not, it creates them for you.
-
-`createParentDirectories()` is particularly useful when you are copying files. For example, you can use it in combination
-with the [`copyToRecursively()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.io.path/java.nio.file.-path/copy-to-recursively.html) function:
-
-```kotlin
-sourcePath.copyToRecursively(
-    destinationPath.createParentDirectories(),
-    followLinks = false
-)
-```
-{validate="false"}
-
-## Preview of Gradle configuration cache in Kotlin Multiplatform
-
-Kotlin 1.9.0-RC comes with support for [Gradle configuration cache](https://docs.gradle.org/current/userguide/configuration_cache.html)
-in multiplatform libraries. If you're a library author, you can already benefit from the improved build performance.
-
-Gradle configuration cache speeds up the build process by reusing the results of the configuration phase for subsequent 
-builds. The feature has become Stable since Gradle 8.1. To enable it, follow the instructions in the [Gradle documentation](https://docs.gradle.org/current/userguide/configuration_cache.html#config_cache:usage).
-
-> The Kotlin Multiplatform plugin still doesn't support Gradle configuration cache with Xcode integration tasks or the 
-> [Kotlin CocoaPods Gradle plugin](native-cocoapods-dsl-reference.md). We expect to add this feature in a future Kotlin release.
->
-{type="note"}
-
-## Changes for Android target support in Kotlin Multiplatform
-
-We continue our efforts to stabilize Kotlin Multiplatform. An essential step in this direction is to provide first-class support
-for the Android target. We're excited to announce that in the future, the Android team from Google will provide its own 
-Gradle plugin to support Android in Kotlin Multiplatform.
-
-To open the way for the new solution from Google, we're renaming the `android` block to `androidTarget` in the current 
-Kotlin DSL in 1.9.0-RC. This is a temporary change that is necessary to free the `android` name for the upcoming DSL 
-from Google.
-
-The Google plugin will be the preferred way of working with Android in multiplatform projects. When it's ready, we'll 
-provide the necessary migration instructions so that you'll be able to use the short `android` name as before.
-
-## No object initialization when accessing constant values in Kotlin/Native
-
-Starting with Kotlin 1.9.0-RC, the Kotlin/Native backend doesn't initialize objects when accessing `const val` fields:
-
-```kotlin
-object MyObject {
-    init {
-        println("side effect!")
-    }
-    
-    const val y = 1
-}
-
-
-fun main() {
-    println(MyObject.y)	// no initialization at first
-    val x = MyObject	// initialization occurs
-    println(x.y)
-}
+kotlin.build.archivesTaskOutputAsFriendModule=false
 ```
 
-Now the behavior is unified with Kotlin/JVM, where the implementation is consistent with Java and objects are never 
-initialized in this case. You can also expect some performance improvements in your Kotlin/Native projects thanks to this
-change.
+For more information, see the issue in [YouTrack](https://youtrack.jetbrains.com/issue/KT-69330).
 
-## Ability to configure standalone mode for iOS simulator tests in Kotlin/Native
+## How to update to Kotlin %kotlinEapVersion%
 
-By default, when running iOS simulator tests for Kotlin/Native, the `--standalone` flag is used to avoid manual simulator
-booting and shutdown. In 1.9.0-RC, you can now configure whether this flag is used in a Gradle task via the `standalone`
-property. By default, the `--standalone` flag is used so standalone mode is enabled.
+Starting from IntelliJ IDEA 2023.3 and Android Studio Iguana (2023.2.1) Canary 15, the Kotlin plugin is distributed as a 
+bundled plugin included in your IDE. This means that you can't install the plugin from JetBrains Marketplace anymore. 
+The bundled plugin supports upcoming Kotlin EAP releases.
 
-Here is an example of how to disable standalone mode in your `build.gradle.kts` file:
-```kotlin
-tasks.withType<org.jetbrains.kotlin.gradle.targets.native.tasks.KotlinNativeSimulatorTest>().configureEach {
-    standalone.set(false)
-}
-```
-{validate="false"}
-
-> If you disable standalone mode, you must boot the simulator manually. To boot your simulator from CLI, you can use the
-> following command:
->
-> ```shell
-> /usr/bin/xcrun simctl boot <DeviceId>
-> ```
-> 
-{type = "warning"}
-
-## How to update to Kotlin 1.9.0-RC
-
-Install Kotlin 1.9.0-RC in any of the following ways:
-
-* If you use the _Early Access Preview_ update channel, the IDE will suggest automatically updating to 1.9.0-RC as
-  soon as it becomes available.
-* If you use the _Stable_ update channel, you can change the channel to _Early Access Preview_ at any time by selecting
-  **Tools** | **Kotlin** | **Configure Kotlin Plugin Updates** in your IDE. You'll then be able to install the latest
-  preview release. Check out [these instructions](install-eap-plugin.md) for details.
-
-Once you've installed 1.9.0-RC don't forget to [change the Kotlin version](configure-build-for-eap.md)
-to 1.9.0-RC in your build scripts.
+To update to the new Kotlin EAP version, [change the Kotlin version](configure-build-for-eap.md#adjust-the-kotlin-version) 
+to %kotlinEapVersion% in your build scripts.

@@ -119,7 +119,7 @@ kotlin {
 </tab>
 </tabs>
 
-Learn more about definitely non-nullable types in [the KEEP](https://github.com/Kotlin/KEEP/blob/c72601cf35c1e95a541bb4b230edb474a6d1d1a8/proposals/definitely-non-nullable-types.md).
+Learn more about definitely non-nullable types in [the KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/definitely-non-nullable-types.md).
 
 ## Kotlin/JVM
 
@@ -837,7 +837,7 @@ Please leave your feedback in [this YouTrack task](https://youtrack.jetbrains.co
 In Kotlin 1.6.20, we changed deprecation levels of the properties:
 
 * We deprecated the ability to run [kapt](kapt.md) via the Kotlin daemon with `kapt.use.worker.api` – now it produces a warning to Gradle's output. 
-  By default, [kapt has been using Gradle workers](kapt.md#running-kapt-tasks-in-parallel) since the 1.3.70 release, and we recommend sticking to this method.
+  By default, [kapt has been using Gradle workers](kapt.md#run-kapt-tasks-in-parallel) since the 1.3.70 release, and we recommend sticking to this method.
 
   We are going to remove the option `kapt.use.worker.api` in future releases.
 

@@ -22,10 +22,15 @@ dependency by calling `pod install` manually for each Xcode project. In other ca
 ## Xcode project with one target
 
 1. Create an Xcode project with a `Podfile` if you haven't done so yet.
-2. Add the path to your Xcode project `Podfile` with `podfile = project.file(..)` to `build.gradle(.kts)`
+2. Make sure to disable **User Script Sandboxing** under **Build Options** in the application target:
+
+   ![Disable sandboxing CocoaPods](disable-sandboxing-cocoapods.png)
+
+3. Add the path to your Xcode project `Podfile` with `podfile = project.file(..)` in the `build.gradle(.kts)` file
    of your Kotlin project.
    This step helps synchronize your Xcode project with Gradle project dependencies by calling `pod install` for your `Podfile`.
-3. Specify the minimum deployment target version for the Pod library.
+4. Specify the minimum deployment target version for the Pod library.
+
     ```kotlin
     kotlin {
         ios()
@@ -34,15 +39,15 @@ dependency by calling `pod install` manually for each Xcode project. In other ca
             summary = "CocoaPods test library"
             homepage = "https://github.com/JetBrains/kotlin"
             ios.deploymentTarget = "13.5"
-            pod("Alamofire") {
-                version = "5.7.0"
+            pod("FirebaseAuth") {
+                version = "10.16.0"
             }
             podfile = project.file("../ios-app/Podfile")
         }
     }
     ```
 
-4. Add the name and path of the Gradle project you want to include in the Xcode project to `Podfile`.
+5. Add the name and path of the Gradle project you want to include in the Xcode project to `Podfile`.
 
     ```ruby
     use_frameworks!
@@ -54,7 +59,8 @@ dependency by calling `pod install` manually for each Xcode project. In other ca
     end
     ```
 
-5. Re-import the project.
+6. Run **Reload All Gradle Projects** in IntelliJ IDEA (or **Sync Project with Gradle Files** in Android Studio)
+   to re-import the project.
 
 ## Xcode project with several targets
 
@@ -76,8 +82,8 @@ dependency by calling `pod install` manually for each Xcode project. In other ca
             ios.deploymentTarget = "13.5"
             tvos.deploymentTarget = "13.4"
 
-            pod("Alamofire") {
-                version = "5.7.0"
+            pod("FirebaseAuth") {
+                version = "10.16.0"
             }
             podfile = project.file("../severalTargetsXcodeProject/Podfile") // specify the path to the Podfile
         }
@@ -103,6 +109,12 @@ dependency by calling `pod install` manually for each Xcode project. In other ca
     end
     ```
 
-6. Re-import the project.
+6. Run **Reload All Gradle Projects** in IntelliJ IDEA (or **Sync Project with Gradle Files** in Android Studio)
+   to re-import the project.
 
 You can find a sample project [here](https://github.com/Kotlin/kmm-with-cocoapods-multitarget-xcode-sample).
+
+## What's next
+
+See [Connect the framework to your iOS project](https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-integrate-in-existing-app.html#connect-the-framework-to-your-ios-project)
+to learn how to add a custom build script to build phases in Xcode projects.

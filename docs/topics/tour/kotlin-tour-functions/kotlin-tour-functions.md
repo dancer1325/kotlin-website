@@ -1,13 +1,13 @@
 [//]: # (title: Functions)
 
 <microformat>
-    <p><img src="icon-1-done.svg" width="20" alt="First step" /> <a href="docs/topics/tour/kotlin-tour-hello-world/kotlin-tour-hello-world.md">Hello world</a><br />
-        <img src="icon-2-done.svg" width="20" alt="Second step" /> <a href="docs/topics/tour/kotlin-tour-basic-types/kotlin-tour-basic-types.md">Basic types</a><br />
-        <img src="icon-3-done.svg" width="20" alt="Third step" /> <a href="docs/topics/tour/kotlin-tour-collections/kotlin-tour-collections.md">Collections</a><br />
-        <img src="icon-4-done.svg" width="20" alt="Fourth step" /> <a href="docs/topics/tour/kotlin-tour-control-flow/kotlin-tour-control-flow.md">Control flow</a><br />
+    <p><img src="icon-1-done.svg" width="20" alt="First step" /> <a href="kotlin-tour-hello-world.md">Hello world</a><br />
+        <img src="icon-2-done.svg" width="20" alt="Second step" /> <a href="kotlin-tour-basic-types.md">Basic types</a><br />
+        <img src="icon-3-done.svg" width="20" alt="Third step" /> <a href="kotlin-tour-collections.md">Collections</a><br />
+        <img src="icon-4-done.svg" width="20" alt="Fourth step" /> <a href="kotlin-tour-control-flow.md">Control flow</a><br />
         <img src="icon-5.svg" width="20" alt="Fifth step" /> <strong>Functions</strong><br />
-        <img src="icon-6-todo.svg" width="20" alt="Sixth step" /> <a href="docs/topics/tour/kotlin-tour-classes/kotlin-tour-classes.md">Classes</a><br />
-        <img src="icon-7-todo.svg" width="20" alt="Final step" /> <a href="docs/topics/tour/kotlin-tour-null-safety/kotlin-tour-null-safety.md">Null safety</a></p>
+        <img src="icon-6-todo.svg" width="20" alt="Sixth step" /> <a href="kotlin-tour-classes.md">Classes</a><br />
+        <img src="icon-7-todo.svg" width="20" alt="Final step" /> <a href="kotlin-tour-null-safety.md">Null safety</a></p>
 </microformat>
 
 You can declare your own functions in Kotlin using the `fun` keyword.
@@ -71,7 +71,7 @@ you can write the parameters in any order.
 {type="tip"}
 
 ```kotlin
-fun printMessageWithPrefix(message: String, prefix: String = "Info") {
+fun printMessageWithPrefix(message: String, prefix: String) {
     println("[$prefix] $message")
 }
 
@@ -276,8 +276,8 @@ Kotlin allows you to write even more concise code for functions by using lambda 
 For example, the following `uppercaseString()` function:
 
 ```kotlin
-fun uppercaseString(string: String): String {
-    return string.uppercase()
+fun uppercaseString(text: String): String {
+    return text.uppercase()
 }
 fun main() {
     println(uppercaseString("hello"))
@@ -290,7 +290,7 @@ Can also be written as a lambda expression:
 
 ```kotlin
 fun main() {
-    println({ string: String -> string.uppercase() }("hello"))
+    println({ text: String -> text.uppercase() }("hello"))
     // HELLO
 }
 ```
@@ -304,10 +304,10 @@ Within the lambda expression, you write:
 * the function body after the `->`.
 
 In the previous example:
-* `string` is a function parameter.
-* `string` has type `String`.
+* `text` is a function parameter.
+* `text` has type `String`.
 * the function returns the result of the [`.uppercase()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/uppercase.html)
-function called on `string`.
+function called on `text`.
 
 > If you declare a lambda without parameters, then there is no need to use `->`. For example:
 > ```kotlin
@@ -328,7 +328,7 @@ To assign a lambda expression to a variable, use the assignment operator `=`:
 
 ```kotlin
 fun main() {
-    val upperCaseString = { string: String -> string.uppercase() }
+    val upperCaseString = { text: String -> text.uppercase() }
     println(upperCaseString("hello"))
     // HELLO
 }
@@ -383,7 +383,7 @@ fun main() {
 ```
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-lambda-map"}
 
-The `.map()` function accepts a lambda expression as a predicate:
+The `.map()` function accepts a lambda expression as a transform function:
 * `{ x -> x * 2 }` takes each element of the list and returns that element multiplied by 2.
 * `{ x -> x * 3 }` takes each element of the list and returns that element multiplied by 3.
 
@@ -406,7 +406,7 @@ For example: `(String) -> String` or `(Int, Int) -> Int`.
 This is what a lambda expression looks like if a function type for `upperCaseString()` is defined:
 
 ```kotlin
-val upperCaseString: (String) -> String = { string -> string.uppercase() }
+val upperCaseString: (String) -> String = { text -> text.uppercase() }
 
 fun main() {
     println(upperCaseString("hello"))
@@ -462,7 +462,7 @@ any parameters within the parentheses:
 ```kotlin
 fun main() {
     //sampleStart
-    println({ string: String -> string.uppercase() }("hello"))
+    println({ text: String -> text.uppercase() }("hello"))
     // HELLO
     //sampleEnd
 }
@@ -511,7 +511,7 @@ fun main() {
     val prefix = "https://example.com/book-info"
     val id = 5
     val urls = // Write your code here
-        println(urls)
+    println(urls)
 }
 ```
 {validate="false" kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-lambdas-exercise-1"}
@@ -563,4 +563,4 @@ fun main() {
 
 ## Next step
 
-[Classes](docs/topics/tour/kotlin-tour-classes/kotlin-tour-classes.md)
+[Classes](kotlin-tour-classes.md)

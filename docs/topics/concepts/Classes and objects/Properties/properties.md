@@ -149,7 +149,7 @@ public val table: Map<String, Int>
 ## Compile-time constants
 
 If the value of a read-only property is known at compile time, mark it as a _compile time constant_ using the `const` modifier.
-Such a property needs to fulfil the following requirements:
+Such a property needs to fulfill the following requirements:
 
 * It must be a top-level property, or a member of an [`object` declaration](docs/topics/object-declarations.md#object-declarations-overview) or a _[companion object](docs/topics/object-declarations.md#companion-objects)_.
 * It must be initialized with a value of type `String` or a primitive type
@@ -167,9 +167,9 @@ const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
 
 ## Late-initialized properties and variables
 
-Normally, properties declared as having a non-null type must be initialized in the constructor.
+Normally, properties declared as having a non-nullable type must be initialized in the constructor.
 However, it is often the case that doing so is not convenient. For example, properties can be initialized through dependency
-injection, or in the setup method of a unit test. In these cases, you cannot supply a non-null initializer in the constructor,
+injection, or in the setup method of a unit test. In these cases, you cannot supply a non-nullable initializer in the constructor,
 but you still want to avoid null checks when referencing the property inside the body of a class.
 
 To handle such cases, you can mark the property with the `lateinit` modifier:
@@ -190,7 +190,7 @@ public class MyTest {
 
 This modifier can be used on `var` properties declared inside the body of a class (not in the primary constructor,
 and only when the property does not have a custom getter or setter), as well as for top-level properties and local variables.
-The type of the property or variable must be non-null, and it must not be a primitive type.
+The type of the property or variable must be non-nullable, and it must not be a primitive type.
 
 Accessing a `lateinit` property before it has been initialized throws a special exception that clearly identifies the property
 being accessed and the fact that it hasn't been initialized.

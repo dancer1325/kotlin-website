@@ -13,8 +13,8 @@ For integer numbers, there are four types with different sizes and, hence, value
 | `Long`	 | 64        |-9,223,372,036,854,775,808 (-2<sup>63</sup>)|9,223,372,036,854,775,807 (2<sup>63</sup> - 1)|
 
 When you initialize a variable with no explicit type specification, the compiler automatically infers the type with the 
-smallest range enough to represent the value. If it is not exceeding the range of `Int`, the type is `Int`. If it exceeds,
-the type is `Long`. To specify the `Long` value explicitly, append the suffix `L` to the value. 
+smallest range enough to represent the value starting from `Int`. If it is not exceeding the range of `Int`, the type is `Int`.
+If it exceeds, the type is `Long`. To specify the `Long` value explicitly, append the suffix `L` to the value. 
 Explicit type specification triggers the compiler to check the value not to exceed the range of the specified type.
 
 ```kotlin
@@ -173,15 +173,10 @@ As a consequence, smaller types _are NOT implicitly converted_ to bigger types.
 This means that assigning a value of type `Byte` to an `Int` variable requires an explicit conversion:
 
 ```kotlin
-fun main() {
-//sampleStart
-    val b: Byte = 1 // OK, literals are checked statically
-    // val i: Int = b // ERROR
-    val i1: Int = b.toInt()
-//sampleEnd
-}
+val b: Byte = 1 // OK, literals are checked statically
+// val i: Int = b // ERROR
+val i1: Int = b.toInt()
 ```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3"}
 
 All number types support conversions to other types:
 
@@ -303,10 +298,16 @@ Here is an example that shows the difference in behavior between operands static
 ```kotlin
 fun main() {
     //sampleStart
+    // Operand statically typed as floating-point number
     println(Double.NaN == Double.NaN)                 // false
+    // Operand NOT statically typed as floating-point number
+    // So NaN is equal to itself
     println(listOf(Double.NaN) == listOf(Double.NaN)) // true
-    
+
+    // Operand statically typed as floating-point number
     println(0.0 == -0.0)                              // true
+    // Operand NOT statically typed as floating-point number
+    // So -0.0 is less than 0.0
     println(listOf(0.0) == listOf(-0.0))              // false
 
     println(listOf(Double.NaN, Double.POSITIVE_INFINITY, 0.0, -0.0).sorted())

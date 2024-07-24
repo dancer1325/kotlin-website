@@ -1,13 +1,13 @@
 [//]: # (title: Control flow)
 
 <microformat>
-    <p><img src="icon-1-done.svg" width="20" alt="First step" /> <a href="docs/topics/tour/kotlin-tour-hello-world/kotlin-tour-hello-world.md">Hello world</a><br />
-        <img src="icon-2-done.svg" width="20" alt="Second step" /> <a href="docs/topics/tour/kotlin-tour-basic-types/kotlin-tour-basic-types.md">Basic types</a><br />
-        <img src="icon-3-done.svg" width="20" alt="Third step" /> <a href="docs/topics/tour/kotlin-tour-collections/kotlin-tour-collections.md">Collections</a><br />
+    <p><img src="icon-1-done.svg" width="20" alt="First step" /> <a href="kotlin-tour-hello-world.md">Hello world</a><br />
+        <img src="icon-2-done.svg" width="20" alt="Second step" /> <a href="kotlin-tour-basic-types.md">Basic types</a><br />
+        <img src="icon-3-done.svg" width="20" alt="Third step" /> <a href="kotlin-tour-collections.md">Collections</a><br />
         <img src="icon-4.svg" width="20" alt="Fourth step" /> <strong>Control flow</strong><br />
-        <img src="icon-5-todo.svg" width="20" alt="Fifth step" /> <a href="docs/topics/tour/kotlin-tour-functions/kotlin-tour-functions.md">Functions</a><br />
-        <img src="icon-6-todo.svg" width="20" alt="Sixth step" /> <a href="docs/topics/tour/kotlin-tour-classes/kotlin-tour-classes.md">Classes</a><br />
-        <img src="icon-7-todo.svg" width="20" alt="Final step" /> <a href="docs/topics/tour/kotlin-tour-null-safety/kotlin-tour-null-safety.md">Null safety</a></p>
+        <img src="icon-5-todo.svg" width="20" alt="Fifth step" /> <a href="kotlin-tour-functions.md">Functions</a><br />
+        <img src="icon-6-todo.svg" width="20" alt="Sixth step" /> <a href="kotlin-tour-classes.md">Classes</a><br />
+        <img src="icon-7-todo.svg" width="20" alt="Final step" /> <a href="kotlin-tour-null-safety.md">Null safety</a></p>
 </microformat>
 
 Like other programming languages, Kotlin is capable of making decisions based on whether a piece of code is evaluated to
@@ -46,8 +46,8 @@ fun main() {
 ```
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-if"}
 
-There is no ternary operator `condition ? then : else` in Kotlin. Instead, `if` can be used as an expression. When using
-`if` as an expression, there are no curly braces `{}`:
+There is no ternary operator `condition ? then : else` in Kotlin. Instead, `if` can be used as an expression. If there is
+only one line of code per action, the curly braces `{}` are optional:
 
 ```kotlin
 fun main() { 
@@ -267,7 +267,7 @@ fun main() {
 
 For more information and examples of conditional expressions and loops, see [Conditions and loops](control-flow.md).
 
-Now that you know the fundamentals of Kotlin control flow, it's time to learn how to write your own [functions](docs/topics/tour/kotlin-tour-functions/kotlin-tour-functions.md).
+Now that you know the fundamentals of Kotlin control flow, it's time to learn how to write your own [functions](kotlin-tour-functions.md).
 
 ## Practice
 
@@ -405,7 +405,7 @@ fun main() {
                 number % 15 == 0 -> "fizzbuzz"
                 number % 3 == 0 -> "fizz"
                 number % 5 == 0 -> "buzz"
-                else -> number.toString()
+                else -> "$number"
             }
         )
     }
@@ -447,4 +447,4 @@ fun main() {
 
 ## Next step
 
-[Functions](docs/topics/tour/kotlin-tour-functions/kotlin-tour-functions.md)
+[Functions](kotlin-tour-functions.md)

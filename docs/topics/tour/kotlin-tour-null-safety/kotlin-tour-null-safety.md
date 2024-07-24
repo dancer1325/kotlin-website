@@ -37,11 +37,11 @@ fun main() {
     // nullable has nullable String type
     var nullable: String? = "You can keep a null here"
 
-    // This is OK  
+    // This is OK
     nullable = null
 
     // By default, null values aren't accepted
-    var inferredNonNull = "The compiler assumes non-null"
+    var inferredNonNull = "The compiler assumes non-nullable"
 
     // Throws a compiler error
     inferredNonNull = null
@@ -77,7 +77,7 @@ fun describeString(maybeString: String?): String {
 }
 
 fun main() {
-    var nullString: String? = null
+    val nullString: String? = null
     println(describeString(nullString))
     // Empty or null string
 }
@@ -87,7 +87,7 @@ fun main() {
 ## Use safe calls
 
 To safely access properties of an object that might contain a `null` value, use the safe call operator `?.`. The safe call
-operator returns `null` if the object's property is `null`. This is useful if you want to avoid the presence of `null`
+operator returns `null` if either the object or one of its accessed properties is `null`. This is useful if you want to avoid the presence of `null`
 values triggering errors in your code.
 
 In the following example, the `lengthString()` function uses a safe call to return either the length of the string or `null`:
@@ -96,7 +96,7 @@ In the following example, the `lengthString()` function uses a safe call to retu
 fun lengthString(maybeString: String?): Int? = maybeString?.length
 
 fun main() { 
-    var nullString: String? = null
+    val nullString: String? = null
     println(lengthString(nullString))
     // null
 }
@@ -119,7 +119,7 @@ is skipped and `null` is returned:
 
 ```kotlin
 fun main() {
-    var nullString: String? = null
+    val nullString: String? = null
     println(nullString?.uppercase())
     // null
 }
@@ -138,7 +138,7 @@ As a result, the Elvis operator returns `0`:
 
 ```kotlin
 fun main() {
-    var nullString: String? = null
+    val nullString: String? = null
     println(nullString?.length ?: 0)
     // 0
 }
@@ -168,8 +168,8 @@ fun employeeById(id: Int) = when(id) {
 }
 
 fun salaryById(id: Int) = // Write your code here
-    
-fun main() { 
+
+fun main() {
     println((1..5).sumOf { id -> salaryById(id) })
 }
 ```
@@ -190,7 +190,7 @@ fun employeeById(id: Int) = when(id) {
 fun salaryById(id: Int) = employeeById(id)?.salary ?: 0
 
 fun main() {
- println((1..5).sumOf { id -> salaryById(id) })
+    println((1..5).sumOf { id -> salaryById(id) })
 }
 ```
 {initial-collapse-state="collapsed" collapsed-title="Example solution" id="kotlin-tour-null-safety-solution"}
@@ -199,4 +199,4 @@ fun main() {
 
 Congratulations! Now that you have completed the Kotlin tour, check out our tutorials for popular Kotlin applications:
 * [Create a backend application](jvm-create-project-with-spring-boot.md)
-* [Create a cross-platform application for Android and iOS](multiplatform-mobile-getting-started.md)
+* [Create a cross-platform application for Android and iOS](https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-getting-started.html)

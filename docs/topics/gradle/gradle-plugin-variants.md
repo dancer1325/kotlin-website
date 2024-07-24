@@ -19,9 +19,13 @@ Currently, there are the following variants of the Kotlin Gradle plugin:
 | `gradle70`     | 7.0                           |
 | `gradle71`     | 7.1-7.4                       |
 | `gradle75`     | 7.5                           |
-| `gradle76`     | 7.6 and higher                |
+| `gradle76`     | 7.6                           |
+| `gradle80`     | 8.0                           |
+| `gradle81`     | 8.1.1                         |
+| `gradle82`     | 8.2.1–8.4                     |
+| `gradle85`     | 8.5 and higher                |
 
-In future Kotlin releases, more variants will probably be added.
+In future Kotlin releases, more variants will be added.
 
 To check which variant your build uses, enable
 the [`--info` log level](https://docs.gradle.org/current/userguide/logging.html#sec:choosing_a_log_level) and find a
@@ -156,4 +160,4 @@ Otherwise, you will receive an error similar to this:
 
 ## What's next?
 
-Learn more about [Gradle basics and specifics](https://docs.gradle.org/current/userguide/getting_started.html).
+Learn more about [Gradle basics and specifics](https://docs.gradle.org/current/userguide/userguide.html).

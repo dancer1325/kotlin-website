@@ -1,13 +1,13 @@
 [//]: # (title: Classes)
 
 <microformat>
-    <p><img src="icon-1-done.svg" width="20" alt="First step" /> <a href="docs/topics/tour/kotlin-tour-hello-world/kotlin-tour-hello-world.md">Hello world</a><br />
-        <img src="icon-2-done.svg" width="20" alt="Second step" /> <a href="docs/topics/tour/kotlin-tour-basic-types/kotlin-tour-basic-types.md">Basic types</a><br />
-        <img src="icon-3-done.svg" width="20" alt="Third step" /> <a href="docs/topics/tour/kotlin-tour-collections/kotlin-tour-collections.md">Collections</a><br />
-        <img src="icon-4-done.svg" width="20" alt="Fourth step" /> <a href="docs/topics/tour/kotlin-tour-control-flow/kotlin-tour-control-flow.md">Control flow</a><br />
-        <img src="icon-5-done.svg" width="20" alt="Fifth step" /> <a href="docs/topics/tour/kotlin-tour-functions/kotlin-tour-functions.md">Functions</a><br />
+    <p><img src="icon-1-done.svg" width="20" alt="First step" /> <a href="kotlin-tour-hello-world.md">Hello world</a><br />
+        <img src="icon-2-done.svg" width="20" alt="Second step" /> <a href="kotlin-tour-basic-types.md">Basic types</a><br />
+        <img src="icon-3-done.svg" width="20" alt="Third step" /> <a href="kotlin-tour-collections.md">Collections</a><br />
+        <img src="icon-4-done.svg" width="20" alt="Fourth step" /> <a href="kotlin-tour-control-flow.md">Control flow</a><br />
+        <img src="icon-5-done.svg" width="20" alt="Fifth step" /> <a href="kotlin-tour-functions.md">Functions</a><br />
         <img src="icon-6.svg" width="20" alt="Sixth step" /> <strong>Classes</strong><br />
-        <img src="icon-7-todo.svg" width="20" alt="Final step" /> <a href="docs/topics/tour/kotlin-tour-null-safety/kotlin-tour-null-safety.md">Null safety</a></p>
+        <img src="icon-7-todo.svg" width="20" alt="Final step" /> <a href="kotlin-tour-null-safety.md">Null safety</a></p>
 </microformat>
 
 Kotlin supports object-oriented programming with classes and objects. Objects are useful for storing data in your program.
@@ -167,9 +167,9 @@ To print a readable string of a class instance, you can explicitly call the `.to
 data class User(val name: String, val id: Int)
 
 fun main() {
+    //sampleStart
     val user = User("Alex", 1)
     
-    //sampleStart
     // Automatically uses toString() function so that output is easy to read
     println(user)            
     // User(name=Alex, id=1)
@@ -244,7 +244,7 @@ original instance isn't affected by the copy and what you do with it.
 
 For more information about data classes, see [Data classes](data-classes.md).
 
-The last chapter of this tour is about Kotlin's [null safety](docs/topics/tour/kotlin-tour-null-safety/kotlin-tour-null-safety.md).
+The last chapter of this tour is about Kotlin's [null safety](kotlin-tour-null-safety.md).
 
 ## Practice
 
@@ -346,4 +346,4 @@ fun main() {
 
 ## Next step
 
-[Null safety](docs/topics/tour/kotlin-tour-null-safety/kotlin-tour-null-safety.md)
+[Null safety](kotlin-tour-null-safety.md)

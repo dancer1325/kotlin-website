@@ -1,13 +1,13 @@
 [//]: # (title: Collections)
 
 <microformat>
-    <p><img src="icon-1-done.svg" width="20" alt="First step" /> <a href="docs/topics/tour/kotlin-tour-hello-world/kotlin-tour-hello-world.md">Hello world</a><br />
-        <img src="icon-2-done.svg" width="20" alt="Second step" /> <a href="docs/topics/tour/kotlin-tour-basic-types/kotlin-tour-basic-types.md">Basic types</a><br />
+    <p><img src="icon-1-done.svg" width="20" alt="First step" /> <a href="kotlin-tour-hello-world.md">Hello world</a><br />
+        <img src="icon-2-done.svg" width="20" alt="Second step" /> <a href="kotlin-tour-basic-types.md">Basic types</a><br />
         <img src="icon-3.svg" width="20" alt="Third step" /> <strong>Collections</strong><br />
-        <img src="icon-4-todo.svg" width="20" alt="Fourth step" /> <a href="docs/topics/tour/kotlin-tour-control-flow/kotlin-tour-control-flow.md">Control flow</a><br />
-        <img src="icon-5-todo.svg" width="20" alt="Fifth step" /> <a href="docs/topics/tour/kotlin-tour-functions/kotlin-tour-functions.md">Functions</a><br />
-        <img src="icon-6-todo.svg" width="20" alt="Sixth step" /> <a href="docs/topics/tour/kotlin-tour-classes/kotlin-tour-classes.md">Classes</a><br />
-        <img src="icon-7-todo.svg" width="20" alt="Final step" /> <a href="docs/topics/tour/kotlin-tour-null-safety/kotlin-tour-null-safety.md">Null safety</a></p>
+        <img src="icon-4-todo.svg" width="20" alt="Fourth step" /> <a href="kotlin-tour-control-flow.md">Control flow</a><br />
+        <img src="icon-5-todo.svg" width="20" alt="Fifth step" /> <a href="kotlin-tour-functions.md">Functions</a><br />
+        <img src="icon-6-todo.svg" width="20" alt="Sixth step" /> <a href="kotlin-tour-classes.md">Classes</a><br />
+        <img src="icon-7-todo.svg" width="20" alt="Final step" /> <a href="kotlin-tour-null-safety.md">Null safety</a></p>
 </microformat>
 
 When programming, it is useful to be able to group data into structures for later processing. Kotlin provides collections
@@ -28,7 +28,7 @@ Each collection type can be mutable or read only.
 Lists store items in the order that they are added, and allow for duplicate items. 
 
 To create a read-only list ([`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/)), use the 
-`[listOf()](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/list-of.html)` function.
+[`listOf()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/list-of.html) function.
 
 To create a mutable list ([`MutableList`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list.html)),
 use the [`mutableListOf()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/mutable-list-of.html) function.
@@ -215,7 +215,7 @@ fun main() {
 ```
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-set-in"}
 
-To add or remove items from a mutable set, use [`.add()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/add.html)
+To add or remove items from a mutable set, use [`.add()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/add.html)
 and [`.remove()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/remove.html) functions respectively:
 
 ```kotlin
@@ -364,7 +364,7 @@ fun main() {
 > are examples of **properties** of an object. To access the property of an object, write the property name
 > after the object appended with a period `.`
 >
-> Properties are discussed in more detail in the [Classes](docs/topics/tour/kotlin-tour-classes/kotlin-tour-classes.md) chapter.
+> Properties are discussed in more detail in the [Classes](kotlin-tour-classes.md) chapter.
 > At this point in the tour, you only need to know how to access them.
 >
 {type="note"}
@@ -386,7 +386,7 @@ fun main() {
 
 For more information on what you can do with collections, see [Collections](collections-overview.md).
 
-Now that you know about basic types and how to manage collections, it's time to explore the [control flow](docs/topics/tour/kotlin-tour-control-flow/kotlin-tour-control-flow.md)
+Now that you know about basic types and how to manage collections, it's time to explore the [control flow](kotlin-tour-control-flow.md)
 that you can use in your programs.
 
 ## Practice
@@ -478,4 +478,4 @@ fun main() {
 
 ## Next step
 
-[Control flow](docs/topics/tour/kotlin-tour-control-flow/kotlin-tour-control-flow.md)
+[Control flow](kotlin-tour-control-flow.md)

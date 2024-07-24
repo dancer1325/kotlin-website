@@ -740,13 +740,12 @@ Since the previous release, the Kotlin documentation has received some notable c
 
 ### New articles in the Kotlin Multiplatform journal
 
-* [Native and cross-platform app development: how to choose?](native-and-cross-platform.md) – check out our overview and advantages of cross-platform app development and the native approach.
-* [The six best cross-platform app development frameworks](cross-platform-frameworks.md) – read about the key aspects to help you choose the right framework for your cross-platform project.
+* [Native and cross-platform app development: how to choose?](https://www.jetbrains.com/help/kotlin-multiplatform-dev/native-and-cross-platform.html) – check out our overview and advantages of cross-platform app development and the native approach.
+* [The six best cross-platform app development frameworks](https://www.jetbrains.com/help/kotlin-multiplatform-dev/cross-platform-frameworks.html) – read about the key aspects to help you choose the right framework for your cross-platform project.
 
 ### New and updated tutorials
 
-* [Get started with Kotlin Multiplatform Mobile](multiplatform-mobile-getting-started.md) – learn about cross-platform mobile development with Kotlin and create an app that works on both Android and iOS.
-* [Build a full-stack web app with Kotlin Multiplatform](multiplatform-full-stack-app.md) – create an app using Kotlin throughout the whole stack, with a Kotlin/JVM server part and a Kotlin/JS web client.
+* [Get started with Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-getting-started.html) – learn about cross-platform mobile development with Kotlin and create an app that works on both Android and iOS.
 * [Build a web application with React and Kotlin/JS](js-react.md) – create a browser app exploring Kotlin's DSLs and features of a typical React program.
 
 ### Changes in release documentation
