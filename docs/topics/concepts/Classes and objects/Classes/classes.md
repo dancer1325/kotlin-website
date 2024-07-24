@@ -81,7 +81,7 @@ Such declarations can also include default values of the class properties:
 class Person(val firstName: String, val lastName: String, var isEmployed: Boolean = true)
 ```
 
-You can use a [trailing comma](coding-conventions.md#trailing-commas) when you declare class properties:
+You can use a [trailing comma](docs/topics/coding-conventions.md#trailing-commas) when you declare class properties:
 
 ```kotlin
 class Person(
@@ -99,7 +99,7 @@ If the constructor has annotations or visibility modifiers, the `constructor` ke
 class Customer public @Inject constructor(name: String) { /*...*/ }
 ```
 
-Learn more about [visibility modifiers](visibility-modifiers.md#constructors).
+Learn more about [visibility modifiers](docs/topics/visibility-modifiers.md#constructors).
 
 ### Secondary constructors
 
@@ -185,22 +185,22 @@ val customer = Customer("Joe Smith")
 >
 {type="note"}
 
-The process of creating instances of nested, inner, and anonymous inner classes is described in [Nested classes](nested-classes.md).
+The process of creating instances of nested, inner, and anonymous inner classes is described in [Nested classes](docs/topics/nested-classes.md).
 
 ## Class members
 
 Classes can contain:
 
-* [Constructors and initializer blocks](classes.md#constructors)
-* [Functions](functions.md)
-* [Properties](properties.md)
-* [Nested and inner classes](nested-classes.md)
-* [Object declarations](object-declarations.md)
+* [Constructors and initializer blocks](docs/topics/concepts/Classes and objects/classes.mds/concepts/Classes and objects/classes.md#constructors)
+* [Functions](docs/topics/functions.md)
+* [Properties](docs/topics/concepts/Classes and objects/Properties/properties.md)
+* [Nested and inner classes](docs/topics/nested-classes.md)
+* [Object declarations](docs/topics/object-declarations.md)
 
 ## Inheritance
 
 Classes can be derived from each other and form inheritance hierarchies.
-[Learn more about inheritance in Kotlin](inheritance.md).
+[Learn more about inheritance in Kotlin](docs/topics/inheritance.md).
 
 ## Abstract classes
 
@@ -239,7 +239,7 @@ abstract class WildShape : Polygon() {
 ## Companion objects
 
 If you need to write a function that can be called without having a class instance but that needs access to the internals
-of a class (such as a factory method), you can write it as a member of an [object declaration](object-declarations.md) inside that class.
+of a class (such as a factory method), you can write it as a member of an [object declaration](docs/topics/object-declarations.md) inside that class.
 
-Even more specifically, if you declare a [companion object](object-declarations.md#companion-objects) inside your class,
+Even more specifically, if you declare a [companion object](docs/topics/object-declarations.md#companion-objects) inside your class,
 you can access its members using only the class name as a qualifier.
