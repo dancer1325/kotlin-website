@@ -182,7 +182,7 @@ fun main() {
 ```
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-variable-top-level"}
 
-See also [Properties](docs/topics/properties.md).
+See also [Properties](docs/topics/concepts/Classes and objects/Properties/properties.md).
 
 ## Creating classes and instances
 
@@ -225,7 +225,7 @@ class Rectangle(var height: Double, var length: Double): Shape() {
 }
 ```
 
-See [classes](docs/topics/classes.md) and [objects and instances](docs/topics/object-declarations.md).
+See [classes](docs/topics/concepts/Classes and objects/Classes/classes.md) and [objects and instances](docs/topics/object-declarations.md).
 
 ## Comments
 
@@ -649,5 +649,5 @@ fun main() {
 ```
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-is-operator-logic"}
 
-See [Classes](docs/topics/classes.md) and [Type casts](docs/topics/typecasts.md).
+See [Classes](docs/topics/concepts/Classes and objects/Classes/classes.md) and [Type casts](docs/topics/typecasts.md).
 
