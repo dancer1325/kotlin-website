@@ -151,11 +151,11 @@ public val table: Map<String, Int>
 If the value of a read-only property is known at compile time, mark it as a _compile time constant_ using the `const` modifier.
 Such a property needs to fulfil the following requirements:
 
-* It must be a top-level property, or a member of an [`object` declaration](object-declarations.md#object-declarations-overview) or a _[companion object](object-declarations.md#companion-objects)_.
+* It must be a top-level property, or a member of an [`object` declaration](docs/topics/object-declarations.md#object-declarations-overview) or a _[companion object](docs/topics/object-declarations.md#companion-objects)_.
 * It must be initialized with a value of type `String` or a primitive type
 * It cannot be a custom getter
 
-The compiler will inline usages of the constant, replacing the reference to the constant with its actual value. However, the field will not be removed and therefore can be interacted with using [reflection](reflection.md).
+The compiler will inline usages of the constant, replacing the reference to the constant with its actual value. However, the field will not be removed and therefore can be interacted with using [reflection](docs/topics/reflection.md).
 
 Such properties can also be used in annotations:
 
@@ -197,7 +197,7 @@ being accessed and the fact that it hasn't been initialized.
 
 ### Checking whether a `lateinit var` is initialized
 
-To check whether a `lateinit var` has already been initialized, use `.isInitialized` on the [reference to that property](reflection.md#property-references):
+To check whether a `lateinit var` has already been initialized, use `.isInitialized` on the [reference to that property](docs/topics/reflection.md#property-references):
 
 ```kotlin
 if (foo::bar.isInitialized) {
@@ -210,7 +210,7 @@ outer types, or at top level in the same file.
 
 ## Overriding properties
 
-See [Overriding properties](inheritance.md#overriding-properties)
+See [Overriding properties](docs/topics/inheritance.md#overriding-properties)
 
 ## Delegated properties
 
@@ -219,4 +219,4 @@ allow you to use properties so one can implement any sort of behavior of a prope
 Somewhere in between the simplicity of the first kind and variety of the second, there are common patterns for what properties
 can do. A few examples: lazy values, reading from a map by a given key, accessing a database, notifying a listener on access.
 
-Such common behaviors can be implemented as libraries using [delegated properties](delegated-properties.md).
+Such common behaviors can be implemented as libraries using [delegated properties](docs/topics/delegated-properties.md).
