@@ -341,7 +341,7 @@ Member functions are called with dot notation:
 Sample().foo() // creates instance of class Sample and calls foo
 ```
 
-For more information on classes and overriding members see [Classes](classes.md) and [Inheritance](classes.md#inheritance).
+For more information on classes and overriding members see [Classes](docs/topics/concepts/Classes and objects/Classes/classes.md) and [Inheritance](docs/topics/concepts/Classes and objects/Classes/classes.md#inheritance).
 
 ## Generic functions
 

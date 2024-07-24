@@ -9,7 +9,7 @@ The following tokens are always interpreted as keywords and cannot be used as id
      - specifies an [alias for an import](packages.md#imports)
  * `as?` is used for [safe type casts](typecasts.md#safe-nullable-cast-operator).
  * `break` [terminates the execution of a loop](returns.md).
- * `class` declares a [class](classes.md).
+ * `class` declares a [class](docs/topics/concepts/Classes and objects/Classes/classes.md).
  * `continue` [proceeds to the next step of the nearest enclosing loop](returns.md).
  * `do` begins a [do/while loop](control-flow.md#while-loops) (a loop with a postcondition).
  * `else` defines the branch of an [if expression](control-flow.md#if-expression) that is executed when the condition is false.
@@ -40,17 +40,17 @@ The following tokens are always interpreted as keywords and cannot be used as id
  * `return` [returns from the nearest enclosing function or anonymous function](returns.md).
  * `super`
      - [refers to the superclass implementation of a method or property](inheritance.md#calling-the-superclass-implementation).
-     - [calls the superclass constructor from a secondary constructor](classes.md#inheritance).
+     - [calls the superclass constructor from a secondary constructor](docs/topics/concepts/Classes and objects/Classes/classes.md#inheritance).
  * `this`
      - refers to [the current receiver](this-expressions.md).
-     - [calls another constructor of the same class from a secondary constructor](classes.md#constructors).
+     - [calls another constructor of the same class from a secondary constructor](docs/topics/concepts/Classes and objects/Classes/classes.md#constructors).
  * `throw` [throws an exception](exceptions.md).
  * `true` specifies the 'true' value of the [Boolean type](booleans.md).
  * `try` [begins an exception-handling block](exceptions.md).
  * `typealias` declares a [type alias](type-aliases.md).
  * `typeof` is reserved for future use.
- * `val` declares a read-only [property](properties.md) or [local variable](docs/topics/basic-syntax/basic-syntax.md#variables).
- * `var` declares a mutable [property](properties.md) or [local variable](docs/topics/basic-syntax/basic-syntax.md#variables).
+ * `val` declares a read-only [property](docs/topics/concepts/Classes and objects/Properties/properties.md) or [local variable](docs/topics/basic-syntax/basic-syntax.md#variables).
+ * `var` declares a mutable [property](docs/topics/concepts/Classes and objects/Properties/properties.md) or [local variable](docs/topics/basic-syntax/basic-syntax.md#variables).
  * `when` begins a [when expression](control-flow.md#when-expression) (executes one of the given branches).
  * `while` begins a [while loop](control-flow.md#while-loops) (a loop with a precondition).
 
@@ -63,22 +63,22 @@ as identifiers in other contexts:
      - [delegates the implementation of an interface to another object](delegation.md).
      - [delegates the implementation of the accessors for a property to another object](delegated-properties.md).
  * `catch` begins a block that [handles a specific exception type](exceptions.md).
- * `constructor` declares a [primary or secondary constructor](classes.md#constructors).
+ * `constructor` declares a [primary or secondary constructor](docs/topics/concepts/Classes and objects/Classes/classes.md#constructors).
  * `delegate` is used as an [annotation use-site target](annotations.md#annotation-use-site-targets).
  * `dynamic` references a [dynamic type](dynamic-type.md) in Kotlin/JS code.
  * `field` is used as an [annotation use-site target](annotations.md#annotation-use-site-targets).
  * `file` is used as an [annotation use-site target](annotations.md#annotation-use-site-targets).
  * `finally` begins a block that [is always executed when a try block exits](exceptions.md).
  * `get`
-     - declares the [getter of a property](properties.md#getters-and-setters).
+     - declares the [getter of a property](docs/topics/concepts/Classes and objects/Properties/properties.md#getters-and-setters).
      - is used as an [annotation use-site target](annotations.md#annotation-use-site-targets).
  * `import` [imports a declaration from another package into the current file](packages.md).
- * `init` begins an [initializer block](classes.md#constructors).
+ * `init` begins an [initializer block](docs/topics/concepts/Classes and objects/Classes/classes.md#constructors).
  * `param` is used as an [annotation use-site target](annotations.md#annotation-use-site-targets).
  * `property` is used as an [annotation use-site target](annotations.md#annotation-use-site-targets).
  * `receiver`is used as an [annotation use-site target](annotations.md#annotation-use-site-targets).
  * `set`
-     - declares the [setter of a property](properties.md#getters-and-setters).
+     - declares the [setter of a property](docs/topics/concepts/Classes and objects/Properties/properties.md#getters-and-setters).
      - is used as an [annotation use-site target](annotations.md#annotation-use-site-targets).
 * `setparam` is used as an [annotation use-site target](annotations.md#annotation-use-site-targets).
 * `value` with the `class` keyword declares an [inline class](inline-classes.md).
@@ -89,11 +89,11 @@ as identifiers in other contexts:
 The following tokens act as keywords in modifier lists of declarations, and they can be used as identifiers
 in other contexts:
 
- * `abstract` marks a class or member as [abstract](classes.md#abstract-classes).
+ * `abstract` marks a class or member as [abstract](docs/topics/concepts/Classes and objects/Classes/classes.md#abstract-classes).
  * `actual` denotes a platform-specific implementation in [multiplatform projects](multiplatform.md).
  * `annotation` declares an [annotation class](annotations.md).
  * `companion` declares a [companion object](object-declarations.md#companion-objects).
- * `const` marks a property as a [compile-time constant](properties.md#compile-time-constants).
+ * `const` marks a property as a [compile-time constant](docs/topics/concepts/Classes and objects/Properties/properties.md#compile-time-constants).
  * `crossinline` forbids [non-local returns in a lambda passed to an inline function](inline-functions.md#non-local-returns).
  * `data` instructs the compiler to [generate canonical members for a class](data-classes.md).
  * `enum` declares an [enumeration](enum-classes.md).
@@ -104,9 +104,9 @@ in other contexts:
  * `inline` tells the compiler to [inline a function and the lambdas passed to it at the call site](inline-functions.md).
  * `inner` allows referring to an outer class instance from a [nested class](nested-classes.md).
  * `internal` marks a declaration as [visible in the current module](visibility-modifiers.md).
- * `lateinit` allows initializing a [non-null property outside of a constructor](properties.md#late-initialized-properties-and-variables).
+ * `lateinit` allows initializing a [non-null property outside of a constructor](docs/topics/concepts/Classes and objects/Properties/properties.md#late-initialized-properties-and-variables).
  * `noinline` turns off [inlining of a lambda passed to an inline function](inline-functions.md#noinline).
- * `open` allows [subclassing a class or overriding a member](classes.md#inheritance).
+ * `open` allows [subclassing a class or overriding a member](docs/topics/concepts/Classes and objects/Classes/classes.md#inheritance).
  * `operator` marks a function as [overloading an operator or implementing a convention](operator-overloading.md).
  * `out` marks a type parameter as [covariant](generics.md#declaration-site-variance).
  * `override` marks a member as an [override of a superclass member](inheritance.md#overriding-methods).
@@ -124,7 +124,7 @@ in other contexts:
 The following identifiers are defined by the compiler in specific contexts, and they can be used as regular
 identifiers in other contexts:
 
- * `field` is used inside a property accessor to refer to the [backing field of the property](properties.md#backing-fields).
+ * `field` is used inside a property accessor to refer to the [backing field of the property](docs/topics/concepts/Classes and objects/Properties/properties.md#backing-fields).
  * `it` is used inside a lambda to [refer to its parameter implicitly](lambdas.md#it-implicit-name-of-a-single-parameter).
 
 ## Operators and special symbols
