@@ -63,17 +63,16 @@ fun main() {
 
 ## Named arguments
 
-For concise code, when calling your function, you don't have to include parameter names. However, including parameter names
-does make your code easier to read. This is called using **named arguments**. If you do include parameter names, then 
-you can write the parameters in any order.
+* := function invocation / pass the parameter name
+  * optional
+  * allows
+    * easier to read the code
+    * pass the parameters | ANY order
 
-> In the following example, [string templates](strings.md#string-templates) (`$`) are used to access
-> the parameter values, convert them to `String` type, and then concatenate them into a string for printing.
-> 
-{type="tip"}
-
+* _Example:_ 
 ```kotlin
 fun printMessageWithPrefix(message: String, prefix: String) {
+    // string template ($variable) concatenated
     println("[$prefix] $message")
 }
 
@@ -87,6 +86,7 @@ fun main() {
 
 ## Default parameter values
 
+* TODO:
 You can define default values for your function parameters. Any parameter with a default value can be omitted when
 calling your function. To declare a default value, use the assignment operator `=` after the type:
 
