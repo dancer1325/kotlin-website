@@ -24,7 +24,7 @@
         <config-feedback-enabled>true</config-feedback-enabled>
         <config-feedback-widget>true</config-feedback-widget>
         <config-feedback-support>https://kotl.in/issue</config-feedback-support>
-        <config-feedback-url>https://data.services.jetbrains.com/feedback</config-feedback-url>
+        <config-feedback-url>https://forms-service.jetbrains.com/feedback</config-feedback-url>
         <config-webmaster>doc-feedback@kotlinlang.org</config-webmaster>
         <config-sideblocks>true</config-sideblocks>
         <config-algolia-api-key>1bfad5fdbae302b33d844ed1b43ec4d5</config-algolia-api-key>
@@ -42,6 +42,7 @@
 <link rel="apple-touch-icon" sizes="72x72" href="https://kotlinlang.org/assets/images/apple-touch-icon-72x72.png?v2"/>
 <link rel="apple-touch-icon" sizes="114x114" href="https://kotlinlang.org/assets/images/apple-touch-icon-114x114.png?v2"/>
 <link rel="apple-touch-icon" sizes="144x144" href="https://kotlinlang.org/assets/images/apple-touch-icon-144x144.png?v2"/>
+<style>a[href="test-page.html"] { visibility: hidden; }</style>
         ]]>
         </custom-favicons>
         <generate-canonicals>true</generate-canonicals>

@@ -186,7 +186,7 @@ fun main() {
 ```
 
 Learn more about definitely non-nullable types
-in [this KEEP](https://github.com/Kotlin/KEEP/blob/c72601cf35c1e95a541bb4b230edb474a6d1d1a8/proposals/definitely-non-nullable-types.md).
+in [this KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/definitely-non-nullable-types.md).
 
 ## Kotlin/JVM
 
@@ -336,7 +336,7 @@ Starting with Kotlin 1.7.0, you no longer need to install the `cocoapods-generat
 CocoaPods in your projects.
 
 Previously, you needed to install both the CocoaPods dependency manager and the `cocoapods-generate` plugin to use
-CocoaPods, for example, to handle [iOS dependencies](multiplatform-mobile-ios-dependencies.md#with-cocoapods) in
+CocoaPods, for example, to handle [iOS dependencies](multiplatform-ios-dependencies.md#with-cocoapods) in
 Kotlin Multiplatform Mobile projects.
 
 Now setting up the CocoaPods integration is easier, and we've resolved the issue when `cocoapods-generate` couldn't be
@@ -802,7 +802,7 @@ The following values (and their combinations) are available:
   {type="note"}
 
 * `http` posts build reports using HTTP(S). The POST method sends metrics in the JSON format. Data may change from version
-  to version. You can see the current version of the sent data in the [Kotlin repository](https://github.com/JetBrains/kotlin/blob/master/libraries/tools/kotlin-gradle-plugin/src/common/kotlin/org/jetbrains/kotlin/gradle/plugin/statistics/CompileStatisticsData.kt).
+  to version. You can see the current version of the sent data in the [Kotlin repository](https://github.com/JetBrains/kotlin/blob/master/libraries/tools/kotlin-gradle-plugin/src/common/kotlin/org/jetbrains/kotlin/gradle/report/data/GradleCompileStatisticsData.kt).
 
 There are two common cases that analyzing build reports for long-running compilations can help you resolve:
 
@@ -936,7 +936,7 @@ Enable the statistics in two steps:
   kapt.verbose=true
   ```
 
-> You can also enable verbose output via the [command line option `verbose`](kapt.md#using-in-cli).
+> You can also enable verbose output via the [command line option `verbose`](kapt.md#use-in-cli).
 >
 {type="note"}
 
@@ -1075,5 +1075,5 @@ project. [Learn how to update to Kotlin 1.7.0](releases.md#update-to-a-new-relea
 
 ### Compatibility guide for Kotlin 1.7.0
 
-Kotlin 1.7.0 is a [feature release](kotlin-evolution.md#feature-releases-and-incremental-releases) and can, therefore, bring changes that are incompatible with your code written for earlier versions of the language.
+Kotlin 1.7.0 is a [feature release](kotlin-evolution.md#language-and-tooling-releases) and can, therefore, bring changes that are incompatible with your code written for earlier versions of the language.
 Find the detailed list of such changes in the [Compatibility guide for Kotlin 1.7.0](compatibility-guide-17.md).

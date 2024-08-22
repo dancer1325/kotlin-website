@@ -1,8 +1,12 @@
 [//]: # (title: Participate in the Kotlin Early Access Preview)
 
+<microformat>
+    <p>Latest Kotlin EAP release: <strong>%kotlinEapVersion%</strong></p>
+</microformat>
+
 You can participate in the Kotlin Early Access Preview (EAP) to try out the latest Kotlin features before they are released.
 
-We ship a few Beta (_Beta_) and Release Candidate (_RC_) builds before every feature (_1.x_) and incremental (_1.x.y_) release. 
+We ship a few Beta (_Beta_) and Release Candidate (_RC_) builds before every language (_2.x.0_) and tooling (_2.x.20_) release. 
 
 We'll be very thankful if you find and report bugs to our issue tracker [YouTrack](https://kotl.in/issue). 
 It is very likely that we'll be able to fix them before the final release, which means you won't need to wait until the next Kotlin release for your issues to be addressed. 
@@ -34,38 +38,21 @@ check [our instructions on how to configure your build to support this version](
 
 ## Build details
 
- _No preview versions are currently available._ 
+<!-- _No preview versions are currently available._ -->
 
-<!--
 <table>
     <tr>
         <th>Build info</th>
         <th>Build highlights</th>
     </tr>
     <tr>
-        <td><strong>1.9.0-RC</strong>
-            <p>Released: <strong>June 20, 2023</strong></p>
-            <p><a href="https://github.com/JetBrains/kotlin/releases/tag/v1.9.0-RC" target="_blank">Release on GitHub</a></p>
+        <td><strong>2.0.20-RC2</strong>
+            <p>Released: <strong>August 13, 2024</strong></p>
+            <p><a href="https://github.com/JetBrains/kotlin/releases/tag/v2.0.20-RC2" target="_blank">Release on GitHub</a></p>
         </td>
         <td>
-             <ul>
-                 <li>Language: Stable <code>rangeUntil</code> operator, data objects, <code>Enum.entries</code> replacement for <code>Enum.values()</code>, and the <code>@Volatile</code> annotation</li>
-                 <li>K2: basic support for Kotlin/Native and multiplatform projects, support for Kotlin/JS since 1.8.20</li>
-                 <li>Kotlin/JVM: <code>@JvmDefault</code> and old <code>-Xjvm-default</code> modes deprecated with error, support for Java 20 bytecode</li>
-                 <li>Kotlin/Native: new custom memory allocator, no object initialization when accessing <code>const val</code>, partial linkage enabled by default</li>
-                 <li>Kotlin Multiplatform: new name for the <code>android</code> block, new Android source set layout enabled by default, support for Gradle configuration caching in multiplatform libraries, ability to disable sources publication in the Kotlin Multiplatform Gradle plugin, ability to add dependencies between Pods when using the CocoaPods Gradle plugin</li>
-                 <li>Kotlin/Wasm: runtime footprint reduced and performance improved, set system default browser as default for <code>wasmBrowserRun</code> task, improved JS interop, more compiler and IDE diagnostics for JS interop</li>
-                 <li>Kotlin/JS: deprecated legacy backend with error, deprecated external Enum class, extracted DOM API from standard library to module automatically added to builds, partial linkage enabled by default, IR compiler used by default, changed default destination of production distributions, deprecated <code>kotlin-js</code> Gradle plugin that is replaced by <code>kotlin-multiplatform</code> Gradle plugin, experimental support for ES6 classes and modules, reduced memory consumption for production builds</li>
-                 <li>Libraries: Stable standard library functions for open-ended ranges, new common function to get regex capture group by name, new <code>HexFormat</code> to format and parse hexadecimals, Stable time API, new path utility to create parent directories, reviewed and stabilized Kotlin/Native standard library</li>
-                 <li>Gradle: build scans show whether K1 or K2 compiler is used, new Gradle property <code>kotlin.experimental.tryK2</code> to try the K2 compiler, new project-level compiler options for Kotlin/JVM plugin, removed <code>KotlinCompile</code> task's <code>classpath</code> property, exposed <code>jvmTargetValidationMode</code> property in <code>KotlinCompile</code> task, configurable standalone mode for Kotlin/Native iOS simulator tests, removed support for <code>org.gradle.api.internal.HasConvention</code> Gradle element, added <code>optIn</code> and <code>progressiveMode</code> compiler options, compiler plugins are published separately and Gradle plugins add them as compiler arguments, kapt tasks don’t trigger eager task creation, minimum supported Android Gradle plugin version is 4.2.2</li>
-            </ul>
-            <p>For more details, please refer to the <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.9.0-RC">changelog</a> or <a href="whatsnew-eap.md">What's new in Kotlin 1.9.0-RC</a>.</p>
+            <p>A tooling release for Kotlin 2.0.0</p>
+            <p>For more details, please refer to the <a href="https://github.com/JetBrains/kotlin/releases/tag/v2.0.20-RC2">changelog</a> or <a href="whatsnew-eap.md">What's new in Kotlin 2.0.20-RC2</a>.</p>
         </td>
     </tr>
 </table>
-
-> If the Kotlin EAP plugin can't find the latest EAP build, check that you are using the latest version of [IntelliJ IDEA](https://www.jetbrains.com/help/idea/update.html) or [Android Studio](https://developer.android.com/studio/intro/update).
->
-{type="note"}
-
--->

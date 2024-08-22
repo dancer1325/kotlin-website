@@ -53,6 +53,22 @@ println("Name $name")
 
 Learn the difference between [Java and Kotlin string concatenation](java-to-kotlin-idioms-strings.md#concatenate-strings).
 
+## Read standard input safely
+
+```kotlin
+// Reads a string and returns null if the input can't be converted into an integer. For example: Hi there!
+val wrongInt = readln().toIntOrNull()
+println(wrongInt)
+// null
+
+// Reads a string that can be converted into an integer and returns an integer. For example: 13
+val correctInt = readln().toIntOrNull()
+println(correctInt)
+// 13
+```
+
+For more information, see [Read standard input.](read-standard-input.md)
+
 ## Instance checks
 
 ```kotlin
@@ -124,6 +140,22 @@ object Resource {
     val name = "Name"
 }
 ```
+
+## Use inline value classes for type-safe values
+
+```kotlin
+@JvmInline
+value class EmployeeId(private val id: String)
+
+@JvmInline
+value class CustomerId(private val id: String)
+```
+
+If you accidentally mix up `EmployeeId` and `CustomerId`, a compilation error is triggered.
+
+> The `@JvmInline` annotation is only needed for JVM backends.
+>
+{type="note"}
 
 ## Instantiate an abstract class
 
@@ -328,17 +360,6 @@ stream.buffered().reader().use { reader ->
 //     ...
 
 inline fun <reified T: Any> Gson.fromJson(json: JsonElement): T = this.fromJson(json, T::class.java)
-```
-
-## Nullable Boolean
-
-```kotlin
-val b: Boolean? = ...
-if (b == true) {
-    ...
-} else {
-    // `b` is false or null
-}
 ```
 
 ## Swap two variables
