@@ -27,9 +27,11 @@
 
 * allow
   * accessing data stored in variables or other objects — converting them to → `String`
-* `$VaribleOrOtherObject` / `${VaribleOrOtherObject.Property}`
+* `"$VaribleOrOtherObject"` / `"${VaribleOrOtherObject.Property}"`
   * `{...}` 
     * evaluate a piece of code
+  * must be wrapped by `""`
+    * NOT valid `''`
 * uses
   * print contents of variables
 * String value
