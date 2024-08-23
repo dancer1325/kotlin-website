@@ -30,7 +30,7 @@
     *  ⚠️ Although you declare a variable as `val` -> you can add (`.add()`) or remove (`.remove()`) entries ⚠️
   * [`mutableListOf()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/mutable-list-of.html) 
     * function / create it
-  * ⚠️— can be cast to a → `List`
+  * ⚠️— can be cast to a → `List` ⚠️
   * [allowed functions](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/#functions)
 * type inference
   * == infer the type of the items stored
@@ -43,94 +43,33 @@
 
 ## Set
 
-* TODO:
-Whereas lists are ordered and allow duplicate items, sets are **unordered** and only store **unique** items.
-
-To create a read-only set ([`Set`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/)), use the 
-[`setOf()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/set-of.html) function.
-
-To create a mutable set ([`MutableSet`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/)),
-use the [`mutableSetOf()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/mutable-set-of.html) function.
-
-When creating sets, Kotlin can infer the type of items stored. To declare the type explicitly, add the type
-within angled brackets `<>` after the set declaration:
-
-```kotlin
-fun main() {
-//sampleStart
-    // Read-only set
-    val readOnlyFruit = setOf("apple", "banana", "cherry", "cherry")
-    // Mutable set with explicit type declaration
-    val fruit: MutableSet<String> = mutableSetOf("apple", "banana", "cherry", "cherry")
-    
-    println(readOnlyFruit)
-    // [apple, banana, cherry]
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-sets-declaration"}
-
-You can see in the previous example that because sets only contain unique elements, the duplicate `"cherry"` item is dropped.
-
-> To prevent unwanted modifications, you can create a read-only view of a mutable set by assigning it to a `Set`:
-> 
-> ```kotlin
->     val fruit: MutableSet<String> = mutableSetOf("apple", "banana", "cherry", "cherry")
->     val fruitLocked: Set<String> = fruit
-> ```
->
-{type="tip"}
-
-> As sets are **unordered**, you can't access an item at a particular index.
-> 
-{type="note"}
-
-To get the number of items in a set, use the [`.count()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/count.html)
-function:
-
-```kotlin
-fun main() { 
-//sampleStart
-    val readOnlyFruit = setOf("apple", "banana", "cherry", "cherry")
-    println("This set has ${readOnlyFruit.count()} items")
-    // This set has 3 items
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-set-count"}
-
-To check that an item is in a set, use the [`in` operator](operator-overloading.md#in-operator):
-
-```kotlin
-fun main() {
-//sampleStart
-    val readOnlyFruit = setOf("apple", "banana", "cherry", "cherry")
-    println("banana" in readOnlyFruit)
-    // true
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-set-in"}
-
-To add or remove items from a mutable set, use [`.add()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/add.html)
-and [`.remove()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/remove.html) functions respectively:
-
-```kotlin
-fun main() { 
-//sampleStart
-    val fruit: MutableSet<String> = mutableSetOf("apple", "banana", "cherry", "cherry")
-    fruit.add("dragonfruit")    // Add "dragonfruit" to the set
-    println(fruit)              // [apple, banana, cherry, dragonfruit]
-    
-    fruit.remove("dragonfruit") // Remove "dragonfruit" from the set
-    println(fruit)              // [apple, banana, cherry]
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-set-add-remove"}
+* := 👁️ unique unordered 👁️ collection of items
+  * if you try to pass several times the same argument → it’s dropped
+  * 
+* [`Set`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/)
+  * read-only
+    *  ⚠️-> writing operations NOT allowed ⚠️ -- _Example:_ `.remove()` --
+  * [`setOf()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/set-of.html)
+    * function / create it
+  * [allowed functions](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/#functions)
+    * `.count()`
+* [`MutableSet`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/)
+  * mutable
+  * [`mutableSetOf()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/mutable-set-of.html) 
+  * ⚠️— can be cast to a → `Set` ⚠️
+  * [allowed functions](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/#functions)
+* type inference
+  * == infer the type of the items stored
+  * if you want to specify -> `Set<TypeOfSet>` 
+* operators can be applied | them
+  * `in`
+  * `[]`
+    * ❌NOT allowed ❌
+      * Reason: 🧠 it's unordered 🧠
 
 ## Map
 
+* TODO:
 Maps store items as key-value pairs. You access the value by referencing the key. You can imagine a map like a food menu.
 You can find the price (value), by finding the food (key) you want to eat. Maps are useful if you want to look up a value
 without using a numbered index, like in a list.
