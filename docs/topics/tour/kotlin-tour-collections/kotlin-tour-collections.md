@@ -1,19 +1,9 @@
 [//]: # (title: Collections)
 
-<microformat>
-    <p><img src="icon-1-done.svg" width="20" alt="First step" /> <a href="docs/topics/tour/kotlin-tour-hello-world/kotlin-tour-hello-world.md">Hello world</a><br />
-        <img src="icon-2-done.svg" width="20" alt="Second step" /> <a href="docs/topics/tour/kotlin-tour-basic-types/kotlin-tour-basic-types.md">Basic types</a><br />
-        <img src="icon-3.svg" width="20" alt="Third step" /> <strong>Collections</strong><br />
-        <img src="icon-4-todo.svg" width="20" alt="Fourth step" /> <a href="docs/topics/tour/kotlin-tour-control-flow/kotlin-tour-control-flow.md">Control flow</a><br />
-        <img src="icon-5-todo.svg" width="20" alt="Fifth step" /> <a href="docs/topics/tour/kotlin-tour-functions/kotlin-tour-functions.md">Functions</a><br />
-        <img src="icon-6-todo.svg" width="20" alt="Sixth step" /> <a href="docs/topics/tour/kotlin-tour-classes/kotlin-tour-classes.md">Classes</a><br />
-        <img src="icon-7-todo.svg" width="20" alt="Final step" /> <a href="docs/topics/tour/kotlin-tour-null-safety/kotlin-tour-null-safety.md">Null safety</a></p>
-</microformat>
-
-When programming, it is useful to be able to group data into structures for later processing. Kotlin provides collections
-for exactly this purpose.
-
-Kotlin has the following collections for grouping items:
+* allows
+  * data -- is grouped into -- structures
+* types
+  * 👁️mutable & read-only / collection type 👁️
 
 | **Collection type** | **Description**                                                         |
 |---------------------|-------------------------------------------------------------------------|
@@ -21,134 +11,39 @@ Kotlin has the following collections for grouping items:
 | Sets                | Unique unordered collections of items                                   |
 | Maps                | Sets of key-value pairs where keys are unique and map to only one value |
 
-Each collection type can be mutable or read only.
 
 ## List
 
-Lists store items in the order that they are added, and allow for duplicate items. 
-
-To create a read-only list ([`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/)), use the 
-[`listOf()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/list-of.html) function.
-
-To create a mutable list ([`MutableList`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list.html)),
-use the [`mutableListOf()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/mutable-list-of.html) function.
-
-When creating lists, Kotlin can infer the type of items stored. To declare the type explicitly, add the type
-within angled brackets `<>` after the list declaration:
-
-```kotlin
-fun main() { 
-//sampleStart
-    // Read only list
-    val readOnlyShapes = listOf("triangle", "square", "circle")
-    println(readOnlyShapes)
-    // [triangle, square, circle]
-    
-    // Mutable list with explicit type declaration
-    val shapes: MutableList<String> = mutableListOf("triangle", "square", "circle")
-    println(shapes)
-    // [triangle, square, circle]
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-lists-declaration"}
-
-> To prevent unwanted modifications, you can create a read-only view of a mutable list by assigning it to a `List`:
-> 
-> ```kotlin
->     val shapes: MutableList<String> = mutableListOf("triangle", "square", "circle")
->     val shapesLocked: List<String> = shapes
-> ```
-> This is also called **casting**.
-> 
-{type="tip"}
-
-Lists are ordered so to access an item in a list, use the [indexed access operator](operator-overloading.md#indexed-access-operator) `[]`:
-
-```kotlin
-fun main() { 
-//sampleStart
-    val readOnlyShapes = listOf("triangle", "square", "circle")
-    println("The first item in the list is: ${readOnlyShapes[0]}")
-    // The first item in the list is: triangle
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-list-access"}
-
-To get the first or last item in a list, use [`.first()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/first.html)
-and [`.last()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/last.html) functions respectively:
-
-```kotlin
-fun main() { 
-//sampleStart
-    val readOnlyShapes = listOf("triangle", "square", "circle")
-    println("The first item in the list is: ${readOnlyShapes.first()}")
-    // The first item in the list is: triangle
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-list-first"}
-
-> [`.first()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/first.html) and [`.last()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/last.html)
-> functions are examples of **extension** functions. To call an extension function on an object, write the function name 
-> after the object appended with a period `.` 
-> 
-> For more information about extension functions, see [Extension functions](extensions.md#extension-functions).
-> For the purposes of this tour, you only need to know how to call them. 
-> 
-{type="note"}
-
-To get the number of items in a list, use the [`.count()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/count.html)
-function:
-
-```kotlin
-fun main() { 
-//sampleStart
-    val readOnlyShapes = listOf("triangle", "square", "circle")
-    println("This list has ${readOnlyShapes.count()} items")
-    // This list has 3 items
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-list-count"}
-
-To check that an item is in a list, use the [`in` operator](operator-overloading.md#in-operator):
-
-```kotlin
-fun main() {
-//sampleStart
-    val readOnlyShapes = listOf("triangle", "square", "circle")
-    println("circle" in readOnlyShapes)
-    // true
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-list-in"}
-
-To add or remove items from a mutable list, use [`.add()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/add.html)
-and [`.remove()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/remove.html) functions respectively:
-
-```kotlin
-fun main() { 
-//sampleStart
-    val shapes: MutableList<String> = mutableListOf("triangle", "square", "circle")
-    // Add "pentagon" to the list
-    shapes.add("pentagon") 
-    println(shapes)  
-    // [triangle, square, circle, pentagon]
-
-    // Remove the first "pentagon" from the list
-    shapes.remove("pentagon") 
-    println(shapes)  
-    // [triangle, square, circle]
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-list-add-remove"}
+* := ordered collection of items
+  * allowed
+    * duplicated items
+* [`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/)
+  * 👁️ read only 👁️
+    * ⚠️-> writing operations NOT allowed ⚠️ -- _Example:_ `.remove()` --
+  * [`listOf()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/list-of.html)
+    * function / create it
+  * [allowed functions](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/#functions)
+    * `.first()`, `.last()` & `count()`
+      * extension functions
+* [`MutableList`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list.html)
+  * 👁️mutable 👁️
+    *  ⚠️ Although you declare a variable as `val` -> you can add (`.add()`) or remove (`.remove()`) entries ⚠️
+  * [`mutableListOf()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/mutable-list-of.html) 
+    * function / create it
+  * ⚠️— can be cast to a → `List`
+  * [allowed functions](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/#functions)
+* type inference
+  * == infer the type of the items stored
+  * if you want to specify -> `List<TypeOfList>` 
+* operators can be applied | them
+  * `in`
+  * `[]`
+    * access to an item
+      * Reason: 🧠 it's possible because items are ordered 🧠
 
 ## Set
 
+* TODO:
 Whereas lists are ordered and allow duplicate items, sets are **unordered** and only store **unique** items.
 
 To create a read-only set ([`Set`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/)), use the 
