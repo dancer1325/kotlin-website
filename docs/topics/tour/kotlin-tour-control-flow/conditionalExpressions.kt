@@ -4,11 +4,15 @@ fun main() {
     val a = 1
     val b = 2
 
+    // body of 1! unique line
     println(if (a > b) a else b) 		// There is no {}
     // Returns a value: 2
 
     // Ternary operator
     //println( (a>b) ? a : b)     // Not valid in Kotlin
+    // alternative  -- if (conditionaExpression) this else that --
+    println(if (a > b) a else b)
+
 
 //                                      -- when  --
     val obj = "Hello"
@@ -25,7 +29,7 @@ fun main() {
     println(result)
     // Greeting
 
-// 2. Use with a statement
+// 2. Use as statement
     when (obj) {
         // Checks whether obj equals to "1"
         "1" -> println("One")

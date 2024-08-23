@@ -1,135 +1,58 @@
 [//]: # (title: Control flow)
 
-<microformat>
-    <p><img src="icon-1-done.svg" width="20" alt="First step" /> <a href="docs/topics/tour/kotlin-tour-hello-world/kotlin-tour-hello-world.md">Hello world</a><br />
-        <img src="icon-2-done.svg" width="20" alt="Second step" /> <a href="docs/topics/tour/kotlin-tour-basic-types/kotlin-tour-basic-types.md">Basic types</a><br />
-        <img src="icon-3-done.svg" width="20" alt="Third step" /> <a href="docs/topics/tour/kotlin-tour-collections/kotlin-tour-collections.md">Collections</a><br />
-        <img src="icon-4.svg" width="20" alt="Fourth step" /> <strong>Control flow</strong><br />
-        <img src="icon-5-todo.svg" width="20" alt="Fifth step" /> <a href="docs/topics/tour/kotlin-tour-functions/kotlin-tour-functions.md">Functions</a><br />
-        <img src="icon-6-todo.svg" width="20" alt="Sixth step" /> <a href="docs/topics/tour/kotlin-tour-classes/kotlin-tour-classes.md">Classes</a><br />
-        <img src="icon-7-todo.svg" width="20" alt="Final step" /> <a href="docs/topics/tour/kotlin-tour-null-safety/kotlin-tour-null-safety.md">Null safety</a></p>
-</microformat>
-
-Like other programming languages, Kotlin is capable of making decisions based on whether a piece of code is evaluated to
-be true. Such pieces of code are called **conditional expressions**. Kotlin is also able to create and iterate
-through loops.
-
 ## Conditional expressions
 
-Kotlin provides `if` and `when` for checking conditional expressions. 
-
-> If you have to choose between `if` and `when`, we recommend using `when` because it:
-> 
-> * Makes your code easier to read.
-> * Makes it easier to add another branch.
-> * Leads to fewer mistakes in your code.
-> 
-{type="note"}
+* := boolean piece of code / make decisions
 
 ### If
 
-To use `if`, add the conditional expression within parentheses `()` and the action to take if the result is true within 
-curly braces `{}`:
+* 
 
-```kotlin
-fun main() {
-//sampleStart
-    val d: Int
-    val check = true
-
-    if (check) {
-        d = 1
-    } else {
-        d = 2
+    ```
+    if (conditionalExpresion) {
+    …
     }
-
-    println(d)
-    // 1
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-if"}
-
-There is no ternary operator `condition ? then : else` in Kotlin. Instead, `if` can be used as an expression. If there is
-only one line of code per action, the curly braces `{}` are optional:
-
-```kotlin
-fun main() { 
-//sampleStart
-    val a = 1
-    val b = 2
-
-    println(if (a > b) a else b) // Returns a value: 2
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-if-expression"}
+    // OR
+    if(conditionalExpression) BodyOf1UniqueLine
+    // OR
+    if (conditionaExpression) this else that
+    ```
+    * if body1UniqueLine -> `{}` are optional
+    * `condition ? then : else`
+      * ❌ternary operator does NOT exist ❌
+      * ⭐valid alternative ⭐
+        * `if (conditionaExpression) this else that`
 
 ### When
 
-Use `when` when you have a conditional expression with multiple branches.
+* vs `if`
+  * 👁️recommended to use `when` 👁️
+    * Reasons: 🧠🧠
+        * code is easier to read
+        * add another branch is easier
+        * less prune to errors
+* uses
+  * conditional expression / multiple branches
+  * as
+    * statement or  
+      * NOTHING is returned 
+    * expression
+      * _Example:_ assign to a variable
+* 
 
-To use `when`:
-
-* Place the value you want to evaluate within parentheses `()`.
-* Place the branches within curly braces `{}`.
-* Use `->` in each branch to separate each check from the action to take if the check is successful.
-
-`when` can be used either as a statement or as an expression. A **statement** doesn't return anything but performs actions
-instead.
-
-Here is an example of using `when` as a statement:
-
-```kotlin
-fun main() {
-//sampleStart
-    val obj = "Hello"
-
-    when (obj) {
-        // Checks whether obj equals to "1"
-        "1" -> println("One")
-        // Checks whether obj equals to "Hello"
-        "Hello" -> println("Greeting")
-        // Default statement
-        else -> println("Unknown")     
+    ```
+    when (conditionalExpression) {
+        branch1 -> logic1
+        branch2 -> logic2
+        ...
     }
-    // Greeting
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-when-statement"}
+    ```
+  * branches are checked sequentially / if once is satisfied -> rest are skipped
 
-> Note that all branch conditions are checked sequentially until one of them is satisfied. So only the first suitable 
-> branch is executed.
->
-{type="note"}
 
-An **expression** returns a value that can be used later in your code.
+* TODO:
 
-Here is an example of using `when` as an expression. The `when` expression is assigned immediately to a variable which is
-later used with the `println()` function:
 
-```kotlin
-fun main() {
-//sampleStart    
-    val obj = "Hello"    
-    
-    val result = when (obj) {
-        // If obj equals "1", sets result to "one"
-        "1" -> "One"
-        // If obj equals "Hello", sets result to "Greeting"
-        "Hello" -> "Greeting"
-        // Sets result to "Unknown" if no previous condition is satisfied
-        else -> "Unknown"
-    }
-    println(result)
-    // Greeting
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-when-expression"}
-
-The examples of `when` that you've seen so far both had a subject: `obj`. But `when` can also be used without a subject.
 
 This example uses a `when` expression **without** a subject to check a chain of Boolean expressions:
 
@@ -529,7 +452,3 @@ fun main() {
 }
 ```
 {initial-collapse-state="collapsed" collapsed-title="Example solution" id="kotlin-tour-control-flow-loops-solution-3"}
-
-## Next step
-
-[Functions](kotlin-tour-functions.md)
