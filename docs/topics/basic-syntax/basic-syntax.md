@@ -1,338 +1,91 @@
 [//]: # (title: Basic syntax)
 
-This is a collection of basic syntax elements with examples. At the end of every section, you'll find a link to
-a detailed description of the related topic.
-
-You can also learn all the Kotlin essentials with the free [Kotlin Core track](https://hyperskill.org/tracks?category=4&utm_source=jbkotlin_hs&utm_medium=referral&utm_campaign=kotlinlang-docs&utm_content=button_1&utm_term=22.03.23)
-by JetBrains Academy.
+* Check [Kotlin Core track](https://hyperskill.org/tracks?category=4&utm_source=jbkotlin_hs&utm_medium=referral&utm_campaign=kotlinlang-docs&utm_content=button_1&utm_term=22.03.23)
 
 ## Package definition and imports
 
-Package specification should be at the top of the source file:
+* 
 
-```kotlin
-package my.demo
+    ```
+    package nameOfThePackage
+    
+    import packageNameToImport1
+    import packageNameToImport2
+    ...
+    ```
+  * 👀 it must be | top of the source file 👀
 
-import kotlin.text.*
-
-// ...
-```
-
-It is not required to match directories and packages: source files can be placed arbitrarily in the file system.
-
-See [Packages](docs/topics/packages.md).
+* Check [Packages](docs/topics/packages.md)
 
 ## Program entry point
 
-An entry point of a Kotlin application is the `main` function:
+* `main` function
 
-```kotlin
-fun main() {
-    println("Hello world!")
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-hello-world"}
-
-Another form of `main` accepts a variable number of `String` arguments: 
-
-```kotlin
-fun main(args: Array<String>) {
-    println(args.contentToString())
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3"}
+    ```
+    fun main() {
+      …
+    }
+    
+    // OR
+  
+    fun main(args: Array<String>) {
+      println(args.contentToString())
+    }
+    ```
 
 ## Print to the standard output
 
-`print` prints its argument to the standard output:
-
-```kotlin
-fun main() {
-//sampleStart
-    print("Hello ")
-    print("world!")
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-print"}
-
-`println` prints its arguments and adds a line break, so that the next thing you print appears on the next line:
-
-```kotlin
-fun main() {
-//sampleStart
-    println("Hello world!")
-    println(42)
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-println"}
+* `print` & `println`
 
 ## Read from the standard input
 
-The `readln()` function reads from the standard input. This function reads the entire line the user enters as a string.
-
-You can use the `println()`, `readln()`, and `print()` functions together to print messages requesting 
-and showing user input:
-
-```kotlin
-// Prints a message to request input
-println("Enter any word: ")
-
-// Reads and stores the user input. For example: Happiness
-val yourWord = readln()
-
-// Prints a message with the input
-print("You entered the word: ")
-print(yourWord)
-// You entered the word: Happiness
-```
-
-For more information, see [Read standard input](read-standard-input.md).
+* `readln()`
+* Check [Read standard input](read-standard-input.md)
 
 ## Functions
 
-A function with two `Int` parameters and `Int` return type:
-
-```kotlin
-//sampleStart
-fun sum(a: Int, b: Int): Int {
-    return a + b
-}
-//sampleEnd
-
-fun main() {
-    print("sum of 3 and 5 is ")
-    println(sum(3, 5))
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-return-int"}
-
-A function body can be an expression. Its return type is inferred:
-
-```kotlin
-//sampleStart
-fun sum(a: Int, b: Int) = a + b
-//sampleEnd
-
-fun main() {
-    println("sum of 19 and 23 is ${sum(19, 23)}")
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-function-expression"}
-
-A function that returns no meaningful value:
-
-```kotlin
-//sampleStart
-fun printSum(a: Int, b: Int): Unit {
-    println("sum of $a and $b is ${a + b}")
-}
-//sampleEnd
-
-fun main() {
-    printSum(-1, 8)
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-return-unit"}
-
-`Unit` return type can be omitted:
-
-```kotlin
-//sampleStart
-fun printSum(a: Int, b: Int) {
-    println("sum of $a and $b is ${a + b}")
-}
-//sampleEnd
-
-fun main() {
-    printSum(-1, 8)
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-function-omit-unit"}
-
-See [Functions](docs/topics/functions.md).
+* `fun`
+  * `Unit` as return type -- can be -- omitted
+* Check [Kotlin Tour Functions](docs/tour/kotlin-tour-functions/kotlin-tour-functions.md) & [Functions](docs/topics/functions.md)
 
 ## Variables
 
-In Kotlin, you declare a variable starting with a keyword, `val` or `var`, followed by the name of the variable.
-
-Use the `val` keyword to declare variables that are assigned a value only once. These are immutable, read-only local variables that can’t be reassigned a different value
-after initialization: 
-
-```kotlin
-fun main() {
-//sampleStart
-    // Declares the variable x and initializes it with the value of 5
-    val x: Int = 5
-    // 5
-//sampleEnd
-    println(x)
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-val"}
-
-Use the `var` keyword to declare variables that can be reassigned. These are mutable variables, and you can change their values after initialization:
-
-```kotlin
-fun main() {
-//sampleStart
-    // Declares the variable x and initializes it with the value of 5
-    var x: Int = 5
-    // Reassigns a new value of 6 to the variable x
-    x += 1
-    // 6
-//sampleEnd
-    println(x)
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-var"}
-
-Kotlin supports type inference and automatically identifies the data type of a declared variable. When declaring a variable, you can omit the type after the variable name:
-
-```kotlin
-fun main() {
-//sampleStart
-    // Declares the variable x with the value of 5;`Int` type is inferred
-    val x = 5
-    // 5
-//sampleEnd
-    println(x)
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-inference"}
-
-You can use variables only after initializing them. You can either initialize a variable at the moment of declaration or declare a variable first and initialize it later. 
-In the second case, you must specify the data type:
-
-```kotlin
-fun main() {
-//sampleStart
-    // Initializes the variable x at the moment of declaration; type is not required
-    val x = 5
-    // Declares the variable c without initialization; type is required
-    val c: Int
-    // Initializes the variable c after declaration 
-    c = 3
-    // 5 
-    // 3
-//sampleEnd
-    println(x)
-    println(c)
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-initialize"}
-
-You can declare variables at the top level:
-
-```kotlin
-//sampleStart
-val PI = 3.14
-var x = 0
-
-fun incrementX() {
-    x += 1
-}
-// x = 0; PI = 3.14
-// incrementX()
-// x = 1; PI = 3.14
-//sampleEnd
-
-fun main() {
-    println("x = $x; PI = $PI")
-    incrementX()
-    println("incrementX()")
-    println("x = $x; PI = $PI")
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-variable-top-level"}
-
-For information about declaring properties, see [Properties](properties.md).
+* `val` or `var`
+  * can be declared | top level
+* type inference
+* Check [Kotlin Tour Basic Types](docs/tour/kotlin-tour-basic-types/kotlin-tour-basic-types.md)
+* Check [Kotlin Tour Basic Types](docs/tour/kotlin-tour-classes/kotlin-tour-classes.md) & [Properties](properties.md).
 
 ## Creating classes and instances
 
-To define a class, use the `class` keyword:
-```kotlin
-class Shape
-```
-
-Properties of a class can be listed in its declaration or body: 
-
-```kotlin
-class Rectangle(val height: Double, val length: Double) {
-    val perimeter = (height + length) * 2 
-}
-```
-
-The default constructor with parameters listed in the class declaration is available automatically:
-
-```kotlin
-class Rectangle(val height: Double, val length: Double) {
-    val perimeter = (height + length) * 2 
-}
-fun main() {
-    val rectangle = Rectangle(5.0, 2.0)
-    println("The perimeter is ${rectangle.perimeter}")
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-class-constructor"}
-
-Inheritance between classes is declared by a colon (`:`). Classes are `final` by default; to make a class inheritable, 
-mark it as `open`:
-
-```kotlin
-open class Shape
-
-class Rectangle(val height: Double, val length: Double): Shape() {
-    val perimeter = (height + length) * 2 
-}
-```
-
-For more information about constructors and inheritance, see [Classes](classes.md) and [Objects and instances](object-declarations.md).
+* `class`
+  * properties
+    * can be declared |
+      * class header OR
+      * class' body
+  * primary constructor 
+  * ⚠️by default, they are final ⚠️
+  * `class className ... : classParentName`
+    * ⭐`:` marks inheritance ⭐
+    * requirements
+      * ⚠️`classParentName` must be `open` ⚠️
+* Check [Kotlin Tour Basic Types](docs/tour/kotlin-tour-classes/kotlin-tour-classes.md), [Classes](classes.md) & [Objects and instances](object-declarations.md)
 
 ## Comments
 
-Just like most modern languages, Kotlin supports single-line (or _end-of-line_) and multi-line (_block_) comments:
-
-```kotlin
-// This is an end-of-line comment
-
-/* This is a block comment
-   on multiple lines. */
-```
-
-Block comments in Kotlin can be nested:
-
-```kotlin
-/* The comment starts here
-/* contains a nested comment */     
-and ends here. */
-```
-
-See [Documenting Kotlin Code](docs/topics/kotlin-doc.md) for information on the documentation comment syntax.
+* single-line (or _end-of-line_) & multi-line (_block_) comments
+  * can be nested
+  * == most modern languages
+* Check [Documenting Kotlin Code](docs/topics/kotlin-doc.md) 
 
 ## String templates
 
-```kotlin
-fun main() {
-//sampleStart
-    var a = 1
-    // simple name in template:
-    val s1 = "a is $a" 
-    
-    a = 2
-    // arbitrary expression in template:
-    val s2 = "${s1.replace("is", "was")}, but now is $a"
-//sampleEnd
-    println(s2)
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-string-templates"}
-
-See [String templates](docs/topics/strings.md#string-templates) for details.
+* `"${somethingToEvaluate}"`
+* Check [Kotlin Tour Hello World](docs/tour/kotlin-tour-classes/kotlin-tour-hello-world.md) & [String templates](docs/topics/strings.md#string-templates)
 
 ## Conditional expressions
 
+* TODO:
 ```kotlin
 //sampleStart
 fun maxOf(a: Int, b: Int): Int {
