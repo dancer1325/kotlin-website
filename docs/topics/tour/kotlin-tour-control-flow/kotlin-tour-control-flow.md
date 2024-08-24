@@ -64,113 +64,23 @@
 
 ## Ranges
 
-* TODO:
-Before talking about loops, it's useful to know how to construct ranges for loops to iterate over.
-
-The most common way to create a range in Kotlin is to use the `..` operator. For example, `1..4` is equivalent to `1, 2, 3, 4`.
-
-To declare a range that doesn't include the end value, use the `..<` operator. For example, `1..<4` is equivalent to `1, 2, 3`.
-
-To declare a range in reverse order, use `downTo.` For example, `4 downTo 1` is equivalent to `4, 3, 2, 1`.
-
-To declare a range that increments in a step that isn't 1, use `step` and your desired increment value.
-For example, `1..5 step 2` is equivalent to `1, 3, 5`.
-
-You can also do the same with `Char` ranges:
-
-* `'a'..'d'` is equivalent to `'a', 'b', 'c', 'd'`
-* `'z' downTo 's' step 2` is equivalent to `'z', 'x', 'v', 't'`
-
-## Conditional expressions and ranges practice
-
-### Exercise 1 {initial-collapse-state="collapsed" id="conditional-expressions-exercise-1"}
-
-Create a simple game where you win if throwing two dice results in the same number. Use `if` to print `You win :)`
-if the dice match or `You lose :(` otherwise.
-
-> In this exercise, you import a package so that you can use the `Random.nextInt()` function to give you a random `Int`.
-> For more information about importing packages, see [Packages and imports](packages.md).
->
-{type = "tip"}
-
-<deflist collapsible="true">
-    <def title="Hint">
-        Use the <a href="operator-overloading.md#equality-and-inequality-operators">equality operator</a> (<code>==</code>) to compare the dice results. 
-    </def>
-</deflist>
-
-|---|---|
-```kotlin
-import kotlin.random.Random
-
-fun main() {
-    val firstResult = Random.nextInt(6)
-    val secondResult = Random.nextInt(6)
-    // Write your code here
-}
-```
-{validate="false" kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-control-flow-conditional-exercise-1"}
-
-|---|---|
-```kotlin
-import kotlin.random.Random
-
-fun main() {
-    val firstResult = Random.nextInt(6)
-    val secondResult = Random.nextInt(6)
-    if (firstResult == secondResult)
-        println("You win :)")
-    else
-        println("You lose :(")
-}
-```
-{initial-collapse-state="collapsed" collapsed-title="Example solution" id="kotlin-tour-control-flow-conditional-solution-1"}
-
-### Exercise 2 {initial-collapse-state="collapsed" id="conditional-expressions-exercise-2"}
-
-Using a `when` expression, update the following program so that when you input the names of GameBoy buttons, the actions
-are printed as output.
-
-| **Button** | **Action**             |
-|------------|------------------------|
-| A          | Yes                    |
-| B          | No                     |
-| X          | Menu                   |
-| Y          | Nothing                |
-| Other      | There is no such button |
-
-|---|---|
-```kotlin
-fun main() {
-    val button = "A"
-
-    println(
-        // Write your code here
-    )
-}
-```
-{validate="false" kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-control-flow-conditional-exercise-2"}
-
-|---|---|
-```kotlin
-fun main() {
-    val button = "A"
-    
-    println(
-        when (button) {
-            "A" -> "Yes"
-            "B" -> "No"
-            "X" -> "Menu"
-            "Y" -> "Nothing"
-            else -> "There is no such button"
-        }
-    )
-}
-```
-{initial-collapse-state="collapsed" collapsed-title="Example solution" id="kotlin-tour-control-flow-conditional-solution-2"}
+* allowed types
+  * `Int`
+  * `Char`
+* ways to create them
+  * `initialValue..finalValue`
+    * `initialValue` & `finalValue` are included
+    * step = +1
+  * `initialValue..<finalValue` & `initialValue until valueWithoutBeingIncluded`
+    * `finalValue` is NOT included
+  * `initialValue downTo finalValue`
+    * range declared in reverse order == `finalValue` -> `initialValue`   
+    * step = -1
+  * `initialValue..finalValue step StepsToGive`
 
 ## Loops
 
+* TODO:
 The two most common loop structures in programming are `for` and `while`. Use `for` to iterate over a range of 
 values and perform an action. Use `while` to continue an action until a particular condition is satisfied.
 

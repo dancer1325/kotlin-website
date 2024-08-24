@@ -13,9 +13,11 @@ fun main() {
     // 2. Without including, highest one
     // 2.1 Int
     for(i in 1 until 4) println("1 until 4 - $i")
+    for(i in 1..<4) println("1..<4 - $i")
 
     // 2.2 Char
     for(i in 'a' until 'd') println("'a' until 'd' - $i")
+    for(i in 'a'..<'d') println("'a'..<'d' - $i")
 
     // 3. Reverse order
     // 3.1 Int
