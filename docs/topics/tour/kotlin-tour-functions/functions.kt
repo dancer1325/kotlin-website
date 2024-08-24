@@ -6,8 +6,16 @@ fun main() {
     // Uses named arguments with swapped parameter order == passing named arguments, ANY order is allowed
     printMessageWithPrefix(prefix = "Log", message = "Hello")
 
-    // Without passing the parameter with a default value
+    // Default parameter values
+    // 1. NO passing one of them
     printMessageWithPrefix(message = "Hello")
+
+    // 2. if you skip to pass it -> rest must be named
+    fun printMessageWithBothDefaultParameterValues(message: String = "randomMessage", prefix: String = "Info") {
+        println("[$prefix] $message")
+    }
+    printMessageWithBothDefaultParameterValues("just1Passed")   // BY DEFAULT, it's -- assigned to the -- first functionParameter
+    printMessageWithBothDefaultParameterValues(prefix = "just1Passed") // specify named argument -> other is using default one
 
 
 
@@ -19,11 +27,12 @@ fun main() {
     printMessage("Hello")
 
 
-
     //                                  -- single-expression functions --
     // {} & returnedType are omitted, because they are inferred
     // = is required
     fun sum(x: Int, y: Int) = x + y
+    fun sumSpecifyReturnType(x: Int, y: Int): Int = x + y
+    println("sumSpecifyReturnType(2, 2) ${sumSpecifyReturnType(2, 2)}")
 
 
 
@@ -55,8 +64,8 @@ fun main() {
     val noArgument: () -> String = { "Hello" }
     println(noArgument())
     // 4.2  1! argument
-    val upperCaseString: (String) -> String = { string -> string.uppercase() }
-    println(upperCaseString("hello"))
+    val upperCaseStringTwo: (String) -> String = { string -> string.uppercase() }
+    println(upperCaseStringTwo("hello"))
     // 4.3  Several arguments
     val sumNumber: (Int, Int) -> Int = { num1, num2  -> num1 + num2 }
     println(sumNumber(2, 4))

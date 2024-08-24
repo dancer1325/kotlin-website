@@ -25,92 +25,33 @@
 
 ## Default parameter values
 
-* TODO:
-You can define default values for your function parameters. Any parameter with a default value can be omitted when
-calling your function. To declare a default value, use the assignment operator `=` after the type:
-
-```kotlin
-fun printMessageWithPrefix(message: String, prefix: String = "Info") {
-    println("[$prefix] $message")
-}
-
-fun main() {
-    // Function called with both parameters
-    printMessageWithPrefix("Hello", "Log") 
-    // [Log] Hello
-    
-    // Function called only with message parameter
-    printMessageWithPrefix("Hello")        
-    // [Info] Hello
-    
-    printMessageWithPrefix(prefix = "Log", message = "Hello")
-    // [Log] Hello
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-default-param-function"}
-
-> You can skip specific parameters with default values, rather than omitting them all. However, after the 
-> first skipped parameter, you must name all subsequent parameters.
->
-{type="note"}
+* := `FunctionParameters` / have a default value
+  * → if you invoke the function -> that parameter can be omitted
+  * 👁️if you skip to pass it | invoke the function -> rest of `FunctionParameters` MUST be named 👁️
 
 ## Functions without return
 
-If your function doesn't return a useful value then its return type is `Unit`. `Unit` is a type with only one value – 
-`Unit`. You don't have to declare that `Unit` is returned explicitly in your function body. This means that you don't 
-have to use the `return` keyword or declare a return type:
-
-```kotlin
-fun printMessage(message: String) {
-    println(message)
-    // `return Unit` or `return` is optional
-}
-
-fun main() {
-    printMessage("Hello")
-    // Hello
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-unit-function"}
+* -> returned type is `Unit`
+  * 1! value of `Unit` type -- `Unit` --
+* Unnecessary to declare it 
+  * Reason: 🧠 default one 🧠
 
 ## Single-expression functions
 
-To make your code more concise, you can use single-expression functions. For example, the `sum()` function can be shortened:
-
-```kotlin
-fun sum(x: Int, y: Int): Int {
-    return x + y
-}
-
-fun main() {
-    println(sum(1, 2))
-    // 3
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-simple-function-before"}
-
-You can remove the curly braces `{}` and declare the function body using the assignment operator `=`. When you use the 
-assignment operator `=`, Kotlin uses type inference, so you can also omit the return type. The `sum()` function then becomes one line:
-
-```kotlin
-fun sum(x: Int, y: Int) = x + y
-
-fun main() {
-    println(sum(1, 2))
-    // 3
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-simple-function-after"}
-
-However, if you want your code to be quickly understood by other developers, it's a good idea to explicitly define the 
-return type even when using the assignment operator `=`.
-
-> If you use `{}` curly braces to declare your function body, you must declare the return type unless it is the `Unit` type.
-> 
-{type="note"}
+* requirements
+  * body can be described in 1! line
+* `fun functionName(FunctionParameters) = BodyIn1!Line`
+  * `{}` is omitted
+    * Reason: 🧠 they are inferred  🧠
+  * `returnType` can be omitted
+    * Reason: 🧠 they are inferred  🧠
+    * recommended to add to make it more clear the code
+  * `=` is required
+    * Reason: 🧠 type is inferred  🧠
 
 ## Early returns in functions
 
+* TODO:
 To stop the code in your function from being processed further than a certain point, use the `return` keyword. This example
 uses `if` to return from a function early if the conditional expression is found to be true:
 
