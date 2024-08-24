@@ -3,7 +3,7 @@ fun main() {
     // neverNull has String type
     var neverNull: String = "This can't be null"
 
-    // Throws a compiler error
+    // Throws a compiler error, because `null` is NOT allowed
     //neverNull = null
 
     // nullable has nullable String type
@@ -45,14 +45,14 @@ fun main() {
     fun lengthString(maybeString: String?): Int? = maybeString?.length
     // maybeString		is a nullable type
     // maybeString?.	is a safe call
-    var nullString: String? = null		// nullString	is a nullable type
-    println(lengthString(nullString))
+    var anotherNullStringFirst: String? = null		// nullString	is a nullable type
+    println(lengthString(anotherNullStringFirst))
     // 2. For functions
-    var nullString: String? = null	//Nullable type
-    println(nullString?.uppercase())
+    var anotherNullStringSecond: String? = null	//Nullable type
+    println(anotherNullStringSecond?.uppercase())
 
 
     //                                  -- Use Elvis operator --
-    var nullString: String? = null		// Nullable type
-    println(nullString?.length ?: 0)	// ?:		Elvis operator
+    var anotherNullString: String? = null		// Nullable type
+    println(anotherNullString?.length ?: 0)	// ?:		Elvis operator
 }
