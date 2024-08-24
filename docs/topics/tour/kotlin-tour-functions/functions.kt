@@ -3,7 +3,7 @@ fun main() {
     fun printMessageWithPrefix(message: String, prefix: String = "Info") {
         println("[$prefix] $message")
     }
-    // Uses named arguments with swapped parameter order
+    // Uses named arguments with swapped parameter order == passing named arguments, ANY order is allowed
     printMessageWithPrefix(prefix = "Log", message = "Hello")
 
     // Without passing the parameter with a default value

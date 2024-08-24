@@ -1,88 +1,27 @@
 [//]: # (title: Functions)
 
-<microformat>
-    <p><img src="icon-1-done.svg" width="20" alt="First step" /> <a href="docs/topics/tour/kotlin-tour-hello-world/kotlin-tour-hello-world.md">Hello world</a><br />
-        <img src="icon-2-done.svg" width="20" alt="Second step" /> <a href="docs/topics/tour/kotlin-tour-basic-types/kotlin-tour-basic-types.md">Basic types</a><br />
-        <img src="icon-3-done.svg" width="20" alt="Third step" /> <a href="docs/topics/tour/kotlin-tour-collections/kotlin-tour-collections.md">Collections</a><br />
-        <img src="icon-4-done.svg" width="20" alt="Fourth step" /> <a href="docs/topics/tour/kotlin-tour-control-flow/kotlin-tour-control-flow.md">Control flow</a><br />
-        <img src="icon-5.svg" width="20" alt="Fifth step" /> <strong>Functions</strong><br />
-        <img src="icon-6-todo.svg" width="20" alt="Sixth step" /> <a href="docs/topics/tour/kotlin-tour-classes/kotlin-tour-classes.md">Classes</a><br />
-        <img src="icon-7-todo.svg" width="20" alt="Final step" /> <a href="docs/topics/tour/kotlin-tour-null-safety/kotlin-tour-null-safety.md">Null safety</a></p>
-</microformat>
+* 
 
-You can declare your own functions in Kotlin using the `fun` keyword.
+    ```
+    fun functionName(FunctionParameters): ReturnedType {
+      …
+      return ...
+    }
+    ```
 
-```kotlin
-fun hello() {
-    return println("Hello, world!")
-}
-
-fun main() {
-    hello()
-    // Hello, world!
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-function-demo"}
-
-In Kotlin:
-
-* Function parameters are written within parentheses `()`.
-* Each parameter must have a type, and multiple parameters must be separated by commas `,`.
-* The return type is written after the function's parentheses `()`, separated by a colon `:`.
-* The body of a function is written within curly braces `{}`.
-* The `return` keyword is used to exit or return something from a function.
-
-> If a function doesn't return anything useful, the return type and `return` keyword can be omitted. Learn more about
-> this in [Functions without return](#functions-without-return).
->
-{type="note"}
-
-In the following example:
-
-* `x` and `y` are function parameters.
-* `x` and `y` have type `Int`.
-* The function's return type is `Int`.
-* The function returns a sum of `x` and `y` when called.
-
-```kotlin
-fun sum(x: Int, y: Int): Int {
-    return x + y
-}
-
-fun main() {
-    println(sum(1, 2))
-    // 3
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-simple-function"}
-
-> We recommend in our [coding conventions](coding-conventions.md#function-names) that you name functions starting with 
-> a lowercase letter and use camel case with no underscores.
-> 
-{type="note"}
+  * if function does NOT return anything → `ReturnedType` & `return ...` can be omitted
+  * `functionName`
+    * [coding conventions](coding-conventions.md#function-names)
+      * start with a lowercase letter
+      * camel case / NO `_`
 
 ## Named arguments
 
-* := function invocation / pass the parameter name
+* := `FunctionParameters` / have a name
   * optional
   * allows
     * easier to read the code
     * pass the parameters | ANY order
-
-* _Example:_ 
-```kotlin
-fun printMessageWithPrefix(message: String, prefix: String) {
-    // string template ($variable) concatenated
-    println("[$prefix] $message")
-}
-
-fun main() {
-    // Uses named arguments with swapped parameter order
-    printMessageWithPrefix(prefix = "Log", message = "Hello")
-    // [Log] Hello
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-named-arguments-function"}
 
 ## Default parameter values
 
