@@ -51,282 +51,36 @@
 
 ## Early returns in functions
 
-* TODO:
-To stop the code in your function from being processed further than a certain point, use the `return` keyword. This example
-uses `if` to return from a function early if the conditional expression is found to be true:
-
-```kotlin
-// A list of registered usernames
-val registeredUsernames = mutableListOf("john_doe", "jane_smith")
-
-// A list of registered emails
-val registeredEmails = mutableListOf("john@example.com", "jane@example.com")
-
-fun registerUser(username: String, email: String): String {
-    // Early return if the username is already taken
-    if (username in registeredUsernames) {
-        return "Username already taken. Please choose a different username."
-    }
-
-    // Early return if the email is already registered
-    if (email in registeredEmails) {
-        return "Email already registered. Please use a different email."
-    }
-
-    // Proceed with the registration if the username and email are not taken
-    registeredUsernames.add(username)
-    registeredEmails.add(email)
-
-    return "User registered successfully: $username"
-}
-
-fun main() {
-    println(registerUser("john_doe", "newjohn@example.com"))
-    // Username already taken. Please choose a different username.
-    println(registerUser("new_user", "newuser@example.com"))
-    // User registered successfully: new_user
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-function-early-return"}
-
-## Functions practice
-
-### Exercise 1 {initial-collapse-state="collapsed" id="functions-exercise-1"}
-
-Write a function called `circleArea` that takes the radius of a circle in integer format as a parameter and outputs the
-area of that circle.
-
-> In this exercise, you import a package so that you can access the value of pi via `PI`. For more information about
-> importing packages, see [Packages and imports](packages.md).
->
-{type = "tip"}
-
-|---|---|
-```kotlin
-import kotlin.math.PI
-
-fun circleArea() {
-    // Write your code here
-}
-fun main() {
-    println(circleArea(2))
-}
-```
-{validate="false" kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-functions-exercise-1"}
-
-|---|---|
-```kotlin
-import kotlin.math.PI
-
-fun circleArea(radius: Int): Double {
-    return PI * radius * radius
-}
-
-fun main() {
-    println(circleArea(2)) // 12.566370614359172
-}
-```
-{initial-collapse-state="collapsed" collapsed-title="Example solution" id="kotlin-tour-functions-solution-1"}
-
-### Exercise 2 {initial-collapse-state="collapsed" id="functions-exercise-2"}
-
-Rewrite the `circleArea` function from the previous exercise as a single-expression function.
-
-|---|---|
-```kotlin
-import kotlin.math.PI
-
-// Write your code here
-
-fun main() {
-    println(circleArea(2))
-}
-```
-{validate="false" kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-functions-exercise-2"}
-
-|---|---|
-```kotlin
-import kotlin.math.PI
-
-fun circleArea(radius: Int): Double = PI * radius * radius
-
-fun main() {
-    println(circleArea(2)) // 12.566370614359172
-}
-```
-{initial-collapse-state="collapsed" collapsed-title="Example solution" id="kotlin-tour-functions-solution-2"}
-
-### Exercise 3 {initial-collapse-state="collapsed" id="functions-exercise-3"}
-
-You have a function that translates a time interval given in hours, minutes, and seconds into seconds. In most cases,
-you need to pass only one or two function parameters while the rest are equal to 0. Improve the function and the code that
-calls it by using default parameter values and named arguments so that the code is easier to read.
-
-|---|---|
-```kotlin
-fun intervalInSeconds(hours: Int, minutes: Int, seconds: Int) =
-    ((hours * 60) + minutes) * 60 + seconds
-
-fun main() {
-    println(intervalInSeconds(1, 20, 15))
-    println(intervalInSeconds(0, 1, 25))
-    println(intervalInSeconds(2, 0, 0))
-    println(intervalInSeconds(0, 10, 0))
-    println(intervalInSeconds(1, 0, 1))
-}
-```
-{validate="false" kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-functions-exercise-3"}
-
-|---|---|
-```kotlin
-fun intervalInSeconds(hours: Int = 0, minutes: Int = 0, seconds: Int = 0) =
-    ((hours * 60) + minutes) * 60 + seconds
-
-fun main() {
-    println(intervalInSeconds(1, 20, 15))
-    println(intervalInSeconds(minutes = 1, seconds = 25))
-    println(intervalInSeconds(hours = 2))
-    println(intervalInSeconds(minutes = 10))
-    println(intervalInSeconds(hours = 1, seconds = 1))
-}
-```
-{initial-collapse-state="collapsed" collapsed-title="Example solution" id="kotlin-tour-functions-solution-3"}
+* `return` 
+  * allows
+    * stopping the function's code / being processed -- further than a -- certain point
 
 ## Lambda expressions
 
-Kotlin allows you to write even more concise code for functions by using lambda expressions.
+* allows
+  * writing more concise code
+* 
 
-For example, the following `uppercaseString()` function:
-
-```kotlin
-fun uppercaseString(text: String): String {
-    return text.uppercase()
-}
-fun main() {
-    println(uppercaseString("hello"))
-    // HELLO
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-lambda-function-before"}
-
-Can also be written as a lambda expression:
-
-```kotlin
-fun main() {
-    val upperCaseString = { text: String -> text.uppercase() }
-    println(upperCaseString("hello"))
-    // HELLO
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-lambda-variable"}
-
-Lambda expressions can be hard to understand at first glance so let's break it down. Lambda expressions are written 
-within curly braces `{}`.
-
-Within the lambda expression, you write:
-
-* The parameters followed by an `->`.
-* The function body after the `->`.
-
-In the previous example:
-
-* `text` is a function parameter.
-* `text` has type `String`.
-* The function returns the result of the [`.uppercase()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/uppercase.html)
-function called on `text`.
-* The entire lambda expression is assigned to the `upperCaseString` variable with the assignment operator `=`.
-* The lambda expression is called by using the variable `upperCaseString` like a function and the string `"hello"` as a parameter.
-* The `println()` function prints the result.
-
-> If you declare a lambda without parameters, then there is no need to use `->`. For example:
-> ```kotlin
-> { println("Log message") }
-> ```
->
-{type="note"}
-
-Lambda expressions can be used in a number of ways. You can:
-
-* [Pass a lambda expression as a parameter to another function](#pass-to-another-function)
-* [Return a lambda expression from a function](#return-from-a-function)
-* [Invoke a lambda expression on its own](#invoke-separately)
+    ```
+    {FunctionParameterNames: FunctionParameterTypes -> Body} // Declare a Lambda Expression
+    {Body} // Declare a Lambda Expression / NO FunctionParameter
+    {FunctionParameterNames: FunctionParameterTypes -> Body}(ArgumentsPassed) // Invoke a Lambda Expression
+    ```
+* uses
+  * [Pass a lambda expression as an another function's parameter](#pass-to-another-function)
+  * [Return a lambda expression from a function](#return-from-a-function)
+  * [Invoke a lambda expression on its own](#invoke-separately)
 
 ### Pass to another function
 
-A great example of when it is useful to pass a lambda expression to a function, is using the [`.filter()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter.html)
-function on collections:
-
-```kotlin
-fun main() {
-    //sampleStart
-    val numbers = listOf(1, -2, 3, -4, 5, -6)
-    
-    
-    val positives = numbers.filter ({ x -> x > 0 })
-    
-    val isNegative = { x: Int -> x < 0 }
-    val negatives = numbers.filter(isNegative)
-    
-    println(positives)
-    // [1, 3, 5]
-    println(negatives)
-    // [-2, -4, -6]
-    //sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-lambda-filter"}
-
-The `.filter()` function accepts a lambda expression as a predicate:
-
-* `{ x -> x > 0 }` takes each element of the list and returns only those that are positive.
-* `{ x -> x < 0 }` takes each element of the list and returns only those that are negative.
-
-This example demonstrates two ways of passing a lambda expression to a function:
-
-* For positive numbers, the example adds the lambda expression directly in the `.filter()` function.
-* For negative numbers, the example assigns the lambda expression to the `isNegative` variable. Then
-the `isNegative` variable is used as a function parameter in the `.filter()` function. In this case, you have to specify
-the type of function parameters (`x`) in the lambda expression.
-
-> If a lambda expression is the only function parameter, you can drop the function parentheses `()`:
-> 
-> ```kotlin
-> val positives = numbers.filter { x -> x > 0 }
-> ```
-> 
-> This is an example of a [trailing lambda](#trailing-lambdas), which is discussed in more detail at the end of this
-> chapter.
->
-{type = "note"}
-
-Another good example, is using the [`.map()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/map.html) 
-function to transform items in a collection:
-
-```kotlin
-fun main() {
-    //sampleStart
-    val numbers = listOf(1, -2, 3, -4, 5, -6)
-    val doubled = numbers.map { x -> x * 2 }
-    
-    val isTripled = { x: Int -> x * 3 }
-    val tripled = numbers.map(isTripled)
-    
-    println(doubled)
-    // [2, -4, 6, -8, 10, -12]
-    println(tripled)
-    // [3, -6, 9, -12, 15, -18]
-    //sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-lambda-map"}
-
-The `.map()` function accepts a lambda expression as a transform function:
-
-* `{ x -> x * 2 }` takes each element of the list and returns that element multiplied by 2.
-* `{ x -> x * 3 }` takes each element of the list and returns that element multiplied by 3.
+* if a lambda expression is the ONLY function parameter -> you can drop the function parentheses `()`
+* _Example of functions / lambda expressions as function parameters:_
+  * [`.filter()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter.html) 
+  * [`.map()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/map.html)
 
 ### Function types
 
+* TODO:
 Before you can return a lambda expression from a function, you first need to understand **function
 types**.
 
@@ -430,76 +184,3 @@ fun main() {
 }
 ```
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-trailing-lambda"}
-
-For more information on lambda expressions, see [Lambda expressions and anonymous functions](lambdas.md#lambda-expressions-and-anonymous-functions).
-
-The next step in our tour is to learn about [classes](docs/topics/tour/kotlin-tour-classes/kotlin-tour-classes.md) in Kotlin.
-
-## Lambda expressions practice
-
-### Exercise 1 {initial-collapse-state="collapsed" id="lambdas-exercise-1"}
-
-You have a list of actions supported by a web service, a common prefix for all requests, and an ID of a particular resource.
-To request an action `title` over the resource with ID: 5, you need to create the following URL: `https://example.com/book-info/5/title`.
-Use a lambda expression to create a list of URLs from the list of actions.
-
-|---|---|
-```kotlin
-fun main() {
-    val actions = listOf("title", "year", "author")
-    val prefix = "https://example.com/book-info"
-    val id = 5
-    val urls = // Write your code here
-    println(urls)
-}
-```
-{validate="false" kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-lambdas-exercise-1"}
-
-|---|---|
-```kotlin
-fun main() {
-    val actions = listOf("title", "year", "author")
-    val prefix = "https://example.com/book-info"
-    val id = 5
-    val urls = actions.map { action -> "$prefix/$id/$action" }
-    println(urls)
-}
-```
-{initial-collapse-state="collapsed" collapsed-title="Example solution" id="kotlin-tour-lambdas-solution-1"}
-
-### Exercise 2 {initial-collapse-state="collapsed" id="lambdas-exercise-2"}
-
-Write a function that takes an `Int` value and an action (a function with type `() -> Unit`) which then repeats the 
-action the given number of times. Then use this function to print “Hello” 5 times.
-
-|---|---|
-```kotlin
-fun repeatN(n: Int, action: () -> Unit) {
-    // Write your code here
-}
-
-fun main() {
-    // Write your code here
-}
-```
-{validate="false" kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-lambdas-exercise-2"}
-
-|---|---|
-```kotlin
-fun repeatN(n: Int, action: () -> Unit) {
-    for (i in 1..n) {
-        action()
-    }
-}
-
-fun main() {
-    repeatN(5) {
-        println("Hello")
-    }
-}
-```
-{initial-collapse-state="collapsed" collapsed-title="Example solution" id="kotlin-tour-lambdas-solution-2"}
-
-## Next step
-
-[Classes](kotlin-tour-classes.md)

@@ -34,21 +34,35 @@ fun main() {
     fun sumSpecifyReturnType(x: Int, y: Int): Int = x + y
     println("sumSpecifyReturnType(2, 2) ${sumSpecifyReturnType(2, 2)}")
 
-
+    //                                  -- early return functions --
+    fun earlyReturnFunctions(earlyReturn: Boolean) {
+        if (earlyReturn) {
+            println("EARLY RETURNED")
+            return
+        }
+        println("NOT EARLY RETURNED")
+    }
+    earlyReturnFunctions(false)
+    earlyReturnFunctions(true)
 
     //                                  -- Lambda expression --
+    // 0. Declare / NO FunctionParameter
+    val noFunctionParameters = { println("noFunctionParameters") }
+    noFunctionParameters()
     // 1. Assigned to a variable and afterwards invoking
     val upperCaseString = { string: String -> string.uppercase() }  // Here, we are not passing arguments
     println(upperCaseString("hello"))
     // 2. Pass arguments
     println({ string: String -> string.uppercase() }("hello"))
-    // 3. If the only function parameter is the lambda expression -> () can be omitted
+    // 3. Pass a lambda expression as an another function's parameter
     // Example1:  .filter()     which accepts a lambda expression
     val numbers = listOf(1, -2, 3, -4, 5, -6)
-    val positives = numbers.filter { x -> x > 0 }       // () can be omited
-    val negatives = numbers.filter { x -> x < 0 }       // () can be omited
+    val positives = numbers.filter { x -> x > 0 }       // function's () can be omited
+    val positiveSpecifyingFunctionParenthesis = numbers.filter({ x -> x > 0 })
+    val negatives = numbers.filter { x -> x < 0 }       // function's () can be omited
 
     println(positives)
+    println(positiveSpecifyingFunctionParenthesis)
     println(negatives)
 
     // Example2:  .map()     which accepts a lambda expression
