@@ -1,11 +1,13 @@
 [//]: # (title: Get started with Kotlin/JVM)
 
-This tutorial demonstrates how to use IntelliJ IDEA for creating a console application.
+* goal
+  * use IntelliJ IDEA -- for -- creating a console application
 
-To get started, first download and install the latest version of [IntelliJ IDEA](https://www.jetbrains.com/idea/download/index.html).
+* requirements
+  * download and install the latest version of [IntelliJ IDEA](https://www.jetbrains.com/idea/download/index.html)
 
 ## Create a project
-
+* TODO:
 1. In IntelliJ IDEA, select **File** | **New** | **Project**.
 2. In the panel on the left, select **New Project**.
 3. Name the new project and change its location if necessary.
@@ -90,9 +92,5 @@ Enter your name and accept the greetings from your application!
 Congratulations! You have just run your first Kotlin application.
 
 ## What's next?
-
-Once you've created this application, you can start to dive deeper into Kotlin syntax:
-
-* Add sample code from [Kotlin examples](https://play.kotlinlang.org/byExample/overview) 
-* Install the [JetBrains Academy plugin](https://plugins.jetbrains.com/plugin/10081-jetbrains-academy) for IDEA and complete 
-  exercises from the [Kotlin Koans course](https://plugins.jetbrains.com/plugin/10081-jetbrains-academy/docs/learner-start-guide.html?section=Kotlin%20Koans)
+* Check [JetBrains Academy plugin](https://plugins.jetbrains.com/plugin/10081-jetbrains-academy)
+* complete exercises from the [Kotlin Koans course](https://plugins.jetbrains.com/plugin/10081-jetbrains-academy/docs/learner-start-guide.html?section=Kotlin%20Koans)
