@@ -14,6 +14,7 @@ fun main() {
     var userExactCopy = user.copy()
     println("userExactCopy - $userExactCopy")
     println("userExactCopy == user - ${userExactCopy == user}") // Identified as the same
+    println("userExactCopy.equals(user) - ${userExactCopy.equals(user)}") // Identified as the same
 
     // Creates a copy of user with name: "Max"
     val userCopyeChangingName = user.copy("Max")

@@ -16,20 +16,30 @@ class ContactThree(val id: Int) {
     }
 }
 
+// 4. Properties / default value
+class ContactFour(val id: Int = 32)
+
+// 5. Access Properties -- can be used to -- modify it
+class ContactFive(var id: Int = 32)
+
 fun main() {
-    // Create a class instance, based on the primary constructor
-    val contact = ContactTwo(1, "mary@gmail.com")
+    val contact = Contact(1, "mary@gmail.com")
     println(contact)
+    //println(contact.id)       // NOT accesible
+
+    // Create a class instance, based on the primary constructor
+    val contactTwo = ContactTwo(1, "mary@gmail.com")
+    println(contactTwo)
 
     // Access properties
-    val id = contact.id
-    println("contact.id ${contact.id}")
+    val id = contactTwo.id
+    println("contactTwo.id ${contactTwo.id}")
     println("id ${id}")
 
     // val properties can not be modified
-    // contact.id = 4
-    contact.email = "rosi@gmail.com"
-    println("contact.email ${contact.email}")
+    // contactTwo.id = 4
+    contactTwo.email = "rosi@gmail.com"
+    println("contactTwo.email ${contactTwo.email}")
 
     // Primary constructor just for the properties passed via the header
     var contactThree = ContactThree(2)
@@ -37,4 +47,14 @@ fun main() {
 
     // Invoking to the member function
     contactThree.printId()
+
+    // if properties / default value -> NOT required to pass a value
+    val contactFour = ContactFour()
+    println(contactFour)
+    println("contactFour.id ${contactFour.id}")
+
+    // Access properties can be modified
+    val contactFive = ContactFive()     // object is val, but NOT affect to their properties
+    contactFive.id = 24
+    println("contactFive.id ${contactFive.id}")
 }
