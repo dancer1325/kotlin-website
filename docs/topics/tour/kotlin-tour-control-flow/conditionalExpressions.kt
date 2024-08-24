@@ -17,7 +17,7 @@ fun main() {
 //                                      -- when  --
     val obj = "Hello"
 
-// 1. Handled as expression, since it's assigned to a variable
+    // 1. Handled as expression, since it's assigned to a variable
     val result = when (obj) {
         // If obj equals "1", sets result to "one"
         "1" -> "One"
@@ -29,13 +29,23 @@ fun main() {
     println(result)
     // Greeting
 
-// 2. Use as statement
+    // 2. Use as statement
     when (obj) {
         // Checks whether obj equals to "1"
         "1" -> println("One")
         // Checks whether obj equals to "Hello"
         "Hello" -> println("Greeting")
         // Default statement
-        else -> println("Unknown")
+        // if there is NO else branch -> NO error
+        //else -> println("Unknown")
     }
+
+    // WITHOUT conditionalExpressionNamedSubject & NO branch match
+    when {
+        // Checks whether obj equals to "1"
+        obj == "1" -> println("One")
+        // Default statement is missing
+    }
+    // NO error thrown, but no condition matched
+
 }

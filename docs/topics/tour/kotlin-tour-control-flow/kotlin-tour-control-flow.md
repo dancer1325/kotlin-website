@@ -41,63 +41,30 @@
 * 
 
     ```
-    when (conditionalExpression) {
+    when (conditionalExpressionNamedSubject) {
         branch1 -> logic1
         branch2 -> logic2
         ...
-    }
+        else -> logicEnd
+    } 
+    // OR
+    when {
+        conditionalExpression1 -> logic1
+        conditionalExpression1 -> logic2
+        ...
+        else -> logicEnd
+    } 
     ```
   * branches are checked sequentially / if once is satisfied -> rest are skipped
-
-
-* TODO:
-
-
-
-This example uses a `when` expression **without** a subject to check a chain of Boolean expressions:
-
-```kotlin
-fun main() {
-    val trafficLightState = "Red" // This can be "Green", "Yellow", or "Red"
-
-    val trafficAction = when {
-        trafficLightState == "Green" -> "Go"
-        trafficLightState == "Yellow" -> "Slow down"
-        trafficLightState == "Red" -> "Stop"
-        else -> "Malfunction"
-    }
-
-    println(trafficAction)
-    // Stop
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-when-expression-boolean"}
-
-However, you can have the same code but with `trafficLightState` as the subject:
-
-```kotlin
-fun main() {
-    val trafficLightState = "Red" // This can be "Green", "Yellow", or "Red"
-
-    val trafficAction = when (trafficLightState) {
-        "Green" -> "Go"
-        "Yellow" -> "Slow down"
-        "Red" -> "Stop"
-        else -> "Malfunction"
-    }
-
-    println(trafficAction)  
-    // Stop
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-when-expression-boolean-subject"}
-
-Using `when` with a subject makes your code easier to read and maintain. When you use a subject with a `when` expression, 
-it also helps Kotlin check that all possible cases are covered. Otherwise, if you don't use a subject with a 
-`when` expression, you need to provide an else branch.
+  * 👁️recommended to use with `conditionalExpressionNamedSubject` 👁️
+    * Reasons: 🧠 🧠
+      * code easier to read & maintain
+      * helps Kotlin / ALL possible cases are covered 
+  * ⚠️if you do NOT use `conditionalExpressionNamedSubject` -> you should provide `else` branch ⚠️
 
 ## Ranges
 
+* TODO:
 Before talking about loops, it's useful to know how to construct ranges for loops to iterate over.
 
 The most common way to create a range in Kotlin is to use the `..` operator. For example, `1..4` is equivalent to `1, 2, 3, 4`.
