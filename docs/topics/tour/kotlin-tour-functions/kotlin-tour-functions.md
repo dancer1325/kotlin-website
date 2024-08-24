@@ -63,6 +63,7 @@
 
     ```
     {FunctionParameterNames: FunctionParameterTypes -> Body} // Declare a Lambda Expression
+    // {FunctionParameterNames -> Body} // NOT valid to skip specifying FunctionParameterTypes Expression
     {Body} // Declare a Lambda Expression / NO FunctionParameter
     {FunctionParameterNames: FunctionParameterTypes -> Body}(ArgumentsPassed) // Invoke a Lambda Expression
     ```
@@ -80,47 +81,19 @@
 
 ### Function types
 
-* TODO:
-Before you can return a lambda expression from a function, you first need to understand **function
-types**.
+* := function / ALL (arguments & returns) are typed
+  * required by compiler sometimes
+* 
 
-You have already learned about basic types but functions themselves also have a type. Kotlin's type inference 
-can infer a function's type from the parameter type. But there may be times when you need to explicitly
-specify the function type. The compiler needs the function type so that it knows what is and isn't 
-allowed for that function.
-
-The syntax for a function type has:
-
-* Each parameter's type written within parentheses `()` and separated by commas `,`.
-* The return type written after `->`.
-
-For example: `(String) -> String` or `(Int, Int) -> Int`.
-
-This is what a lambda expression looks like if a function type for `upperCaseString()` is defined:
-
-```kotlin
-val upperCaseString: (String) -> String = { text -> text.uppercase() }
-
-fun main() {
-    println(upperCaseString("hello"))
-    // HELLO
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-lambda-function-type"}
-
-If your lambda expression has no parameters then the parentheses `()` are left empty. For example: `() -> Unit`
-
-> You must declare parameter and return types either in the lambda expression or as a function type. Otherwise, the
-> compiler won't be able to know what type your lambda expression is.
-> 
-> For example, the following won't work:
-> 
-> `val upperCaseString = { str -> str.uppercase() }`
->
-{type="note"}
+    ```
+    (TypeOfTheArguments) → TypeToReturn = {Arguments -> Body}
+    //(TypeOfTheArguments) = {Arguments -> Body} // NOT valid to skip specifying TypeToReturn
+    () → TypeToReturn = {Body}  // if there are NOT arguments 
+    ```
 
 ### Return from a function
 
+* TODO:
 Lambda expressions can be returned from a function. So that the compiler understands what type the lambda
 expression returned is, you must declare a function type.
 

@@ -50,6 +50,7 @@ fun main() {
     val noFunctionParameters = { println("noFunctionParameters") }
     noFunctionParameters()
     // 1. Assigned to a variable and afterwards invoking
+    // val upperCaseStringWithoutSpecifyingReturnType = { str -> str.uppercase() }      // NOT valid to skip specifying FunctionParameterTypes
     val upperCaseString = { string: String -> string.uppercase() }  // Here, we are not passing arguments
     println(upperCaseString("hello"))
     // 2. Pass arguments
@@ -83,6 +84,9 @@ fun main() {
     // 4.3  Several arguments
     val sumNumber: (Int, Int) -> Int = { num1, num2  -> num1 + num2 }
     println(sumNumber(2, 4))
+    // 4.4 NOT possible to skip specifying TypeToReturn
+    //val noArgumentSkipTypeToReturn: () = { "Hello" }
+    //val upperCaseStringTwoSkipTypeToReturn: (String) = { string -> string.uppercase() }
 
 
     // 5. Return from a function
