@@ -93,67 +93,17 @@
 
 ### Return from a function
 
-* TODO:
-Lambda expressions can be returned from a function. So that the compiler understands what type the lambda
-expression returned is, you must declare a function type.
-
-In the following example, the `toSeconds()` function has function type `(Int) -> Int` because it always returns a lambda
-expression that takes a parameter of type `Int` and returns an `Int` value.
-
-This example uses a `when` expression to determine which lambda expression is returned when `toSeconds()` is called:
-
-```kotlin
-fun toSeconds(time: String): (Int) -> Int = when (time) {
-    "hour" -> { value -> value * 60 * 60 }
-    "minute" -> { value -> value * 60 }
-    "second" -> { value -> value }
-    else -> { value -> value }
-}
-
-fun main() {
-    val timesInMinutes = listOf(2, 10, 15, 1)
-    val min2sec = toSeconds("minute")
-    val totalTimeInSeconds = timesInMinutes.map(min2sec).sum()
-    println("Total time is $totalTimeInSeconds secs")
-    // Total time is 1680 secs
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-lambda-return-from-function"}
+* == lambda expression / function type -- is returned from a -- function
+  * Reason to be a function type: 🧠 compiler understands type of lambda expression is returned 🧠
 
 ### Invoke separately
 
-Lambda expressions can be invoked on their own by adding parentheses `()` after the curly braces `{}` and including
-any parameters within the parentheses:
-
-```kotlin
-fun main() {
-    //sampleStart
-    println({ text: String -> text.uppercase() }("hello"))
-    // HELLO
-    //sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-lambda-standalone"}
+* == declare + invoke it -- adding parentheses `()` after the curly braces `{}` -- | ALL at the same time
 
 ### Trailing lambdas
 
-As you have already seen, if a lambda expression is the only function parameter, you can drop the function parentheses `()`.
-If a lambda expression is passed as the last parameter of a function, then the expression can be written outside the
-function parentheses `()`. In both cases, this syntax is called a **trailing lambda**.
-
-For example, the [`.fold()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/fold.html) function accepts an 
-initial value and an operation:
-
-```kotlin
-fun main() {
-    //sampleStart
-    // The initial value is zero. 
-    // The operation sums the initial value with every item in the list cumulatively.
-    println(listOf(1, 2, 3).fold(0, { x, item -> x + item })) // 6
-
-    // Alternatively, in the form of a trailing lambda
-    println(listOf(1, 2, 3).fold(0) { x, item -> x + item })  // 6
-    //sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-trailing-lambda"}
+* := function / 
+  * 1! function parameter is the lambda expression OR
+    * -> you can drop the function parentheses `()`
+  * lambda expression is the last parameter of a function 
+    * -> lambda expression can be written outside the function parenthesis `()`

@@ -90,8 +90,11 @@ fun main() {
 
 
     // 5. Return from a function
-    // Function which returns Lambda Expression, being a function type
+    // Function which returns Lambda Expression / is a function type
+    // function type because -- (TypeOfTheArguments) → TypeToReturn --
+    // `when` -- is used to determine the -- lambda expression / is returned
     fun toSeconds(time: String): (Int) -> Int = when (time) {
+        // right side is the lambda expression's body
         "hour" -> { value -> value * 60 * 60 }
         "minute" -> { value -> value * 60 }
         "second" -> { value -> value }
@@ -110,10 +113,10 @@ fun main() {
 
 
     // 7. Traling Lambdas
-    // The initial value is zero.
-    // The operation sums the initial value with every item in the list cumulatively.
+    // 7.1 > 1 function parameter / lambda expression is the last function parameter
+    // 7.1.1 without writting outisde the function parenthesis
     println(listOf(1, 2, 3).fold(0, { x, item -> x + item }))
-
-    // Alternatively, in the form of a trailing lambda === () is omitted
+    // fold -- initial value is zero. The operation sums the initial value with every item in the list cumulatively.
+    // 7.1.2 writting outisde the function parenthesis
     println(listOf(1, 2, 3).fold(0) { x, item -> x + item })
 }
