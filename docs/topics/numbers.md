@@ -1,162 +1,76 @@
 [//]: # (title: Numbers)
 
+* Check 'tour/kotlin-tour-basic-types/kotlin-tour-basic-types.md'
+
 ## Integer types
+  
+* types
 
-Kotlin provides a set of built-in types that represent numbers.  
-For integer numbers, there are four types with different sizes and, hence, value ranges:
+    | Type	 |Size (bits)| Min value| Max value|
+    |--------|-----------|----------|--------- |
+    | `Byte`	 | 8         |-128      |127       |
+    | `Short`	 | 16        |-32768    |32767     |
+    | `Int`	 | 32        |-2,147,483,648 (-2<sup>31</sup>)| 2,147,483,647 (2<sup>31</sup> - 1)|
+    | `Long`	 | 64        |-9,223,372,036,854,775,808 (-2<sup>63</sup>)|9,223,372,036,854,775,807 (2<sup>63</sup> - 1)|
 
-| Type	 |Size (bits)| Min value| Max value|
-|--------|-----------|----------|--------- |
-| `Byte`	 | 8         |-128      |127       |
-| `Short`	 | 16        |-32768    |32767     |
-| `Int`	 | 32        |-2,147,483,648 (-2<sup>31</sup>)| 2,147,483,647 (2<sup>31</sup> - 1)|
-| `Long`	 | 64        |-9,223,372,036,854,775,808 (-2<sup>63</sup>)|9,223,372,036,854,775,807 (2<sup>63</sup> - 1)|
+  * size -- limits -- range value
+  * 👁️if you do NOT specify the type -> type inference / smallest range -- to represent the -- value 👁️
+    * start from `Int`
+    * if it does NOT exceed the range of `Int` -> type is `Int`
+    * if it exceeds range of `Int` -> type is `Long`
+  * 👁️if you specify the type -> compiler checks that value does NOT exceed the range 👁️
+  * append the suffix `L` -- to specify the -- `Long`
 
-When you initialize a variable with no explicit type specification, the compiler automatically infers the type with the 
-smallest range enough to represent the value starting from `Int`. If it is not exceeding the range of `Int`, the type is `Int`.
-If it exceeds, the type is `Long`. To specify the `Long` value explicitly, append the suffix `L` to the value. 
-Explicit type specification triggers the compiler to check the value not to exceed the range of the specified type.
-
-```kotlin
-val one = 1 // Int
-val threeBillion = 3000000000 // Long
-val oneLong = 1L // Long
-val oneByte: Byte = 1
-```
-
-> In addition to integer types, Kotlin also provides unsigned integer types. For more information, see [Unsigned integer types](unsigned-integer-types.md).
->
-{type="tip"}
+* Check [unsigned integer types](unsigned-integer-types.md)
 
 ## Floating-point types
 
-For real numbers, Kotlin provides floating-point types `Float` and `Double` that adhere to the [IEEE 754 standard](https://en.wikipedia.org/wiki/IEEE_754).
-`Float` reflects the IEEE 754 _single precision_, while `Double` reflects _double precision_.
+* `integer.decimal`
+* types
 
-These types differ in their size and provide storage for floating-point numbers with different precision:
+    | Type	 |Size (bits)|Significant bits|Exponent bits|Decimal digits|
+    |--------|-----------|--------------- |-------------|--------------|
+    | `Float`	 | 32        |24              |8            |6-7            |
+    | `Double` | 64        |53              |11           |15-16          |
 
-| Type	 |Size (bits)|Significant bits|Exponent bits|Decimal digits|
-|--------|-----------|--------------- |-------------|--------------|
-| `Float`	 | 32        |24              |8            |6-7            |
-| `Double` | 64        |53              |11           |15-16          |    
-
-You can initialize `Double` and `Float` variables  with numbers having a fractional part.
-It's separated from the integer part by a period (`.`)
-For variables initialized with fractional numbers, the compiler infers the `Double` type:
-
-```kotlin
-val pi = 3.14 // Double
-// val one: Double = 1 // Error: type mismatch
-val oneDouble = 1.0 // Double
-```
-
-To explicitly specify the `Float` type for a value, add the suffix `f` or `F`.
-If such a value contains more than 6-7 decimal digits, it will be rounded:
-
-```kotlin
-val e = 2.7182818284 // Double
-val eFloat = 2.7182818284f // Float, actual value is 2.7182817
-```
-
-Unlike some other languages, there are no implicit widening conversions for numbers in Kotlin.
-For example, a function with a `Double` parameter can be called only on `Double` values, but not `Float`,
-`Int`, or other numeric values:
-
-```kotlin
-fun main() {
-    fun printDouble(d: Double) { print(d) }
-
-    val i = 1    
-    val d = 1.0
-    val f = 1.0f 
-
-    printDouble(d)
-//    printDouble(i) // Error: Type mismatch
-//    printDouble(f) // Error: Type mismatch
-}
-```
-
-To convert numeric values to different types, use [explicit conversions](#explicit-number-conversions).
+  * adhere to the [IEEE 754 standard](https://en.wikipedia.org/wiki/IEEE_754)
+  * uses
+    * real numbers
+  * characteristics
+    * size
+    * allowed a fractional part
+  * suffix `f` or `F` -> `Float` type
+    * if you specify > 6-7 decimal digits -> it's rounded
+  * type inferred by default, it's `Double`
+  * ⚠️NO implicit widening conversions for numbers ⚠️
 
 ## Literal constants for numbers
 
-There are the following kinds of literal constants for integral values:
+* literal constants for integral values == direct representations | code
+  * Decimals
+    * standard base-10 numbers
+  * Hexadecimals -- `prefixDigitsLetters` -- 
+    * prefix -- `0x` or `0X` --
+    * Digits -- `[0,9]` --
+    * Letters -- `[a,f]` or `[A,F]` --
+  * Binaries
 
-* Decimals: `123`
-* Longs are tagged by a capital `L`: `123L`
-* Hexadecimals: `0x0F`
-* Binaries: `0b00001011`
+    > Octal literals are NOT supported
+* 👁️ `_` / split literal constants parts 👁️
+  * -> more readable
 
-> Octal literals are not supported in Kotlin.
->
-{type="note"}
+## Numbers representation | JVM
 
-Kotlin also supports a conventional notation for floating-point numbers:
-
-* Doubles by default: `123.5`, `123.5e10`
-* Floats are tagged by `f` or `F`: `123.5f`
-
-You can use underscores to make number constants more readable:
-
-```kotlin
-val oneMillion = 1_000_000
-val creditCardNumber = 1234_5678_9012_3456L
-val socialSecurityNumber = 999_99_9999L
-val hexBytes = 0xFF_EC_DE_5E
-val bytes = 0b11010010_01101001_10010100_10010010
-```
-
-> There are also special tags for unsigned integer literals.  
-> Read more about [literals for unsigned integer types](unsigned-integer-types.md).
-> 
-{type="tip"}
-
-## Numbers representation on the JVM
-
-On the JVM platform, numbers are stored as primitive types: `int`, `double`, and so on.
-Exceptions are cases when you create a nullable number reference such as `Int?` or use generics.
-In these cases numbers are boxed in Java classes `Integer`, `Double`, and so on.
-
-Nullable references to the same number can refer to different objects:
-
-```kotlin
-fun main() {
-//sampleStart
-    val a: Int = 100
-    val boxedA: Int? = a
-    val anotherBoxedA: Int? = a
-    
-    val b: Int = 10000
-    val boxedB: Int? = b
-    val anotherBoxedB: Int? = b
-    
-    println(boxedA === anotherBoxedA) // true
-    println(boxedB === anotherBoxedB) // false
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3"}
-
-All nullable references to `a` are actually the same object because of the memory optimization that JVM applies to `Integer`s
-between `-128` and `127`. It doesn't apply to the `b` references, so they are different objects.
-
-On the other hand, they are still equal:
-
-```kotlin
-fun main() {
-//sampleStart
-    val b: Int = 10000
-    println(b == b) // Prints 'true'
-    val boxedB: Int? = b
-    val anotherBoxedB: Int? = b
-    println(boxedB == anotherBoxedB) // Prints 'true'
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3"}
+* numbers | JVM platform
+  * Java primitive types
+    * _Example:_ `int`, `double`
+  * if you use nullable number reference or use generics -> [boxed](https://docs.oracle.com/javase/specs/jls/se22/html/jls-5.html#jls-5.1.7) | Java classes
+    * _Example:_ `Int?` -> `Integer`
+    * different representation / boxed, EXCEPT to `Integer` in [-128, 127]
 
 ## Explicit number conversions
 
+* TODO:
 Due to different representations, smaller types _are not subtypes_ of bigger ones.
 If they were, we would have troubles of the following sort:
 
