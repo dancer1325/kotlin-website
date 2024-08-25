@@ -1,6 +1,7 @@
 [//]: # (title: Idioms)
 
-A collection of random and frequently used idioms in Kotlin. If you have a favorite idiom, contribute it by sending a pull request.
+* goal
+  * == collection of random and frequently used idioms | Kotlin
 
 ## Create DTOs (POJOs/POCOs)
 
@@ -84,6 +85,7 @@ when (x) {
 ```kotlin
 val list = listOf("a", "b", "c")
 ```
+
 ## Read-only map
 
 ```kotlin
