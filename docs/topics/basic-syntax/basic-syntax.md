@@ -111,83 +111,9 @@
 
 * Check [Kotlin Tour Collections](docs/tour/kotlin-tour-null-safety/kotlin-tour-null-safety.md) & [Null-safety](docs/topics/null-safety.md)
 
-## Type checks and automatic casts
+## Type checks and automatic casts -- `is` --
 
-* TODO:
-The `is` operator checks if an expression is an instance of a type.
-If an immutable local variable or property is checked for a specific type, there's no need to cast it explicitly:
-
-```kotlin
-//sampleStart
-fun getStringLength(obj: Any): Int? {
-    if (obj is String) {
-        // `obj` is automatically cast to `String` in this branch
-        return obj.length
-    }
-
-    // `obj` is still of type `Any` outside of the type-checked branch
-    return null
-}
-//sampleEnd
-
-fun main() {
-    fun printLength(obj: Any) {
-        println("Getting the length of '$obj'. Result: ${getStringLength(obj) ?: "Error: The object is not a string"} ")
-    }
-    printLength("Incomprehensibilities")
-    printLength(1000)
-    printLength(listOf(Any()))
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-is-operator"}
-
-or:
-
-```kotlin
-//sampleStart
-fun getStringLength(obj: Any): Int? {
-    if (obj !is String) return null
-
-    // `obj` is automatically cast to `String` in this branch
-    return obj.length
-}
-//sampleEnd
-
-fun main() {
-    fun printLength(obj: Any) {
-        println("Getting the length of '$obj'. Result: ${getStringLength(obj) ?: "Error: The object is not a string"} ")
-    }
-    printLength("Incomprehensibilities")
-    printLength(1000)
-    printLength(listOf(Any()))
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-is-operator-expression"}
-
-or even:
-
-```kotlin
-//sampleStart
-fun getStringLength(obj: Any): Int? {
-    // `obj` is automatically cast to `String` on the right-hand side of `&&`
-    if (obj is String && obj.length > 0) {
-        return obj.length
-    }
-
-    return null
-}
-//sampleEnd
-
-fun main() {
-    fun printLength(obj: Any) {
-        println("Getting the length of '$obj'. Result: ${getStringLength(obj) ?: "Error: The object is not a string"} ")
-    }
-    printLength("Incomprehensibilities")
-    printLength("")
-    printLength(1000)
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-basic-syntax-is-operator-logic"}
-
-See [Classes](docs/topics/concepts/Classes and objects/Classes/classes.md) and [Type casts](docs/topics/typecasts.md).
-
+* := operator /
+  * checks if an expression is an instance of a type
+  * ⚠️if it’s immutable, and you check with `is` → AUTOMATICALLY cast | that scope ⚠️
+* Check [Classes](docs/topics/concepts/Classes and objects/Classes/classes.md) and [Type casts](docs/topics/typecasts.md)
