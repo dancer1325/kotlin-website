@@ -41,20 +41,20 @@
       * [How to mix Kotlin and Java code in your application](mixing-java-kotlin-intellij.md)
 
 * Cross-platform
-
-* TODO:
-
-Here you'll learn how to develop and improve your cross-platform application using [Kotlin Multiplatform](https://kotlinlang.org/lp/multiplatform/).
-
-1. **[Set up your environment for cross-platform development](https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-setup.html).**
-
-2. **Create your first application for iOS and Android:**
-
-   * To start from scratch, [create a basic cross-platform application with the project wizard](https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-create-first-app.html).
-   * If you have an existing Android application and want to make it cross-platform, complete the [Make your Android application work on iOS](https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-integrate-in-existing-app.html) tutorial.
-   * If you prefer real-life examples, clone and play with an existing project, for example the networking and data storage project from the [Create a multiplatform app using Ktor and SQLdelight](https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-ktor-sqldelight.html) tutorial or any [sample project](https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-samples.html).
-
-3. **Use a wide set of multiplatform libraries** to implement the required business logic only once in the shared module. Learn more about [adding dependencies](multiplatform-add-dependencies.md).
+  * -- via -- [Kotlin Multiplatform](https://kotlinlang.org/lp/multiplatform/)
+  * requirements
+    * [Set up your environment for cross-platform development](https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-setup.html)
+  * check
+    * [Kotlin Multiplatform](multiplatform-get-started.md)
+    * [Publish a multiplatform library](multiplatform-publish-lib.md)
+    * [create a basic cross-platform application with the project wizard](https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-create-first-app.html)
+    * [Make your Android application work on iOS](https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-integrate-in-existing-app.html)
+    * real-life examples
+      * [Create a multiplatform app using Ktor and SQLdelight](https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-ktor-sqldelight.html)or
+      * [sample project](https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-samples.html)
+      * used at [Netflix](https://netflixtechblog.com/netflix-android-and-ios-studio-apps-kotlin-multiplatform-d6d4d8d25d23), [VMware](https://kotlinlang.org/lp/multiplatform/case-studies/vmware/), [Yandex](https://kotlinlang.org/lp/multiplatform/case-studies/yandex/), and [many other companies](https://kotlinlang.org/lp/multiplatform/case-studies/)
+    * **multiplatform libraries**
+      * check [adding dependencies](multiplatform-add-dependencies.md) & [community-driven list](https://libs.kmp.icerock.dev/)
 
    |Library| Details                                                                                                                                                            |
    |-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
@@ -63,57 +63,17 @@ Here you'll learn how to develop and improve your cross-platform application usi
    | Coroutines | [Docs](coroutines-guide.md) and [sample](coroutines-and-channels.md)                                                                                               |
    | DateTime | [Docs](https://github.com/Kotlin/kotlinx-datetime#readme)                                                                                                          |
    | SQLDelight | Third-party library. [Docs](https://cashapp.github.io/sqldelight/)                                                                                                 |
-   
-   > You can also find a multiplatform library in the [community-driven list](https://libs.kmp.icerock.dev/).
-   > 
-   {type="tip"}
 
-4. **Learn more about Kotlin Multiplatform:**
-   * Learn more about [Kotlin Multiplatform](multiplatform-get-started.md).
-   * Look through [samples projects](https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-samples.html).
-   * [Publish a multiplatform library](multiplatform-publish-lib.md).
-   * Learn how Kotlin Multiplatform is used at [Netflix](https://netflixtechblog.com/netflix-android-and-ios-studio-apps-kotlin-multiplatform-d6d4d8d25d23), [VMware](https://kotlinlang.org/lp/multiplatform/case-studies/vmware/), [Yandex](https://kotlinlang.org/lp/multiplatform/case-studies/yandex/), and [many other companies](https://kotlinlang.org/lp/multiplatform/case-studies/).
+* Android
+  * check
+    * [Google's recommendation for getting started with Kotlin on Android](https://developer.android.com/kotlin/get-started)
 
-5. **Join the Kotlin Multiplatform community:**
-
-   * ![Slack](slack.svg){width=25}{type="joined"} Slack: [get an invite](https://surveys.jetbrains.com/s3/kotlin-slack-sign-up) and join the [#getting-started](https://kotlinlang.slack.com/archives/C0B8MA7FA) and [#multiplatform](https://kotlinlang.slack.com/archives/C3PQML5NU) channels.
-   * ![StackOverflow](stackoverflow.svg){width=25}{type="joined"} StackOverflow: Subscribe to the ["kotlin-multiplatform" tag](https://stackoverflow.com/questions/tagged/kotlin-multiplatform).
-
-6. **Follow Kotlin** on ![Twitter](twitter.svg){width=18}{type="joined"} [Twitter](https://twitter.com/kotlin), ![Reddit](reddit.svg){width=25}{type="joined"} [Reddit](https://www.reddit.com/r/Kotlin/), and ![YouTube](youtube.svg){width=25}{type="joined"} [Youtube](https://www.youtube.com/channel/UCP7uiEZIqci43m22KDl0sNw), and don't miss any important ecosystem updates.
-
-If you've encountered any difficulties or problems, report an issue to our [issue tracker](https://youtrack.jetbrains.com/issues/KT).
-
-</tab>
-
-<tab id="android" title="Android">
-
-To start using Kotlin for Android development, read [Google's recommendation for getting started with Kotlin on Android](https://developer.android.com/kotlin/get-started).
-
-Follow Kotlin on ![Twitter](twitter.svg){width=18}{type="joined"} [Twitter](https://twitter.com/kotlin), ![Reddit](reddit.svg){width=25}{type="joined"} [Reddit](https://www.reddit.com/r/Kotlin/), and ![YouTube](youtube.svg){width=25}{type="joined"} [Youtube](https://www.youtube.com/channel/UCP7uiEZIqci43m22KDl0sNw), and don't miss any important ecosystem updates.
-
-</tab>
-
-<tab id="data-analysis" title="Data analysis">
-
-From building data pipelines to productionizing machine learning models, Kotlin is a great choice for working with data and getting the most out of it.
-
-1. **Create and edit notebooks seamlessly within the IDE:**
-
-   * [Get started with Kotlin Notebook](get-started-with-kotlin-notebooks.md).
-
-2. **Explore and experiment with your data:**
-
-   * [DataFrame](https://kotlin.github.io/dataframe/overview.html) – a library for data analysis and manipulation.
-   * [Kandy](https://kotlin.github.io/kandy/welcome.html) – a plotting tool for data visualization.
-
-3. **Get the latest updates about Kotlin for Data Analysis:**
-
-   * ![Slack](slack.svg){width=25}{type="joined"} Slack: [get an invite](https://surveys.jetbrains.com/s3/kotlin-slack-sign-up) and join the [#datascience](https://kotlinlang.slack.com/archives/C4W52CFEZ) channel.
-   * ![Twitter](twitter.svg){width=25}{type="joined"} Twitter: follow [KotlinForData](http://twitter.com/KotlinForData).
-
-4. **Follow Kotlin** on ![Twitter](twitter.svg){width=25}{type="joined"} [Twitter](https://twitter.com/kotlin), ![Reddit](reddit.svg){width=25}{type="joined"} [Reddit](https://www.reddit.com/r/Kotlin/), and ![YouTube](youtube.svg){width=25}{type="joined"} [Youtube](https://www.youtube.com/channel/UCP7uiEZIqci43m22KDl0sNw), and don't miss any important ecosystem updates.
-
-</tab>
-
-</tabs>
-
+* Data analysis
+  * uses
+    * building data pipelines / product machine learning models 
+  * check
+    * [Get started with Kotlin Notebook](get-started-with-kotlin-notebooks.md)
+    * [DataFrame](https://kotlin.github.io/dataframe/overview.html)
+      * := library / allows data analysis & manipulation
+   * [Kandy](https://kotlin.github.io/kandy/welcome.html)
+     * == plotting tool -- for -- data visualization
