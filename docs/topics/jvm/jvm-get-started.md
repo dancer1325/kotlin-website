@@ -7,89 +7,44 @@
   * download and install the latest version of [IntelliJ IDEA](https://www.jetbrains.com/idea/download/index.html)
 
 ## Create a project
-* TODO:
 1. In IntelliJ IDEA, select **File** | **New** | **Project**.
 2. In the panel on the left, select **New Project**.
 3. Name the new project and change its location if necessary.
-
-   > Select the **Create Git repository** checkbox to place the new project under version control. You will be able to do
-   > it later at any time.
-   >
-   {type="tip"}
-
 4. From the **Language** list, select **Kotlin**.
    
    ![Create a console application](jvm-new-project.png){width=700}
 
-5. Select the **IntelliJ** build system. It's a native builder that doesn't require downloading additional artifacts.
-
-   If you want to create a more complex project that needs further configuration, select Maven or Gradle. For Gradle,
-   choose a language for the build script: Kotlin or Groovy.
-6. From the **JDK list**, select the [JDK](https://www.oracle.com/java/technologies/downloads/) that you want to use in
-   your project.
-   * If the JDK is installed on your computer, but not defined in the IDE, select **Add JDK** and specify the path to the
+5. Select the **IntelliJ** build system.
+   6. := native builder / does NOT require downloading additional artifacts
+   7. if you want to create a more complex project -> select Maven or Gradle (choose a language for the build script: Kotlin or Groovy)
+6. From the **JDK list**, select the [JDK](https://www.oracle.com/java/technologies/downloads/) / you want to use
+   * If the JDK is installed | your computer, BUT NOT defined | the IDE -> select **Add JDK** / specify the path to the
    JDK home directory. 
-   * If you don't have the necessary JDK on your computer, select **Download JDK**.
+   * If you do NOT have the necessary JDK | your computer -> select **Download JDK**.
 
-7. Enable the **Add sample code** option to create a file with a sample `"Hello World!"` application.
-
-    > You can also enable the **Generate code with onboarding tips** option to add some additional useful comments to your
-    > sample code.
-    >
-    {type="tip"}
+7. Enable the **Add sample code** option / create a file with a sample `"Hello World!"` application.
 
 8. Click **Create**.
 
-  > If you chose the Gradle build system, you have in your project a build script file: `build.gradle(.kts)`. It includes 
-  > the `kotlin("jvm")` plugin and dependencies required for your console application. Make sure that you use the latest 
-  > version of the plugin:
-  > 
-  > ```kotlin
-  > plugins {
-  >     kotlin("jvm") version "%kotlinVersion%"
-  >     application
-  > }
-  > ```
-  >{type="note"}
-
 ## Create an application
 
-1. Open the `Main.kt` file in `src/main/kotlin`.  
-   The `src` directory contains Kotlin source files and resources. The `Main.kt` file contains sample code that will print 
-   `Hello World!`.
+1. Open the `Main.kt` file in `src/main/kotlin`
 
    ![Main.kt with main fun](jvm-main-kt-initial.png){width=700}
 
-2. Modify the code so that it requests your name and says `Hello` to you alone, and not to the whole world:
-   
-   * Introduce a local variable `name` with the keyword `val`. It will get its value from an input where you will enter your name – [`readln()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.io/readln.html).
-   * Use a string template by adding a dollar sign `$` before this variable name directly in the text output like this – `$name`.
-   
-   ```kotlin
-   fun main() {
-       println("What's your name?")
-       val name = readln()
-       println("Hello, $name!")
-   }
-   ```
+2. Modify the code / it requests your name and says `Hello` to you alone
 
    ![Updated main fun](jvm-main-kt-updated.png){width=350}
 
 ## Run the application
 
-Now the application is ready to run. The easiest way to do this is to click the green **Run** icon in the gutter and select **Run 'MainKt'**.
+* ways to run it
+  * via IDE
+    * click the green **Run** icon in the gutter and select **Run 'MainKt'**
+  * via CL
+    * `kotlinc Main.kt -include-runtime -d Main.jar`
+    * `java -jar Main.jar`
 
-![Running a console app](jvm-run-app.png){width=350}
-
-You can see the result in the **Run** tool window.
-
-![Kotlin run output](jvm-output-1.png){width=600}
-   
-Enter your name and accept the greetings from your application! 
-
-![Kotlin run output](jvm-output-2.png){width=600}
-
-Congratulations! You have just run your first Kotlin application.
 
 ## What's next?
 * Check [JetBrains Academy plugin](https://plugins.jetbrains.com/plugin/10081-jetbrains-academy)
