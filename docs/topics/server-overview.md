@@ -1,34 +1,54 @@
 [//]: # (title: Kotlin for server side)
 
-Kotlin is a great fit for developing server-side applications. It allows you to write concise and expressive code while
-maintaining full compatibility with existing Java-based technology stacks, all with a smooth learning curve:
-
-* **Expressiveness**: Kotlin's innovative language features, such as its support for [type-safe builders](type-safe-builders.md)
-  and [delegated properties](delegated-properties.md), help build powerful and easy-to-use abstractions.
-* **Scalability**: Kotlin's support for [coroutines](coroutines-overview.md) helps build server-side applications
-  that scale to massive numbers of clients with modest hardware requirements.
-* **Interoperability**: Kotlin is fully compatible with all Java-based frameworks, so you can use your
-  familiar technology stack while reaping the benefits of a more modern language.
-* **Migration**: Kotlin supports gradual migration of large codebases from Java to Kotlin. You can start
-  writing new code in Kotlin while keeping older parts of your system in Java.
-* **Tooling**: In addition to great IDE support in general, Kotlin offers framework-specific tooling (for example,
-  for Spring) in the plugin for IntelliJ IDEA Ultimate.
-* **Learning Curve**: For a Java developer, getting started with Kotlin is very easy. The automated Java-to-Kotlin converter included in the Kotlin plugin helps with the first steps. [Kotlin Koans](koans.md) can guide you through the key features of the language with a series of interactive exercises.
+* characteristics
+  * **Expressiveness**
+    * == abstractions
+    * -- thanks to --
+      * [type-safe builders](type-safe-builders.md)
+      * [delegated properties](delegated-properties.md)
+  * **Scalability**
+    * -- thanks to --
+      * [coroutines](coroutines-overview.md)
+  * **Interoperability**
+    * == FULLy compatible with ALL Java-based frameworks
+  * **Migration**
+    * allowed making by steps
+      * == Java + Kotlin | same repo
+  * **Tooling**
+    * IDE support
+    * framework-specific tooling -- _Example:_ for Spring
+  * **Learning Curve**
+    * automated Java-to-Kotlin converter / included | Kotlin plugin
+    * [Kotlin Koans](koans.md)
 
 ## Frameworks for server-side development with Kotlin
 
-Here are some examples of the server-side frameworks for Kotlin:
-
-* [Spring](https://spring.io) makes use of Kotlin's language features to offer [more concise APIs](https://spring.io/blog/2017/01/04/introducing-kotlin-support-in-spring-framework-5-0),
-  starting with version 5.0. The [online project generator](https://start.spring.io/#!language=kotlin) allows you to quickly generate a new project in Kotlin.
-
-* [Ktor](https://github.com/kotlin/ktor) is a framework built by JetBrains for creating Web applications in Kotlin, making use of coroutines for high scalability and offering an easy-to-use and idiomatic API.
-
-* [Quarkus](https://quarkus.io/guides/kotlin) provides first class support for using Kotlin. The framework is open source and maintained by Red Hat. Quarkus was built from the ground up for Kubernetes and provides a cohesive full-stack framework by leveraging a growing list of hundreds of best-of-breed libraries.
-
-* [Vert.x](https://vertx.io), a framework for building reactive Web applications on the JVM, offers [dedicated support](https://github.com/vert-x3/vertx-lang-kotlin)
-  for Kotlin, including [full documentation](https://vertx.io/docs/vertx-core/kotlin/).
-
+* [Spring](https://spring.io)
+  * [Kotlin's language features](https://spring.io/blog/2017/01/04/introducing-kotlin-support-in-spring-framework-5-0) | v5.0+
+  * [online project generator](https://start.spring.io/#!language=kotlin)
+    * allows generating a new project | Kotlin
+* [Ktor](https://github.com/kotlin/ktor)
+  * := framework /
+    * built by JetBrains
+    * goal
+      * create Web applications | Kotlin
+    * characteristics
+      * making use of coroutines
+      * easy-to-use and idiomatic API
+* [Quarkus](https://quarkus.io/guides/kotlin)
+  * := open source framework /
+    * first class support for Kotlin
+    * maintained by Red Hat
+    * goal
+      * ground up for Kubernetes
+* [Vert.x](https://vertx.io)
+  * := framework /
+    * goal
+      * building reactive Web applications | JVM
+    * characteristics
+      * [dedicated support for Kotlin](https://github.com/vert-x3/vertx-lang-kotlin)
+    * [full documentation](https://vertx.io/docs/vertx-core/kotlin/)
+* TODO:
 * [kotlinx.html](https://github.com/kotlin/kotlinx.html) is a DSL that can be used to build HTML in Web applications.
   It serves as an alternative to traditional templating systems such as JSP and FreeMarker.
 
@@ -41,10 +61,7 @@ Here are some examples of the server-side frameworks for Kotlin:
 * The available options for persistence include direct JDBC access, JPA, and using NoSQL databases through their Java drivers.
   For JPA, the [kotlin-jpa compiler plugin](no-arg-plugin.md#jpa-support) adapts
   Kotlin-compiled classes to the requirements of the framework.
-  
-> You can find more frameworks at [https://kotlin.link/](https://kotlin.link/resources).
->
-{type="note"}
+* [other frameworks](https://kotlin.link/resources).
 
 ## Deploying Kotlin server-side applications
 
@@ -75,5 +92,3 @@ process at JetBrains, is written in 100% Kotlin and has been running in producti
   showing how you can use [Kotlin extension functions](extensions.md#extension-functions) in the Micronaut framework.
 * http4k provides the [CLI](https://toolbox.http4k.org) to generate fully formed projects, and a [starter](https://start.http4k.org) repo to generate an entire CD pipeline using GitHub, Travis, and Heroku with a single bash command.
 * Want to migrate from Java to Kotlin? Learn how to perform [typical tasks with strings in Java and Kotlin](java-to-kotlin-idioms-strings.md).
-
-
