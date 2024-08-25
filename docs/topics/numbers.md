@@ -70,46 +70,23 @@
 
 ## Explicit number conversions
 
-* TODO:
-Due to different representations, smaller types _are not subtypes_ of bigger ones.
-If they were, we would have troubles of the following sort:
-
-```kotlin
-// Hypothetical code, does not actually compile:
-val a: Int? = 1 // A boxed Int (java.lang.Integer)
-val b: Long? = a // Implicit conversion yields a boxed Long (java.lang.Long)
-print(b == a) // Surprise! This prints "false" as Long's equals() checks whether the other is Long as well
-```
-
-So equality would have been lost silently, not to mention identity.
-
-As a consequence, smaller types _are NOT implicitly converted_ to bigger types.
-This means that assigning a value of type `Byte` to an `Int` variable requires an explicit conversion:
-
-```kotlin
-val b: Byte = 1 // OK, literals are checked statically
-// val i: Int = b // ERROR
-val i1: Int = b.toInt()
-```
-
-All number types support conversions to other types:
-
-* `toByte(): Byte`
-* `toShort(): Short`
-* `toInt(): Int`
-* `toLong(): Long`
-* `toFloat(): Float`
-* `toDouble(): Double`
-
-In many cases, there is no need for explicit conversions because the type is inferred from the context,
-and arithmetical operations are overloaded for appropriate conversions, for example:
-
-```kotlin
-val l = 1L + 3 // Long + Int => Long
-```
+* 👁️smaller (about size) types != subtypes of bigger types 👁️
+  * Reason: 🧠have different representations 🧠
+  * -> ⚠️ -- NOT implicitly converted to -- bigger types ⚠️
+* exist ANY number conversions between each other
+  * `toByte(): Byte`
+  * `toShort(): Short`
+  * `toInt(): Int`
+  * `toLong(): Long`
+  * `toFloat(): Float`
+  * `toDouble(): Double`
+* use cases / implicit conversion is needed
+  * smaller types -> bigger types
+* use cases / type -- is inferred from the -- context (==implicit conversion)
+  * arithmetical operations
 
 ## Operations on numbers
-
+* TODO:
 Kotlin supports the standard set of arithmetical operations over numbers: `+`, `-`, `*`, `/`, `%`. They are declared
 as members of appropriate classes:
 

@@ -63,4 +63,19 @@ fun main() {
     val boxedA: Int? = a
     val anotherBoxedA: Int? = a
     println(boxedA === anotherBoxedA) // true
+
+    // 5. Explicit number conversions
+    // 5.1 smaller types != subtypes of bigger types -> NO implicit conversion
+    val intNumber: Int? = 1     // boxed Int (java.lang.Integer) | JVM
+    //val longNumber: Long? = intNumber    // NOT implicit conversion -> boxed Long (java.lang.Long) | JVM
+    val anotherLongNumber = intNumber?.toLong()     // IMPLICIT conversion
+    println("intNumber::class.simpleName ${intNumber!!::class.simpleName}")
+    println("anotherLongNumber::class.simpleName ${anotherLongNumber!!::class.simpleName}")
+    // 5.2 smaller -- can NOT be compared with -- bigger type
+    val longNumber: Long = 1
+    // println(longNumber == intNumber)
+    // println(longNumber === intNumber)
+    // 5.3 arithmetical operations
+    val addition = 1L + 3       // Long + Int => Long
+    println("addition::class.simpleName ${addition::class.simpleName}")
 }
