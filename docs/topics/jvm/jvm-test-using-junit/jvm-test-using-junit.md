@@ -1,18 +1,17 @@
 [//]: # (title: Test code using JUnit in JVM – tutorial)
 
-This tutorial shows you how to write a simple unit test and run it with the Gradle build tool.
+* goal
+  * how to write a simple unit test -- via -- [`kotlin.test`](https://kotlinlang.org/api/latest/kotlin.test/index.html) + JUnit
+  * how to run it -- via -- Gradle build tool
 
-The example in the tutorial has the [`kotlin.test`](https://kotlinlang.org/api/latest/kotlin.test/index.html) library under the hood and runs the test using JUnit.
-
-To get started, first download and install the latest version of [IntelliJ IDEA](https://www.jetbrains.com/idea/download/index.html).
+## Pre requirements
+* install the latest version of [IntelliJ IDEA](https://www.jetbrains.com/idea/download/index.html) 
 
 ## Add dependencies
 
-1. Open a Kotlin project in IntelliJ IDEA. If you don't have a project,
-   [create one](https://www.jetbrains.com/help/idea/create-your-first-kotlin-app.html#create-project).
+1. Open a Kotlin project in IntelliJ IDEA or [create one](https://www.jetbrains.com/help/idea/create-your-first-kotlin-app.html#create-project)
 
-2. Open the `build.gradle(.kts)` file and check that the `testImplementation` dependency is present.
-   This dependency allows you to work with `kotlin.test` and `JUnit`:
+2. Open the `build.gradle(.kts)` and check that the `testImplementation` dependency is present -> allows you to work with `kotlin.test` and `JUnit`
 
     <tabs group="build-script">
     <tab title="Kotlin" group-key="kotlin">
@@ -37,62 +36,62 @@ To get started, first download and install the latest version of [IntelliJ IDEA]
    </tab>
    </tabs>
 
-3. Add the `test` task to the `build.gradle(.kts)` file:
+3. Add the `test` task to the `build.gradle(.kts)` file
+   4. If you use `useJUnitPlatform()` | your build script -> automatically included it
 
-    <tabs group="build-script">
-    <tab title="Kotlin" group-key="kotlin">
+       <tabs group="build-script">
+       <tab title="Kotlin" group-key="kotlin">
 
-   ```kotlin
-   tasks.test {
-       useJUnitPlatform()
-   }
-   ```
+      ```kotlin
+      tasks.test {
+          useJUnitPlatform()
+      }
+      ```
 
-    </tab>
-    <tab title="Groovy" group-key="groovy">
+       </tab>
+       <tab title="Groovy" group-key="groovy">
 
-   ```groovy
-   test {
-       useJUnitPlatform()
-   }
-   ```
+      ```groovy
+      test {
+          useJUnitPlatform()
+      }
+      ```
 
-   </tab>
-   </tabs>
+      </tab>
+      </tabs>
+   
+* complete code for the `build.gradle.kts`:
 
-   > If you use the `useJUnitPlatform()`function in your build script, 
-   > the `kotlin-test` library automatically includes JUnit 5 as a dependency.
-   > This setup enables access to all JUnit 5 APIs, along with the `kotlin-test` API,
-   > in JVM-only projects and JVM tests of Kotlin Multiplatform (KMP) projects.
-   >
-   {type="note"}
+    ```kotlin
+    plugins {
+        kotlin("jvm") version "%kotlinVersion%"
+    }
+    
+    group = "org.example"
+    version = "1.0-SNAPSHOT"
+    
+    repositories {
+        mavenCentral()
+    }
+    
+    dependencies {
+        testImplementation(kotlin("test"))
+    }
+    
+    tasks.test {
+        useJUnitPlatform()
+    }
+    ```
+    {initial-collapse-state="collapsed"}
 
-Here's a complete code for the `build.gradle.kts`:
-
-```kotlin
-plugins {
-    kotlin("jvm") version "%kotlinVersion%"
-}
-
-group = "org.example"
-version = "1.0-SNAPSHOT"
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testImplementation(kotlin("test"))
-}
-
-tasks.test {
-    useJUnitPlatform()
-}
-```
-{initial-collapse-state="collapsed"}
+  * -> allows | JVM-only projects & JVM tests of Kotlin Multiplatform (KMP) projects 
+    * access to ALL
+      * JUnit 5 APIs
+      * `kotlin-test` API
 
 ## Add the code to test it
 
+* TODO:
 1. Open the `Main.kt` file in `src/main/kotlin`.
 
    The `src` directory contains Kotlin source files and resources. 
