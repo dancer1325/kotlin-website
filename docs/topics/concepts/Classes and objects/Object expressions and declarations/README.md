@@ -1,7 +1,3 @@
-* 👀Ways to create an object / slight modification of some class, without declaring explicitly a new subclass 👀
-  * object expressions
-  * object declarations
-
 # Object expressions
 * TODO:
 
@@ -16,8 +12,7 @@
 * TODO:
 ## Data objects
 * TODO:
-## Companion objects
-* TODO:
+
 
 # Code Examples
 * Mirror the examples added, to run it locally
