@@ -34,25 +34,10 @@ This rule applies for properties of any type, not just `Boolean`.
 
 ## Package-level functions
 
-All the functions and properties declared in a file `app.kt` inside a package `org.example`, including extension functions,
-are compiled into static methods of a Java class named `org.example.AppKt`.
+* 👁️ ALL the functions (also extension) & properties | package `packageName` | file `fileName.kt` -- are compiled into -- static methods | `packageName.FileNameKt.class` (Java class) 👁️
 
-```kotlin
-// app.kt
-package org.example
 
-class Util
-
-fun getTime() { /*...*/ }
-
-```
-
-```java
-// Java
-new org.example.Util();
-org.example.AppKt.getTime();
-```
-
+* TODO:
 To set a custom name to the generated Java class, use the `@JvmName` annotation:
 
 ```kotlin
@@ -174,49 +159,12 @@ int version = C.VERSION;
 
 ## Static methods
 
-As mentioned above, Kotlin represents package-level functions as static methods.
-Kotlin can also generate static methods for functions defined in named objects or companion objects if you annotate those
-functions as [`@JvmStatic`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-static/index.html).
-If you use this annotation, the compiler will generate both a static method in the enclosing class of the object and
-an instance method in the object itself. For example:
+* if you add [`@JvmStatic`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-static/index.html) | functions in named objects OR companion objects -- generate -> 
+  * static method | enclosing class of the object & 
+  * instance method | object itself
 
-```kotlin
-class C {
-    companion object {
-        @JvmStatic fun callStatic() {}
-        fun callNonStatic() {}
-    }
-}
-```
 
-Now, `callStatic()` is static in Java while `callNonStatic()` is not:
-
-```java
-
-C.callStatic(); // works fine
-C.callNonStatic(); // error: not a static method
-C.Companion.callStatic(); // instance method remains
-C.Companion.callNonStatic(); // the only way it works
-```
-
-Same for named objects:
-
-```kotlin
-object Obj {
-    @JvmStatic fun callStatic() {}
-    fun callNonStatic() {}
-}
-```
-
-In Java:
-
-```java
-
-Obj.callStatic(); // works fine
-Obj.callNonStatic(); // error
-Obj.INSTANCE.callNonStatic(); // works, a call through the singleton instance
-Obj.INSTANCE.callStatic(); // works too
-```
+* TODO:
 
 Starting from Kotlin 1.3, `@JvmStatic` applies to functions defined in companion objects of interfaces as well.
 Such functions compile to static methods in interfaces. Note that static method in interfaces were introduced in Java 1.8,
