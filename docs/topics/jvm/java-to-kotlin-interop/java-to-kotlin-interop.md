@@ -1,10 +1,9 @@
 [//]: # (title: Calling Kotlin from Java)
 
-Kotlin code can be easily called from Java.
-For example, instances of a Kotlin class can be seamlessly created and operated in Java methods.
-However, there are certain differences between Java and Kotlin that require attention when
-integrating Kotlin code into Java. 
-On this page, we'll describe the ways to tailor the interop of your Kotlin code with its Java clients.
+* from Java -- can easily call -> Kotlin code 
+  * _Example:_ instances of a Kotlin class -- can be seamlessly -- created and operated | ".java"
+* if you integrate Kotlin code | Java -> check differences Java vs Kotlin
+  * ⭐goal of this document ⭐
 
 ## Properties
 
@@ -135,7 +134,7 @@ class JavaClient {
 The visibility of the field will be the same as the visibility of `lateinit` property setter.
 
 ## Static fields
-
+* TODO
 Kotlin properties declared in a named object or a companion object will have static backing fields
 either in that named object or in the class containing the companion object.
 
