@@ -134,49 +134,17 @@ class JavaClient {
 The visibility of the field will be the same as the visibility of `lateinit` property setter.
 
 ## Static fields
-* TODO
-Kotlin properties declared in a named object or a companion object will have static backing fields
-either in that named object or in the class containing the companion object.
 
-Usually these fields are private but they can be exposed in one of the following ways:
+* Kotlin properties | named object OR a companion object -- will have -- static backing fields
+  * fields' privacy
+    * private
+    * public -- via | Kotlin code --
+      * [`@JvmField`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-field/index.html) annotation
+      * `lateinit` modifier
+      * `const` modifier
 
- - [`@JvmField`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-field/index.html) annotation
- - `lateinit` modifier
- - `const` modifier
- 
-Annotating such a property with `@JvmField` makes it a static field with the same visibility as the property itself.
 
-```kotlin
-class Key(val value: Int) {
-    companion object {
-        @JvmField
-        val COMPARATOR: Comparator<Key> = compareBy<Key> { it.value }
-    }
-}
-```
-
-```java
-// Java
-Key.COMPARATOR.compare(key1, key2);
-// public static final field in Key class
-```
-
-A [late-initialized](properties.md#late-initialized-properties-and-variables) property in an object or a companion object
-has a static backing field with the same visibility as the property setter.
-
-```kotlin
-object Singleton {
-    lateinit var provider: Provider
-}
-```
-
-```java
-
-// Java
-Singleton.provider = new Provider();
-// public static non-final field in Singleton class
-```
-
+* TODO:
 Properties declared as `const` (in classes as well as at the top level) are turned into static fields in Java:
 
 ```kotlin
