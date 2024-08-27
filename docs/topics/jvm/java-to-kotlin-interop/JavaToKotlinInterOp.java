@@ -35,5 +35,14 @@ public class JavaToKotlinInterOp {
         //Obj.callNonStatic();  // error: NOT a static method
         Obj.INSTANCE.callNonStatic(); // via instance -> valid
         Obj.INSTANCE.callStatic();    // via instance -> valid
+        // 4.3 @JvmStatic | interface's companion object's function
+        ChatBot.greet("Alfred");    // mark it with @JvmStatic -> static function
+        // 4.4. @JvmStatic | properties of
+        // 4.4.1 companion object
+        //System.out.println(AnotherClass.anotherName); // Error, private
+        System.out.println(AnotherClass.getAnotherName());
+        // 4.4.2 object
+        //System.out.println(AnotherObject.name);       // Error, private
+        System.out.println(AnotherObject.getName());
     }
 }

@@ -162,29 +162,13 @@ int version = C.VERSION;
 * if you add [`@JvmStatic`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-static/index.html) | functions in named objects OR companion objects -- generate -> 
   * static method | enclosing class of the object & 
   * instance method | object itself
-
-
-* TODO:
-
-Starting from Kotlin 1.3, `@JvmStatic` applies to functions defined in companion objects of interfaces as well.
-Such functions compile to static methods in interfaces. Note that static method in interfaces were introduced in Java 1.8,
-so be sure to use the corresponding targets.  
-
-```kotlin
-interface ChatBot {
-    companion object {
-        @JvmStatic fun greet(username: String) {
-            println("Hello, $username")
-        }
-    }
-}
-```
-
-`@JvmStatic` annotation can also be applied on a property of an object or a companion object
-making its getter and setter methods static members in that object or the class containing the companion object.
+* if Kotlin v1.3+ & you add `@JvmStatic` | functions in interface's companion objects -- generate -> static methods | interfaces
+  * static methods | interfaces -> Java v1.8+
+* if you add `@JvmStatic` | property of an object or a companion object -- generate -> static getter and setter methods | object or class / contains the companion object
 
 ## Default methods in interfaces
 
+* TODO:
 >Default methods are available only for targets JVM 1.8 and above.
 >
 {type="note"}
