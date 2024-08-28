@@ -46,58 +46,23 @@
 
 ### Nested arrays
 
-* TODO:
-Arrays can be nested within each other to create multidimensional arrays:
-
-```kotlin
-fun main() {
-//sampleStart
-    // Creates a two-dimensional array
-    val twoDArray = Array(2) { Array<Int>(2) { 0 } }
-    println(twoDArray.contentDeepToString())
-    // [[0, 0], [0, 0]]
-
-    // Creates a three-dimensional array
-    val threeDArray = Array(3) { Array(3) { Array<Int>(3) { 0 } } }
-    println(threeDArray.contentDeepToString())
-    // [[[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]]]
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="arrays-multidimensional-array-kotlin"}
-
-> Nested arrays don't have to be the same type or the same size.
->
-{type="note"}
+* == multidimensional arrays / 
+  * 👁️parent array type OR size can be != children array type OR size 👁️
 
 ## Access and modify elements
 
-Arrays are always mutable. To access and modify elements in an array, use the [indexed access operator](operator-overloading.md#indexed-access-operator)`[]`:
-
-```kotlin
-fun main() {
-//sampleStart
-    val simpleArray = arrayOf(1, 2, 3)
-    val twoDArray = Array(2) { Array<Int>(2) { 0 } }
-
-    // Accesses the element and modifies it
-    simpleArray[0] = 10
-    twoDArray[0][0] = 2
-
-    // Prints the modified element
-    println(simpleArray[0].toString()) // 10
-    println(twoDArray[0][0].toString()) // 2
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="arrays-access-array-kotlin"}
-
-Arrays in Kotlin are _invariant_. This means that Kotlin doesn't allow you to assign an `Array<String>`
-to an `Array<Any>` to prevent a possible runtime failure. Instead, you can use `Array<out Any>`. For more information,
-see [Type Projections](generics.md#type-projections).
+* ALWAYS mutable (it's elements) 
+  * access & modify elements | array -- via -- [indexed access operator](operator-overloading.md#indexed-access-operator)`[]`
+* _invariant_
+  * == Array<Subtype> != subtype of Array<Supertype>
+    * alternatives
+      * `Array<out Any>` -- Check [Type Projections](generics.md#type-projections) --  
+  * allows
+    * preventing possible runtime failure
 
 ## Work with arrays
 
+* TODO:
 In Kotlin, you can work with arrays by using them to pass a variable number of arguments to a function or perform operations
 on the arrays themselves. For example, comparing arrays, transforming their contents or converting them to collections.
 

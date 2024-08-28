@@ -42,4 +42,31 @@ fun main() {
     var leftHandSideTypeArray: Array<String> = emptyArray()
     // 5.2 | right-hand of the assigment
     var rightHandSideTypeArray = emptyArray<String>()
+
+    // 6. nested arrays
+    // 2-D array
+    val twoDArray = Array(2) { Array<Int>(2) { 0 } }    // via constructor
+    println(twoDArray.contentDeepToString())
+    // 3-D array
+    val threeDArray = Array(3) { Array(3) { Array<Int>(3) { 0 } } } // via constructor
+    println(threeDArray.contentDeepToString())
+
+    // 7. access & modify array's elements
+    val anotherSimpleArray = arrayOf(1, 2, 3)
+    val anotherTwoDArray = Array(2) { Array<Int>(2) { 0 } }
+    // access and modify array's elements
+    anotherSimpleArray[0] = 10
+    anotherTwoDArray[0][0] = 2
+    println(anotherSimpleArray.contentDeepToString())
+    println(anotherSimpleArray[0].toString())
+    println(anotherTwoDArray.contentDeepToString())
+    println(anotherTwoDArray[0][0].toString())
+
+    // 8. invariant
+    val dogs: Array<Dog> = arrayOf(Dog("Buddy"), Dog("Charlie")) // array of subtype
+    //val animals: Array<Animal> = dogs         Error, because array of subtype can NOT be an array of the supertype
 }
+
+// Dog is a subclass of Animal
+open class Animal(val name: String)
+class Dog(name: String) : Animal(name)
