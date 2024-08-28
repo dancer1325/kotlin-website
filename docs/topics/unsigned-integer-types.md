@@ -1,25 +1,25 @@
 [//]: # (title: Unsigned integer types)
 
-In addition to [integer types](numbers.md#integer-types), Kotlin provides the following types for unsigned integer numbers:
+* types | unsigned integer numbers
 
-| Type     | Size (bits) | Min value | Max value                                       |
-|----------|-------------|-----------|-------------------------------------------------|
-| `UByte`  | 8           | 0         | 255                                             |
-| `UShort` | 16          | 0         | 65,535                                          |
-| `UInt`   | 32          | 0         | 4,294,967,295 (2<sup>32</sup> - 1)              |
-| `ULong`  | 64          | 0         | 18,446,744,073,709,551,615 (2<sup>64</sup> - 1) |
+    | Type     | Size (bits) | Min value | Max value                                       |
+    |----------|-------------|-----------|-------------------------------------------------|
+    | `UByte`  | 8           | 0         | 255                                             |
+    | `UShort` | 16          | 0         | 65,535                                          |
+    | `UInt`   | 32          | 0         | 4,294,967,295 (2<sup>32</sup> - 1)              |
+    | `ULong`  | 64          | 0         | 18,446,744,073,709,551,615 (2<sup>64</sup> - 1) |
 
+    * supported operations | number types == (MOSTLY)  supported operations | unsigned number types
 
-Unsigned types support most of the operations of their signed counterparts.
-
-> Unsigned numbers are implemented as [inline classes](inline-classes.md) with a single storage property that contains the corresponding 
-> signed counterpart type of the same width. If you want to convert between unsigned and signed integer types, 
-> make sure you update your code so that any function calls and operations support the new type.
->
-{type="note"}
+* Unsigned numbers
+  * -- are implemented as -- [inline classes](inline-classes.md) / 1! storage property / contains the corresponding signed counterpart type of the same width TODO: Comprehend
+  * if you want to convert unsigned -- to -- signed integer types, -> update your code / ANY
+    * function calls -- support the -- new type
+    * operations -- support the -- new type
 
 ## Unsigned arrays and ranges
 
+* TODO:
 > Unsigned arrays and operations on them are in [Beta](components-stability.md). They can be changed incompatibly at any time.
 > Opt-in is required (see the details below).
 >
