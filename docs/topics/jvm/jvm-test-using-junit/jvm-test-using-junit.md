@@ -91,13 +91,8 @@
 
 ## Add the code to test it
 
-* TODO:
-1. Open the `Main.kt` file in `src/main/kotlin`.
-
-   The `src` directory contains Kotlin source files and resources. 
-   The `Main.kt` file contains sample code that prints `Hello, World!`.
-
-2. Create the `Sample` class with the `sum()` function that adds two integers together:
+1. Open the `Main.kt` file in `src/main/kotlin` 
+2. Create the `Sample` class with the `sum()` function / adds two integers together:
 
    ```kotlin
    class Sample() {
@@ -110,25 +105,18 @@
 
 ## Create a test
 
-1. In IntelliJ IDEA, select **Code** | **Generate** | **Test...** for the `Sample` class:
+1. Ways
+   * via IntelliJ IDEA, select **Code** | **Generate** | **Test...** for the `Sample` class / specify the name of the test class 
 
-   ![Create a test](generate-test.png)
+      ![Create a test](generate-test.png)
 
-2. Specify the name of the test class. For example, `SampleTest`:
+      ![Create a test](create-test.png)
+   * via manually, create a `*.kt` | `src/test/kotlin`
 
-   ![Create a test](create-test.png)
+2. Add the test code for the `sum()` function | `SampleTest.kt`:
 
-   IntelliJ IDEA creates the `SampleTest.kt` file in the `test` directory.
-   This directory contains Kotlin test source files and resources.
-
-   > You can also manually create a `*.kt` file for tests in `src/test/kotlin`.
-   >
-   {type="note"}
-
-3. Add the test code for the `sum()` function in `SampleTest.kt`:
-
-   * Define the test `testSum()` function using the [`@Test` annotation](https://kotlinlang.org/api/latest/kotlin.test/kotlin.test/-test/index.html).
-   * Check that the `sum()` function returns the expected value by using the [`assertEquals()`](https://kotlinlang.org/api/latest/kotlin.test/kotlin.test/assert-equals.html) function.
+   * Define the test `testSum()` function -- via -- [`@Test` annotation](https://kotlinlang.org/api/latest/kotlin.test/kotlin.test/-test/index.html)
+   * Check that the `sum()` function returns the expected value
 
    ```kotlin
    import org.example.Sample
@@ -149,42 +137,23 @@
 
 ## Run a test
 
-1. Run the test using the gutter icon:
+1. Ways
+   * via IDE
+     1. Run the test using the gutter icon:
 
-   ![Run the test](run-test.png)
-
-   > You can also run all project tests via the command-line interface using the `./gradlew check` command.
-   >
-   {type="note"}
+        ![Run the test](run-test.png)
+   * via CLI
+     1. `./gradlew test`
 
 2. Check the result in the **Run** tool window:
 
    ![Check the test result. The test passed successfully](test-successful.png)
 
-   The test function was executed successfully.
-
-3. Make sure that the test works correctly by changing the `expected` variable value to 43:
-
-   ```kotlin
-   @Test
-   fun testSum() {
-       val expected = 43
-       assertEquals(expected, classForTesting.sum(40, 2))
-   }
-   ```
-
-4. Run the test again and check the result:
-
-   ![Check the test result. The test has failed](test-failed.png)
-
-   The test execution failed.
+3. Make sure that the test works correctly by changing the `expected` variable value
 
 ## What's next
 
-Once you've finished your first test, you can:
-
-* Write more tests using other [`kotlin.test`](https://kotlinlang.org/api/latest/kotlin.test/kotlin.test/) functions.
-   For example, use the [`assertNotEquals()`](https://kotlinlang.org/api/latest/kotlin.test/kotlin.test/assert-not-equals.html) function.
-* Improve your test output with the [Kotlin Power-assert compiler plugin](power-assert.md).
-   The plugin enriches the test output with contextual information.
-* [Create your first server-side application](jvm-get-started-spring-boot.md) with Kotlin and Spring Boot.
+* Check 
+  * [`kotlin.test`](https://kotlinlang.org/api/latest/kotlin.test/kotlin.test/)
+  * [Kotlin Power-assert compiler plugin](power-assert.md)
+    * enriches the test output with contextual information
