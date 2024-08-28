@@ -180,10 +180,10 @@ Always put overloads next to each other in a class.
 
 ### Names for test methods
 
-* TODO:
-In tests (and **only** in tests), you can use method names with spaces enclosed in backticks.
-Note that such method names are only supported by Android runtime from API level 30. Underscores
-in method names are also allowed in test code.
+* | test methods, can contain
+  * ` ` / wrapped in ``
+    * | Android runtime API v30+ 
+  * `_`
 
 ```kotlin
 class MyTestCase {
@@ -195,6 +195,7 @@ class MyTestCase {
 
 ### Property names
 
+* TODO:
 Names of constants (properties marked with `const`, or top-level or object `val` properties with no custom `get` function
 that hold deeply immutable data) should use uppercase underscore-separated ([screaming snake case](https://en.wikipedia.org/wiki/Snake_case))
 names:
