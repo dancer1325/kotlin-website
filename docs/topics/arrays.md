@@ -1,6 +1,7 @@
 [//]: # (title: Arrays)
 
 * := data structure / holds a fixed number of values / SAME type or its subtypes 
+  * fixed size -> ⚠️  ONLY way to add or remove elements -- is via -- create a NEW array ⚠️ 
   * 👁️object-type array 👁️
     * most common type of array | Kotlin
     * -- represented by the -- [`Array`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/) class
@@ -9,41 +10,28 @@
       * alternative : [primitive-type arrays](#primitive-type-arrays)
         * Reason: 🧠 avoid boxing overhead  🧠
 
-
 ## When to use arrays
 
-* TODO:
-Use arrays in Kotlin when you have specialized low-level requirements that you need to meet. For example, if you have 
-performance requirements beyond what is needed for regular applications, or you need to build custom data structures. If
-you don't have these sorts of restrictions, use [collections](collections-overview.md) instead.
-
-Collections have the following benefits compared to arrays:
-* Collections can be read-only, which gives you more control and allows you to write robust code that has a clear intent.
-* It is easy to add or remove elements from collections. In comparison, arrays are fixed in size. The only way to 
-add or remove elements from an array is to create a new array each time, which is very inefficient:
-
-  ```kotlin
-  fun main() {
-  //sampleStart
-      var riversArray = arrayOf("Nile", "Amazon", "Yangtze")
-
-      // Using the += assignment operation creates a new riversArray,
-      // copies over the original elements and adds "Mississippi"
-      riversArray += "Mississippi"
-      println(riversArray.joinToString())
-      // Nile, Amazon, Yangtze, Mississippi
-  //sampleEnd
-  }
-  ```
-  {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="arrays-rivers-array-kotlin"}
-
-* You can use the equality operator (`==`) to check if collections are structurally equal. You can't use this operator
-for arrays. Instead, you have to use a special function, which you can read more about in [Compare arrays](#compare-arrays).
-
-For more information about collections, see [Collections overview](collections-overview.md).
+* specialized low-level requirements / you need to meet
+  * _Example1:_ performance requirements / -- beyond -- regular applications
+  * _Example2:_ build custom data structures
+* recommendations
+  * ⚠️if you do NOT have previous requirements -> use [collections](collections-overview.md) ⚠️ 
+* vs Collections
+  * Collections can be read-only -> 
+    * MORE control
+    * allows writing robust code / clear intent
+  * Collections are easier to add or remove elements
+    * arrays are fixed | size
+  * `==`
+    * 👁️compare references 👁️
+    * | collections -- allows checking if -- are structurally equal
+    * NOT valid | arrays
+      * -> special function needed -- Check [Compare arrays](#compare-arrays) --
 
 ## Create arrays
 
+* TODO:
 To create arrays in Kotlin, you can use:
 * functions, such as [`arrayOf()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/array-of.html), [`arrayOfNulls()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/array-of-nulls.html#kotlin$arrayOfNulls(kotlin.Int)) 
 or [`emptyArray()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/empty-array.html).
