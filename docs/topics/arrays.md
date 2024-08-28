@@ -31,86 +31,22 @@
 
 ## Create arrays
 
-* TODO:
-To create arrays in Kotlin, you can use:
-* functions, such as [`arrayOf()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/array-of.html), [`arrayOfNulls()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/array-of-nulls.html#kotlin$arrayOfNulls(kotlin.Int)) 
-or [`emptyArray()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/empty-array.html).
-* the `Array` constructor.
-
-This example uses the [`arrayOf()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/array-of.html) function 
-and passes item values to it:
-
-```kotlin
-fun main() {
-//sampleStart
-    // Creates an array with values [1, 2, 3]
-    val simpleArray = arrayOf(1, 2, 3)
-    println(simpleArray.joinToString())
-    // 1, 2, 3
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="arrays-simple-array-kotlin"}
-
-This example uses the [`arrayOfNulls()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/array-of-nulls.html#kotlin$arrayOfNulls(kotlin.Int))
-function to create an array of a given size filled with `null` elements:
-
-```kotlin
-fun main() {
-//sampleStart
-    // Creates an array with values [null, null, null]
-    val nullArray: Array<Int?> = arrayOfNulls(3)
-    println(nullArray.joinToString())
-    // null, null, null
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="arrays-null-array-kotlin"}
-
-This example uses the [`emptyArray()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/empty-array.html) function to 
-create an empty array :
-
-```kotlin
-    var exampleArray = emptyArray<String>()
-```
-
-> You can specify the type of the empty array on the left-hand or right-hand side of the assignment due to Kotlin's type
-> inference.
->
-> For example:
-> ```Kotlin
-> var exampleArray = emptyArray<String>()
-> 
-> var exampleArray: Array<String> = emptyArray()
->```
->
-{type="note"}
-
-The `Array` constructor takes the array size and a function that returns values for array elements given its index:
-
-```kotlin
-fun main() {
-//sampleStart
-    // Creates an Array<Int> that initializes with zeros [0, 0, 0]
-    val initArray = Array<Int>(3) { 0 }
-    println(initArray.joinToString())
-    // 0, 0, 0
-
-    // Creates an Array<String> with values ["0", "1", "4", "9", "16"]
-    val asc = Array(5) { i -> (i * i).toString() }
-    asc.forEach { print(it) }
-    // 014916
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="arrays-array-constructor-kotlin"}
-
-> Like in most programming languages, indices start from 0 in Kotlin.
->
-{type="note"}
+* ways
+  * functions
+    * [`arrayOf()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/array-of.html)
+    * [`arrayOfNulls()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/array-of-nulls.html#kotlin$arrayOfNulls(kotlin.Int))
+    * [`emptyArray()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/empty-array.html)
+  * `Array` constructor
+    * `Array<T>(size: kotlin.Int, lambdaExpressionWithTReturned)` == `Array<T>(size: kotlin.Int) { lambdaExpressionWithTReturned }`
+      * `lambdaExpressionWithTReturned` runs / array's item & value is the index | array (from 0)
+      * Reason: 🧠 trailing lambda expression 🧠 
+* ways to specify the type of array
+  * | left-hand of the assigment
+  * | right-hand of the assigment
 
 ### Nested arrays
 
+* TODO:
 Arrays can be nested within each other to create multidimensional arrays:
 
 ```kotlin
