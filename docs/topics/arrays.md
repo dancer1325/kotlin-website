@@ -1,15 +1,18 @@
 [//]: # (title: Arrays)
 
-An array is a data structure that holds a fixed number of values of the same type or its subtypes. 
-The most common type of array in Kotlin is the object-type array, represented by the [`Array`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/) class.
+* := data structure / holds a fixed number of values / SAME type or its subtypes 
+  * 👁️object-type array 👁️
+    * most common type of array | Kotlin
+    * -- represented by the -- [`Array`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/) class
+    * if primitives | object-type array -> bad performance impact
+      * Reason: 🧠 because your primitives are [boxed | objects](https://docs.oracle.com/javase/specs/jls/se22/html/jls-5.html#jls-5.1.7) 🧠
+      * alternative : [primitive-type arrays](#primitive-type-arrays)
+        * Reason: 🧠 avoid boxing overhead  🧠
 
-> If you use primitives in an object-type array, this has a performance impact because your primitives are [boxed](https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html)
-> into objects. To avoid boxing overhead, use [primitive-type arrays](#primitive-type-arrays) instead.
->
-{type="note"}
 
 ## When to use arrays
 
+* TODO:
 Use arrays in Kotlin when you have specialized low-level requirements that you need to meet. For example, if you have 
 performance requirements beyond what is needed for regular applications, or you need to build custom data structures. If
 you don't have these sorts of restrictions, use [collections](collections-overview.md) instead.
@@ -379,6 +382,7 @@ fun main() {
 
 ## What's next?
 
-* To learn more about why we recommend using collections for most use cases, read our [Collections overview](collections-overview.md).
-* Learn about other [basic types](basic-types.md).
-* If you are a Java developer, read our Java to Kotlin migration guide for [Collections](java-to-kotlin-collections-guide.md).
+* Check
+  * [Collections overview](collections-overview.md)
+  * other [basic types](basic-types.md)
+  * If you are a Java developer -> read our Java -- to -- Kotlin migration guide for [Collections](java-to-kotlin-collections-guide.md)
