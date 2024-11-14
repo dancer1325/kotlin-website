@@ -354,37 +354,39 @@ var x: Int = 23
 
 ## Overloads generation
 
-Normally, if you write a Kotlin function with default parameter values, it will be visible in Java only as a full
-signature, with all parameters present. If you wish to expose multiple overloads to Java callers, you can use the
-[`@JvmOverloads`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html) annotation.
+* [`@JvmOverloads`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html)
+  * allows
+    * expose MULTIPLE overloads -- to -- Java callers
+      * if Kotlin function / default parameter values -> | Java, visible ONLY as a FULL signature 
+  * uses
+    * | 
+      * constructors,
+      * static methods 
+    * ❌NOT valid | ❌
+      * abstract methods
+      * methods / defined | interfaces
+  * _Example:_ 1 additional overload / EVERY parameter -- with a -- default value
+    ```kotlin
+    class Circle @JvmOverloads constructor(centerX: Int, centerY: Int, radius: Double = 1.0) {
+        @JvmOverloads fun draw(label: String, lineWidth: Int = 1, color: String = "red") { /*...*/ }
+    }
+    ```
 
-The annotation also works for constructors, static methods, and so on. It can't be used on abstract methods, including
-methods defined in interfaces.
+    generate
 
-```kotlin
-class Circle @JvmOverloads constructor(centerX: Int, centerY: Int, radius: Double = 1.0) {
-    @JvmOverloads fun draw(label: String, lineWidth: Int = 1, color: String = "red") { /*...*/ }
-}
-```
+    ```java
+    // Constructors:
+    Circle(int centerX, int centerY, double radius)
+    Circle(int centerX, int centerY)
+    
+    // Methods
+    void draw(String label, int lineWidth, String color) { }
+    void draw(String label, int lineWidth) { }
+    void draw(String label) { }
+    ```
 
-For every parameter with a default value, this will generate one additional overload, which has this parameter and
-all parameters to the right of it in the parameter list removed. In this example, the following will be
-generated:
-
-```java
-// Constructors:
-Circle(int centerX, int centerY, double radius)
-Circle(int centerX, int centerY)
-
-// Methods
-void draw(String label, int lineWidth, String color) { }
-void draw(String label, int lineWidth) { }
-void draw(String label) { }
-```
-
-Note that, as described in [Secondary constructors](classes.md#secondary-constructors), if a class has default
-values for all constructor parameters, a public constructor with no arguments will be generated for it. This works even
-if the `@JvmOverloads` annotation is not specified.
+  * if a class has default values / ALL constructor parameters & `@JvmOverloads` NOT use it -> it will generate a public constructor / NO arguments
+    * see [Secondary constructors](classes.md#secondary-constructors)
 
 ## Checked exceptions
 
