@@ -1,99 +1,105 @@
 [//]: # (title: Kotlin/Native memory management)
 
-Kotlin/Native uses a modern memory manager that is similar to the JVM, Go, and other mainstream technologies, including
-the following features:
 
-* Objects are stored in a shared heap and can be accessed from any thread.
-* Tracing garbage collection (GC) is performed periodically to collect objects that are not reachable from the "roots",
-  like local and global variables.
+* Kotlin/Native's memory manager
+  * == Java, Go or Swift's memory manager
+  * 👀features👀
+    * Objects
+      * are stored | shared heap
+      * -- can be accessed from -- ANY thread
+    * Tracing garbage collection (GC) -- is performed -- periodically collecting objects / NOT reachable from the "roots" (_Example:_
+      like local and global variables)
 
 ## Garbage collector
 
-Kotlin/Native's GC algorithm is constantly evolving. Currently, it functions as a stop-the-world mark and concurrent sweep
-collector that does not separate the heap into generations.
+* Kotlin/Native's GC algorithm is constantly evolving
+  * stop-the-world mark + concurrent sweep collector / heap is NOT separated into generations ❓
+    * stop-the-world mark == full parallel mark / combines paused mutators + GC thread + optional marker threads
+      * | marking process, by default, paused mutators + >=1 GC thread
+      * if you want to disable the full parallel mark -> pass `-Xbinary=gcMarkSingleThreaded=true` compilation option
+        * may increase -- the -- pause time of the garbage collector
+    * GC thread
+      * == GC is 
+        * executed | separate thread
+        * started -- based on the -- timer & memory pressure heuristics  
 
-The GC uses a full parallel mark that combines paused mutators, the GC thread, and optional marker threads to process
-the mark queue. By default, paused mutators and at least one GC thread participate in the marking process.
-You can disable the full parallel mark with the `-Xbinary=gcMarkSingleThreaded=true` compilation option.
-However, this may increase the pause time of the garbage collector.
+* once the marking phase is completed -> 
+  * GC processes weak references &
+  * nullifies reference -- points to an -- unmarked object
+* if you want to decrease the GC pause time -> enable the concurrent processing of weak references -- via -- `-Xbinary=concurrentWeakSweep=true` compilation option
 
-When the marking phase is completed, the GC processes weak references and nullifies reference points to an unmarked object.
-To decrease the GC pause time, you can enable the concurrent processing of weak references by using
-the `-Xbinary=concurrentWeakSweep=true` compilation option.
-
-The GC is executed on a separate thread and started based on the timer
-and memory pressure heuristics. Alternatively, it can be [called manually](#enable-garbage-collection-manually).
+* GC can be [called manually](#enable-garbage-collection-manually)
 
 ### Enable garbage collection manually
 
-To force-start the garbage collector, call `kotlin.native.internal.GC.collect()`. This method triggers a new collection
-and waits for its completion.
+* call `kotlin.native.internal.GC.collect()`
+  * -> triggers a new collection & waits for its completion
 
 ### Monitor GC performance
 
-To monitor the GC performance, you can look through its logs and diagnose issues. To enable logging,
-set the following compiler option in the Gradle build script:
+* if you want to enable logging -> set the following compiler option | Gradle build script
 
-```none
--Xruntime-logs=gc=info
-```
+    ```none
+    -Xruntime-logs=gc=info
+  
+    // default
+    //-Xruntime-logs=gc=error
+    ```
 
-Currently, the logs are only printed to `stderr`.
+* | Apple platforms, use Xcode Instruments toolkit
+  * way to track GC-related pauses
+    1. Open Xcode, go to **Product** | **Profile** or press <shortcut>Cmd + I</shortcut>
+       1. -> compiles your app & launches Instruments
+    2. | template selection, select **os_signpost**
+    3. specify `org.kotlinlang.native.runtime` as **subsystem** & `safepoint` as **category**
+    4. Click the red record button to run your app and start recording signpost events
 
-On Apple platforms, you can take advantage of the Xcode Instruments toolkit to debug iOS app performance.
-The garbage collector reports pauses with signposts available in Instruments.
-Signposts enable custom logging within your app, allowing you to check if a GC pause corresponds to an application freeze.
-
-To track GC-related pauses in your app:
-
-1. Open Xcode, go to **Product** | **Profile** or press <shortcut>Cmd + I</shortcut>. This action compiles your app and
-   launches Instruments.
-2. In the template selection, select **os_signpost**.
-3. Configure it by specifying `org.kotlinlang.native.runtime` as **subsystem** and `safepoint` as **category**.
-4. Click the red record button to run your app and start recording signpost events:
-
-   ![Tracking GC pauses as signposts](native-gc-signposts.png){width=700}
-
-   Here, each blue blob on the lowest graph represents a separate signpost event, which is a GC pause.
-
-The feature is enabled by default. However, you can disable it with the `-Xbinary=enableSafepointSignposts=false`
-compiler option.
+       ![Tracking GC pauses as signposts](/docs/images/multiplatform/native-gc-signposts.png)
+  * previous feature
+    * enabled, by default
+    * if you want to disable -> specify `-Xbinary=enableSafepointSignposts=false` compiler option
 
 ### Disable garbage collection
 
-It's recommended to keep GC enabled. However, you can disable it in certain cases, such as for testing purposes or
-if you encounter issues and have a short-lived program. To do so, set the following compilation flag in the Gradle
-build script:
+* use cases to disable garbage collection
+  * testing purposes
+  * if you encounter issues & have a short-lived program
+* | Gradle build script 
 
-```none
--Xgc=noop
-```
+    ```none
+    -Xgc=noop
+    ```
 
-> With this option enabled, the GC doesn't collect Kotlin objects, so memory consumption will keep rising as long as the
-> program runs. Be careful not to exhaust the system memory.
->
-{type="warning"}
+* if it's disabled -> memory consumption will keep rising -> 👀careful NOT exhaust the system memory 👀
 
 ## Memory consumption
 
-Kotlin/Native uses its own [memory allocator](https://github.com/JetBrains/kotlin/blob/master/kotlin-native/runtime/src/alloc/custom/README.md).
-It divides system memory into pages, allowing independent sweeping in consecutive order. Each allocation becomes a memory
-block within a page, and the page keeps track of block sizes. Different page types are optimized for various allocation
-sizes. The consecutive arrangement of memory blocks ensures efficient iteration through all allocated blocks.
+* 💡Kotlin/Native uses its OWN [memory allocator](https://github.com/JetBrains/kotlin/blob/master/kotlin-native/runtime/src/alloc/custom/README.md) 💡/
+  * 👀system memory -- is divided into -- pages 👀
+    * -> sweeping
+      * independent 
+      * in consecutive order
+    * EACH allocation == memory block | page
+      * the page -- keeps track of -- block sizes 
+      * DIFFERENT page types -- are optimized for -- various allocation sizes
+      * consecutive arrangement of memory blocks -> efficient iteration | ALL allocated blocks
+  * includes protection -- against -- sudden spikes | memory allocations
+    * -> prevents certain situations 
+      * _Example:_ mutator starts to allocate a lot of garbage quickly & the GC thread can NOT keep up with it == memory usage grow endlessly
+        * -> GC forces a stop-the-world phase | UNTIL the iteration is completed
 
-When a thread allocates memory, it searches for a suitable page based on the allocation size. Threads maintain a set of
-pages for different size categories. Typically, the current page for a given size can accommodate the allocation.
-If not, the thread requests a different page from the shared allocation space. This page may already be available,
-require sweeping, or have to be created first.
-
-The Kotlin/Native memory allocator comes with protection against sudden spikes in memory allocations. It prevents
-situations where the mutator starts to allocate a lot of garbage quickly and the GC thread cannot keep up with it,
-making the memory usage grow endlessly. In this case, the GC forces a stop-the-world phase until the iteration is completed.
-
-You can monitor memory consumption yourself, check for memory leaks, and adjust memory consumption.
+* if a thread allocates memory -> the thread -- searches for a -- suitable page / -- based on the -- allocation size
+  * threads maintain a set of pages / DIFFERENT size categories
+  * current page / given size -- can accommodate the -- allocation
+    * if not -> the thread -- from the shared allocation space, requests a -- different page /
+      * this page MAY
+        * already be available,
+        * require sweeping, or
+        * have to be created first
 
 ### Check for memory leaks
 
+* TODO:
 To access the memory manager metrics, call `kotlin.native.internal.GC.lastGCInfo()`. This method returns statistics for the last
 run of the garbage collector. The statistics can be useful for:
 
