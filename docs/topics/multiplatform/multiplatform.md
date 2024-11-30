@@ -8,7 +8,7 @@ Share application logic while keeping native user experience.)
     * Reason: 🧠same code for [different platforms](#kotlin-multiplatform-use-cases) 🧠
   * retain the flexibility and benefits of native programming
 
-![Kotlin Multiplatform](kotlin-multiplatform.svg){width=700}
+![Kotlin Multiplatform](/docs/images/multiplatform/kotlin-multiplatform.svg)
 
 ## Kotlin Multiplatform use cases
 
