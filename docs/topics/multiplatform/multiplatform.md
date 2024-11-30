@@ -48,7 +48,7 @@ Share application logic while keeping native user experience.)
   * among [all platforms / used | your project](multiplatform-share-on-platforms.md#share-code-on-all-platforms)
   * among [some platforms / included | your project](multiplatform-share-on-platforms.md#share-code-on-similar-platforms)
 
-    ![Code shared across different platforms](kotlin-multiplatform-hierarchical-structure.svg){width=700}
+    ![Code shared across different platforms](/docs/images/multiplatform/kotlin-multiplatform-hierarchical-structure.svg)
 
 * if, from the shared code, you -- need to access -- platform-specific APIs , -> use [expected and actual declarations](multiplatform-expect-actual.md)
 * Check 
