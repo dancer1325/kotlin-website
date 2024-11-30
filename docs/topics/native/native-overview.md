@@ -1,67 +1,61 @@
 [//]: # (title: Kotlin Native)
 
-Kotlin/Native is a technology for compiling Kotlin code to native binaries which can run without a virtual machine.
-Kotlin/Native includes an [LLVM](https://llvm.org/)-based backend for the Kotlin compiler and a native implementation of the Kotlin standard
-library.
+* Kotlin/Native
+  * == technology / 
+    * 👀Kotlin code -- is compiled to -- native binaries / can run WITHOUT a VM 👀
+    * includes
+      * backend [LLVM](https://llvm.org/)-based -- for the -- Kotlin compiler
+      * native implementation of the Kotlin standard library
 
 ## Why Kotlin/Native?
 
-Kotlin/Native is primarily designed to allow compilation for platforms on which _virtual machines_ are not
-desirable or possible, such as embedded devices or iOS.
-It is ideal for situations when a developer needs to produce a
-self-contained program that does not require an additional runtime or virtual machine.
+* goal
+  * 💡compilation for platforms / NOT desire or possible VM💡
+    * _Example:_ embedded devices or iOS
+    * use cases
+      * produce a self-contained (== WITHOUT additional runtime or VM) program  
 
 ## Target platforms
 
-Kotlin/Native supports the following platforms:
-* macOS
-* iOS, tvOS, watchOS
-* Linux
-* Windows (MinGW)
-* Android NDK
+* supported platforms
+  * macOS
+  * iOS, tvOS, watchOS
+  * Linux
+  * Windows (MinGW)
+  * Android NDK
+  * see the [full list](native-target-support.md)
 
-> To compile Apple targets, macOS, iOS, tvOS, and watchOS, you need [Xcode](https://apps.apple.com/us/app/xcode/id497799835)
-> and its command-line tools installed.
-> 
-{type="note"}
-
-[See the full list of supported targets](native-target-support.md).
+* requirements
+  * | Apple targets (macOS, iOS, tvOS, and watchOS)
+    * install [Xcode](https://apps.apple.com/us/app/xcode/id497799835) + its command-line tools
 
 ## Interoperability
 
-Kotlin/Native supports two-way interoperability with native programming languages for different operating systems.
-The compiler creates:
-* an executable for many [platforms](#target-platforms)
-* a static library or [dynamic](native-dynamic-libraries.md) library with C headers for C/C++ projects
-* an [Apple framework](apple-framework.md) for Swift and Objective-C projects
-
-Kotlin/Native supports interoperability to use existing libraries
-directly from Kotlin/Native:
-* static or dynamic [C libraries](native-c-interop.md)
-* C, [Swift, and Objective-C](native-objc-interop.md) frameworks
-
-It is easy to include compiled Kotlin code in
-existing projects written in C, C++, Swift, Objective-C, and other languages.
-It is also easy to use existing native code,
-static or dynamic [C libraries](native-c-interop.md),
-Swift/Objective-C [frameworks](native-objc-interop.md),
-graphical engines, and anything else directly from Kotlin/Native.
-
-Kotlin/Native [libraries](native-platform-libs.md) help share Kotlin
-code between projects.
-POSIX, gzip, OpenGL, Metal, Foundation, and many other popular libraries and Apple frameworks
-are pre-imported and included as Kotlin/Native libraries in the compiler package.
+* Kotlin/Native
+  * supports
+    * two-way interoperability -- with -- native programming languages | different OS
+      * compiler creates
+        * executable / MANY [platforms](#target-platforms)
+        * static library OR [dynamic](native-dynamic-libraries.md) library / C headers -- for -- C/C++ projects
+        * [Apple framework](apple-framework.md) -- for -- Swift & Objective-C projects
+      * -> compiled Kotlin code -- can be easily -- included | EXISTING projects / written in
+        * C,
+        * C++,
+        * Swift,
+        * Objective-C,
+        * other languages 
+    * interoperability -- to use directly -- existing libraries | Kotlin/Native
+      * static or dynamic [C libraries](native-c-interop.md)
+      * C, [Swift, and Objective-C](native-objc-interop.md) frameworks
+  * 's [libraries](native-platform-libs.md)
+    * help share Kotlin code -- between -- projects, POSIX, gzip, OpenGL, Metal, Foundation, and many other popular libraries and Apple frameworks
 
 ## Sharing code between platforms
 
-[Kotlin Multiplatform](multiplatform.md) helps share common code across multiple platforms, including Android, iOS, JVM,
-web, and native. Multiplatform libraries provide the necessary APIs for common Kotlin code and allow writing shared parts
-of projects in Kotlin all in one place.
-
-You can use the [Get started with Kotlin Multiplatform](multiplatform-get-started.md) tutorial
-to create applications and share business logic between iOS and Android. To share UIs among iOS, Android, desktop, and web,
-try [Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/),
-JetBrains' declarative UI framework based on Kotlin and [Jetpack Compose](https://developer.android.com/jetpack/compose).
+* see
+  * [Kotlin Multiplatform](/docs/topics/multiplatform/multiplatform.md)
+  * [Get started with Kotlin Multiplatform](/docs/topics/multiplatform/multiplatform-get-started.md)
+  * [Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/),
 
 ## How to get started
 
