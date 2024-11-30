@@ -18,6 +18,7 @@
      1. NOT include any implementation -- Reason: 🧠implementation | platform-specific code 🧠 --
   2. Mark this construct with the `expect` keyword
      1. 👀== _expected declaration_ 👀
+     2. ❌can NOT have a body❌
   3. | EACH platform-specific source set's SAME package, declare the same construct & mark it with the `actual`
      keyword
      1. 👀== _actual declaration_ 👀
