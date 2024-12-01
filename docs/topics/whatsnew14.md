@@ -2,12 +2,11 @@
 
 _[Released: 17 August 2020](releases.md#release-details)_
 
-In Kotlin 1.4.0, we ship a number of improvements in all of its components, with the [focus on quality and performance](https://blog.jetbrains.com/kotlin/2020/08/kotlin-1-4-released-with-a-focus-on-quality-and-performance/).
-Below you will find the list of the most important changes in Kotlin 1.4.0.
+* | Kotlin 1.4.0,
+  * improvements | ALL of its components
+  * [focus on quality and performance](https://blog.jetbrains.com/kotlin/2020/08/kotlin-1-4-released-with-a-focus-on-quality-and-performance/)
 
 ## Language features and improvements
-
-Kotlin 1.4.0 comes with a variety of different language features and improvements. They include:
 
 * [SAM conversions for Kotlin interfaces](#sam-conversions-for-kotlin-interfaces)
 * [Explicit API mode for library authors](#explicit-api-mode-for-library-authors)
@@ -18,6 +17,7 @@ Kotlin 1.4.0 comes with a variety of different language features and improvement
 
 ### SAM conversions for Kotlin interfaces
 
+* TODO:
 Before Kotlin 1.4.0, you could apply SAM (Single Abstract Method) conversions only [when working with Java methods and Java
 interfaces from Kotlin](java-interop.md#sam-conversions). From now on, you can use SAM conversions for Kotlin interfaces as well.
 To do so, mark a Kotlin interface explicitly as functional with the `fun` modifier.
@@ -42,75 +42,64 @@ fun main() {
 
 ### Explicit API mode for library authors
 
-Kotlin compiler offers _explicit API mode_ for library authors. In this mode, the compiler performs additional checks that
-help make the library's API clearer and more consistent. It adds the following requirements for declarations exposed
-to the library's public API:
+* _explicit API mode_
+  * Kotlin compiler's mode -- for -- library authors
+  * -> compiler -- performs -- additional checks / library's API clearer and more consistent
+    * -> 👀new requirements for declarations / exposed | library's public API👀
+      * if the default visibility -- exposes the -- declarations to the public API -> required visibility for declarations
+        * -> ensure / NO declarations -- are exposed unintentionally, to the -- public API
+      * explicit type specifications for properties & functions / -- are exposed to the -- public API
+        * -> ensure / API users -- are aware of the -- types of API members
+    * declarations / excluded -- from such -- checks
+      * primary constructors
+      * properties of data classes
+      * property getters and setters
+      * `override` methods 
+    * ONLY | production sources of a module 
+  * \+ other configurations
+    * if + _strict_ mode -> explicit APIs -- can produce -- errors
+    * if + _warning_ mode -> explicit APIs -- can produce -- warnings
 
-* Visibility modifiers are required for declarations if the default visibility exposes them to the public API.
-This helps ensure that no declarations are exposed to the public API unintentionally.
-* Explicit type specifications are required for properties and functions that are exposed to the public API.
-This guarantees that API users are aware of the types of API members they use.
+* way to configure
+  * | your Gradle build script
 
-Depending on your configuration, these explicit APIs can produce errors (_strict_ mode) or warnings (_warning_ mode).
-Certain kinds of declarations are excluded from such checks for the sake of readability and common sense:
+    ```kotlin
+    kotlin {    
+        // for strict mode
+        explicitApi() 
+        // or
+        explicitApi = ExplicitApiMode.Strict
+        
+        // for warning mode
+        explicitApiWarning()
+        // or
+        explicitApi = ExplicitApiMode.Warning
+    }
+    ```
 
-* primary constructors
-* properties of data classes
-* property getters and setters
-* `override` methods
+    ```groovy
+    kotlin {    
+        // for strict mode
+        explicitApi() 
+        // or
+        explicitApi = 'strict'
+        
+        // for warning mode
+        explicitApiWarning()
+        // or
+        explicitApi = 'warning'
+    }
+    ```
 
-Explicit API mode analyzes only the production sources of a module.
+  * -- via -- CL compiler
 
-To compile your module in the explicit API mode, add the following lines to your Gradle build script:
-
-<tabs group="build-script">
-<tab title="Kotlin" group-key="kotlin">
-
-```kotlin
-kotlin {    
-    // for strict mode
-    explicitApi() 
-    // or
-    explicitApi = ExplicitApiMode.Strict
-    
-    // for warning mode
-    explicitApiWarning()
-    // or
-    explicitApi = ExplicitApiMode.Warning
-}
-```
-
-</tab>
-<tab title="Groovy" group-key="groovy">
-
-```groovy
-kotlin {    
-    // for strict mode
-    explicitApi() 
-    // or
-    explicitApi = 'strict'
-    
-    // for warning mode
-    explicitApiWarning()
-    // or
-    explicitApi = 'warning'
-}
-```
-
-</tab>
-</tabs>
-
-When using the command-line compiler, switch to explicit API mode by adding  the `-Xexplicit-api` compiler option
-with the value `strict` or `warning`.
-
-```bash
--Xexplicit-api={strict|warning}
-```
-
-[Find more details about the explicit API mode in the KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/explicit-api-mode.md). 
+    ```bash
+    ... -Xexplicit-api={strict|warning}
+    ```
+* see [more details | KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/explicit-api-mode.md) 
 
 ### Mixing named and positional arguments
-
+* TODO:
 In Kotlin 1.3, when you called a function with [named arguments](functions.md#named-arguments), you had to place all the
 arguments without names (positional arguments) before the first named argument. For example, you could call `f(1, y = 2)`, 
 but you couldn't call `f(x = 1, 2)`.
