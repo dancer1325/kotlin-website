@@ -1,20 +1,26 @@
 [//]: # (title: Coroutines)
 
-Asynchronous or non-blocking programming is an important part of the development landscape. When creating server-side,
-desktop, or mobile applications, it's important to provide an experience that is not only fluid from the user's perspective,
-but also scalable when needed.
+* Asynchronous or non-blocking programming
+  * use cases, applications,
+    * server-side,
+    * desktop,
+    * mobile 
+  * allow
+    * fluid user experience,
+    * scalable solution
+  * 👀way to address it | Kotlin 👀
+    * provide [coroutine](https://en.wikipedia.org/wiki/Coroutine) support | language level
+    * delegate MOST of the functionality -- to -- libraries
 
-Kotlin solves this problem in a flexible way by providing [coroutine](https://en.wikipedia.org/wiki/Coroutine) support
-at the language level and delegating most of the functionality to libraries.
-
-In addition to opening the doors to asynchronous programming, coroutines also provide a wealth of other possibilities,
-such as concurrency and actors.
+* coroutines
+  * enable
+    * async
+    * concurrency
+    * OTHER actors
 
 ## How to start
 
-New to Kotlin? Take a look at the [Getting started](getting-started.md) page.
-
-### Documentation
+### Documentation | [kotlinx.coroutines](https://github.com/dancer1325/kotlinx.coroutines)
 
 - [Coroutines guide](coroutines-guide.md)
 - [Basics](coroutines-basics.md)
@@ -25,6 +31,7 @@ New to Kotlin? Take a look at the [Getting started](getting-started.md) page.
 
 ### Tutorials
 
+* TODO:
 - [Asynchronous programming techniques](async-programming.md)
 - [Introduction to coroutines and channels](coroutines-and-channels.md)
 - [Debug coroutines using IntelliJ IDEA](debug-coroutines-with-idea.md)
