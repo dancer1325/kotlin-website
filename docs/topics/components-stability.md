@@ -1,21 +1,37 @@
 [//]: # (title: Stability of Kotlin components)
 
-The Kotlin language and toolset are divided into many components such as the compilers for the JVM, JS and Native targets, the Standard Library, various accompanying tools and so on.
-Many of these components were officially released as **Stable** which means that they are evolved in the backward-compatible way following the [principles](kotlin-evolution.md) of _Comfortable Updates_ and _Keeping the Language Modern_.
-Among such stable components are, for example, the Kotlin compiler for the JVM, the Standard Library, and Coroutines.
-
-Following the _Feedback Loop_ principle we release many things early for the community to try out, so a number of components are not yet released as **Stable**.
-Some of them are very early stage, some are more mature. We mark them as **Experimental**, **Alpha** or **Beta** depending on how quickly each component is evolving and how much risk the users are taking when adopting it. 
+* 👀Kotlin language & toolset -- are divided into -- MANY components 👀
+  * == 
+    * compilers for the 
+      * JVM,
+      * JS
+      * Native targets,
+    * Standard Library,
+    * accompanying tools
+  * SOME components 
+    * 💡-- were officially released as -- Stable 💡
+      * == backward-compatible / -- follow -- [Kotlin evolution principles](kotlin-evolution.md)
+      * _Examples:_ 
+        * Kotlin compiler for the JVM,
+        * Standard Library,
+        * Coroutines
+    * ⚠️-- are NOT YET -- Stable ⚠️
+      * / -- follow the -- [Feedback Loop principle](kotlin-evolution.md)
+      * Reason: 🧠 release earlier -- for the -- community 🧠
+      * evolution stages NOT stable
+        * Experimental
+        * Alpha
+        * Beta 
 
 ## Stability levels explained
 
-Here's a quick guide to these stability levels and their meaning:
+* **Experimental**
+  * == "try it ONLY | toy projects"
+    * Reason: 🧠if it doesn't work out -> we MAY drop it any minute 🧠
 
-**Experimental** means "try it only in toy projects":
-  * We are just trying out an idea and want some users to play with it and give feedback. If it doesn't work out, we may drop it any minute.
-
-**Alpha** means "use at your own risk, expect migration issues": 
-  * We intend to productize this idea, but it hasn't reached its final shape yet.
+* **Alpha**
+  * TODO: means "use at your own risk, expect migration issues": 
+    * We intend to productize this idea, but it hasn't reached its final shape yet.
 
 **Beta** means "you can use it, we'll do our best to minimize migration issues for you": 
   * It's almost done, user feedback is especially important now.
