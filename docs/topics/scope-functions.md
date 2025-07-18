@@ -1,264 +1,132 @@
 [//]: # (title: Scope functions)
 
-The Kotlin standard library contains several functions whose sole purpose is to execute a block of code within the context
-of an object. When you call such a function on an object with a [lambda expression](lambdas.md) provided, it forms a
-temporary scope. In this scope, you can access the object without its name. Such functions are called _scope functions_.
-There are five of them: [`let`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/let.html), [`run`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/run.html)
-, [`with`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/with.html), [`apply`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/apply.html)
-, and [`also`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/also.html).
+* Kotlin standard library
+  * exist functions / 👀1! purpose == execute a block of code | object's context👀
 
-Basically, these functions all perform the same action: execute a block of code on an object. What's different is how 
-this object becomes available inside the block and what the result of the whole expression is.
+* ⭐️scope functions⭐️
+  * := function | object -- with a -- [lambda expression](lambdas.md) 
+  * == 👀temporary scope👀
+  * allows
+    * accessing the object -- WITHOUT -- its name
+      * == 
+        * 👀avoid declaring variable👀
+        * code / MORE concise & readable
+          * 
+  * ❌NOT add NEW technical capability❌
+  * recommendations
+    * ❌NOT overuse❌
+    * avoid nesting scope functions
+      * Reason:🧠get confused about the CURRENT context object & value of `this` or `it`🧠
+  * built-in
+    * [`let`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/let.html)
+    * [`run`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/run.html)
+    * [`with`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/with.html)
+    * [`apply`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/apply.html)
+    * [`also`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/also.html)
+  * steps / perform
+    * 👀execute a block of code | object👀
 
-Here's a typical example of how to use a scope function:
+## how to choose the scope function?
 
-```kotlin
-data class Person(var name: String, var age: Int, var city: String) {
-    fun moveTo(newCity: String) { city = newCity }
-    fun incrementAge() { age++ }
-}
+| Function                                                                      | Object reference | Return value   | Is extension function                                            |
+|-------------------------------------------------------------------------------|------------------|----------------|------------------------------------------------------------------|
+| [`let`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/let.html)         | `it`             | Lambda result  | Yes                                                              |
+| [`run`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/run.html)         | `this`           | Lambda result  | Yes                                                              |
+| [`run`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/run.html)         | -                | Lambda result  | ❌NO❌ <br/> Reason:🧠called WITHOUT the context object🧠          |
+| [`with`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/with.html)       | `this`           | Lambda result  | ❌NO❌ <br/> Reason:🧠context object is taken -- as an -- argument |
+| [`apply`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/apply.html)     | `this`           | Context object | Yes                                                              |
+| [`also`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/also.html)       | `it`             | Context object | Yes                                                              |
 
-fun main() {
-//sampleStart
-    Person("Alice", 20, "Amsterdam").let {
-        println(it)
-        it.moveTo("London")
-        it.incrementAge()
-        println(it)
-    }
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3"}
+* depends -- on --
+  * your intent
+  * your project
 
-If you write the same without `let`, you'll have to introduce a new variable and repeat its name whenever you use it. 
+* short guide for choosing
+  * `let`
+    * execute a lambda | non-nullable objects
+    * introduce an expression -- as a -- variable | local scope
+  * `apply`
+    * object configuration 
+  * `run`
+    * object configuration & computing the result
+    * running statements / expression is required == non-extension
+  * `also`
+    * ADDITIONAL effects 
+  * `with`
+    * grouping function calls | object
 
-```kotlin
-data class Person(var name: String, var age: Int, var city: String) {
-    fun moveTo(newCity: String) { city = newCity }
-    fun incrementAge() { age++ }
-}
+## DIFFERENCES BETWEEN scope functions
 
-fun main() {
-//sampleStart
-    val alice = Person("Alice", 20, "Amsterdam")
-    println(alice)
-    alice.moveTo("London")
-    alice.incrementAge()
-    println(alice)
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3"}
+* way / they refer -- to the -- context object
+* return value
 
-Scope functions don't introduce any new technical capabilities, but they can make your code more concise and readable.
+### Context object: `this` or `it`
 
-Due to the many similarities between scope functions, choosing the right one for your use case can be tricky. The 
-choice mainly depends on your intent and the consistency of use in your project. Below, we provide detailed descriptions
-of the differences between scope functions and their conventions.
-
-## Function selection
-
-To help you choose the right scope function for your purpose, we provide this table that summarizes the key differences 
-between them.
-
-| Function |Object reference|Return value|Is extension function|
-|---|---|---|---|
-| [`let`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/let.html) |`it`|Lambda result|Yes|
-| [`run`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/run.html) |`this`|Lambda result|Yes|
-| [`run`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/run.html) |-|Lambda result|No: called without the context object|
-| [`with`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/with.html) |`this`|Lambda result|No: takes the context object as an argument.|
-| [`apply`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/apply.html) |`this`|Context object|Yes|
-| [`also`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/also.html) |`it`|Context object|Yes|
-
-Detailed information about these functions is provided in the dedicated sections below.
-
-Here is a short guide for choosing scope functions depending on the intended purpose:
-
-* Executing a lambda on non-nullable objects: `let`
-* Introducing an expression as a variable in local scope: `let`
-* Object configuration: `apply`
-* Object configuration and computing the result: `run`
-* Running statements where an expression is required: non-extension `run`
-* Additional effects: `also`
-* Grouping function calls on an object: `with`
-
-The use cases of different scope functions overlap, so you can choose which functions to use based on the specific 
-conventions used in your project or team.
-
-Although scope functions can make your code more concise, avoid overusing them: it can make your code hard to read and 
-lead to errors. We also recommend that you avoid nesting scope functions and be careful when chaining them because it's 
-easy to get confused about the current context object and value of `this` or `it`.
-
-## Distinctions
-
-Because scope functions are similar in nature, it's important to understand the differences between them.
-There are two main differences between each scope function: 
-* The way they refer to the context object.
-* Their return value.
-
-### Context object: this or it
-
-Inside the lambda passed to a scope function, the context object is available by a short reference instead of its 
-actual name. Each scope function uses one of two ways to reference the context object: as a lambda [receiver](lambdas.md#function-literals-with-receiver)
-(`this`) or as a lambda argument (`it`). Both provide the same capabilities, so we describe the pros and cons of each
-for different use cases and provide recommendations for their use.
-
-```kotlin
-fun main() {
-    val str = "Hello"
-    // this
-    str.run {
-        println("The string's length: $length")
-        //println("The string's length: ${this.length}") // does the same
-    }
-
-    // it
-    str.let {
-        println("The string's length is ${it.length}")
-    }
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3"}
+* | scope function's lambda passed
+  * 👀ways to refer the context object👀
+    * by a short reference
+      * ⚠️EXIST 1! / -- depends on -- [EACH scope function](#how-to-choose-the-scope-function)⚠️
+      * ways
+        * `this`
+          * == lambda [receiver](lambdas.md#function-literals-with-receiver)
+        * `it`
+          * == lambda argument 
+    * by its actual name
 
 #### this
 
-`run`, `with`, and `apply` reference the context object as a lambda [receiver](lambdas.md#function-literals-with-receiver) - 
-by keyword `this`. Hence, in their lambdas, the object is available as it would be in ordinary class functions. 
+* [lambda receiver](lambdas.md#function-literals-with-receiver)
+  * == object is available -- as -- it's | ordinary class functions 
+* allow
+  * referring -- to the -- context object 
+  * | access receiver object's members,
+    * 👀it can be omitted👀
 
-In most cases, you can omit `this` when accessing the members of the receiver object, making the code shorter. On the
- other hand, if `this` is omitted, it can be hard to distinguish between the receiver members and external objects or 
-functions. So having the context object as a receiver (`this`) is recommended for lambdas that mainly operate on the 
-object's members by calling its functions or assigning values to properties.
-
-```kotlin
-data class Person(var name: String, var age: Int = 0, var city: String = "")
-
-fun main() {
-//sampleStart
-    val adam = Person("Adam").apply { 
-        age = 20                       // same as this.age = 20
-        city = "London"
-    }
-    println(adam)
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3"}
+* ALLOWED |
+  * `run`
+  * `with`
+  * `apply`
 
 #### it
 
-In turn, `let` and `also` reference the context object as a lambda [argument](lambdas.md#lambda-expression-syntax). If 
-the argument name is not specified, the object is accessed by the implicit default name `it`. `it` is shorter than 
-`this` and expressions with `it` are usually easier to read. 
+* [lambda argument](lambdas.md#lambda-expression-syntax)
 
-However, when calling the object's functions or properties, you don't have the object available implicitly like `this`. 
-Hence, accessing the context object via `it` is better when the object is mostly used as an argument in function calls. 
-`it` is also better if you use multiple variables in the code block.
+* ALLOWED |
+  * `let`
+  * `also`
 
-```kotlin
-import kotlin.random.Random
-
-fun writeToLog(message: String) {
-    println("INFO: $message")
-}
-
-fun main() {
-//sampleStart
-    fun getRandomInt(): Int {
-        return Random.nextInt(100).also {
-            writeToLog("getRandomInt() generated value $it")
-        }
-    }
-    
-    val i = getRandomInt()
-    println(i)
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3"}
-
-The example below demonstrates referencing the context object as a lambda argument with argument name: `value`.
-
-```kotlin
-import kotlin.random.Random
-
-fun writeToLog(message: String) {
-    println("INFO: $message")
-}
-
-fun main() {
-//sampleStart
-    fun getRandomInt(): Int {
-        return Random.nextInt(100).also { value ->
-            writeToLog("getRandomInt() generated value $value")
-        }
-    }
-    
-    val i = getRandomInt()
-    println(i)
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3"}
+* use cases
+  * object is used as function calls' argument
+  * MULTIPLE variables | code block
+* NOT recommended use cases
+  * | call the object's functions or properties 
+    * Reason:🧠NOT have the object available implicitly (_Example:_ like `this`)🧠
 
 ### Return value
 
-Scope functions differ by the result they return:
-* `apply` and `also` return the context object.
-* `let`, `run`, and `with` return the lambda result.
+* `apply` & `also`
+  * return the context object
+* `let`, `run`, & `with`
+  * return the lambda result
 
-You should consider carefully what return value you want based on what you want to do next in your code. This helps you 
-to choose the best scope function to use.
+* choose -- based on -- what you want to do | your code
 
 #### Context object 
 
-The return value of `apply` and `also` is the context object itself. Hence, they can be included into call chains as
-_side steps_: you can continue chaining function calls on the same object, one after another.  
+* |
+  * `apply`
+  * `also`
+* allows
+  * 👀using | call chains👀
+    * == side steps
 
-```kotlin
-fun main() {
-//sampleStart
-    val numberList = mutableListOf<Double>()
-    numberList.also { println("Populating the list") }
-        .apply {
-            add(2.71)
-            add(3.14)
-            add(1.0)
-        }
-        .also { println("Sorting the list") }
-        .sort()
-//sampleEnd
-    println(numberList)
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3"}
-
-They also can be used in return statements of functions returning the context object.
-
-```kotlin
-import kotlin.random.Random
-
-fun writeToLog(message: String) {
-    println("INFO: $message")
-}
-
-fun main() {
-//sampleStart
-    fun getRandomInt(): Int {
-        return Random.nextInt(100).also {
-            writeToLog("getRandomInt() generated value $it")
-        }
-    }
-    
-    val i = getRandomInt()
-//sampleEnd
-}
-```
-{kotlin-runnable="true" kotlin-min-compiler-version="1.3"}
+* uses
+  * | call chains
+  * functions' return statements
 
 #### Lambda result
 
+* TODO:
 `let`, `run`, and `with` return the lambda result. So you can use them when assigning the result to a variable, chaining
 operations on the result, and so on.
 
