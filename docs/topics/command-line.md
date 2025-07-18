@@ -15,19 +15,17 @@ Every Kotlin release ships with a standalone version of the compiler. You can do
 ## Install the compiler
 
 ### Manual install
+* steps
+  1. Download the latest version (`kotlin-compiler-%kotlinVersion%.zip`) from [GitHub Releases](%kotlinLatestUrl%).
+  2. Unzip | directory + OPTIONALLY add the `bin` | path
+     3. Reason: 🧠 contains scripts / allows compiling & run Kotlin | Windows, macOS, and Linux. 🧠
 
-To install the Kotlin compiler manually:
+* | Windows, recommended option
 
-1. Download the latest version (`kotlin-compiler-%kotlinVersion%.zip`) from [GitHub Releases](%kotlinLatestUrl%).
-2. Unzip the standalone compiler into a directory and optionally add the `bin` directory to the system path.
-The `bin` directory contains the scripts needed to compile and run Kotlin on Windows, macOS, and Linux.
-
-> If you want to use the Kotlin command-line compiler on Windows, we recommend installing it manually.
-> 
 {type="note"}
 
 ### SDKMAN!
-
+* TODO:
 An easier way to install Kotlin on UNIX-based systems, such as macOS, Linux, Cygwin, FreeBSD, and Solaris, is
 [SDKMAN!](https://sdkman.io). It also works in Bash and ZSH shells. [Learn how to install SDKMAN!](https://sdkman.io/install).
 
@@ -38,8 +36,6 @@ sdk install kotlin
 ```
 
 ### Homebrew
-
-Alternatively, on macOS you can install the compiler via [Homebrew](https://brew.sh/):
 
 ```bash
 brew update

@@ -1,7 +1,10 @@
-data class User(val name: String, val id: Int)
+data class User(var name: String, val id: Int)
 
 fun main() {
     val user = User("Alex", 1)
+    val userTwo = User(name = "Alfred", 2)
+    val secondUser = User("Alex", 1)
+    val thirdUser = User("Max", 2)
 
     // Automatically uses toString() function so that output is easy to read
     println("println - $user")
@@ -11,6 +14,7 @@ fun main() {
     var userExactCopy = user.copy()
     println("userExactCopy - $userExactCopy")
     println("userExactCopy == user - ${userExactCopy == user}") // Identified as the same
+    println("userExactCopy.equals(user) - ${userExactCopy.equals(user)}") // Identified as the same
 
     // Creates a copy of user with name: "Max"
     val userCopyeChangingName = user.copy("Max")
@@ -25,6 +29,7 @@ fun main() {
 
     // Adjusting a exact instance's property
     userExactCopy.name = "Alfredo"
+    //userExactCopy.id = 4          // NOT valid to modify, since it's val
     println("userExactCopy - $userExactCopy")		// Property adjusted
     println("userExactCopy == user - ${userExactCopy == user}")		// Just the copy instance's property has been changed
 }

@@ -10,3 +10,5 @@
   * create the application
 * `java -jar outputPathOrName.jar`
   * run the application
+* `java -jar outputPathOrName.jar argument1 argument2 ..`
+  * run the application / pass arguments to the main program

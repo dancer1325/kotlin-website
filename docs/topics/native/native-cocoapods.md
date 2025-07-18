@@ -1,97 +1,77 @@
 [//]: # (title: CocoaPods overview and setup)
 
-Kotlin/Native provides integration with the [CocoaPods dependency manager](https://cocoapods.org/). You can add dependencies
-on Pod libraries as well as use a multiplatform project with native targets as a CocoaPods dependency.
+* Kotlin/Native
+  * has an integration -- with the -- [CocoaPods dependency manager](https://cocoapods.org/)
 
-You can manage Pod dependencies directly in IntelliJ IDEA or Android Studio and enjoy all the additional features such as
-code highlighting and completion. You can build the whole Kotlin project with Gradle and not ever have to switch to Xcode. 
+* CocoaPods dependency manager
+  * uses
+    * add dependencies | Pod libraries
+    * multiplatform project's native targets -- as a -- CocoaPods dependency
 
-You only need Xcode if you want to change Swift/Objective-C code or run your application on an Apple simulator or device.
-To work correctly with Xcode, you should [update your Podfile](#update-podfile-for-xcode). 
+* if you manage Pod dependencies | (directly) IntelliJ IDEA or Android Studio -> you can 
+  * enjoy ALL the additional features (code highlighting and completion)
+  * build the WHOLE Kotlin project -- via -- Gradle / WITHOUT using Xcode
+    * ONLY necessity to use Xcode
+      * change Swift/Objective-C code
+      * run your application | Apple simulator or device
+      * recommendations
+        * [update your Podfile](#update-podfile-for-xcode) 
 
-Depending on your project and purposes, you can add dependencies between [a Kotlin project and a Pod library](native-cocoapods-libraries.md)
-as well as [a Kotlin Gradle project and an Xcode project](native-cocoapods-xcode.md).
+* dependencies can be added -- based on -- your project and purposes
+  * between 
+    * [Kotlin project -- & a -- Pod library](native-cocoapods-libraries.md)
+    * [Kotlin Gradle project and an Xcode project](native-cocoapods-xcode.md)
 
 ## Set up an environment to work with CocoaPods
 
-Install the [CocoaPods dependency manager](https://cocoapods.org/) using the installation tool of your choice:
+* Install the [CocoaPods dependency manager](https://cocoapods.org/)
+  * ways
+    * -- via --
+      * RVM
+        1. TODO: Install [Ruby version manager](https://rvm.io/rvm/install) in case you don't have it yet.
+        2. Install Ruby. You can choose a specific version:
 
-<tabs>
-<tab title="RVM">
+            ```bash
+            rvm install ruby 3.0.0
+            ```
 
-1. Install [Ruby version manager](https://rvm.io/rvm/install) in case you don't have it yet.
-2. Install Ruby. You can choose a specific version:
+        3. Install CocoaPods:
 
-    ```bash
-    rvm install ruby 3.0.0
-    ```
+            ```bash
+            sudo gem install -n /usr/local/bin cocoapods
+            ```
+      * Rbenv
+        1. Install [rbenv from GitHub](https://github.com/rbenv/rbenv#installation) in case you don't have it yet.
+        2. Install Ruby. You can choose a specific version:
 
-3. Install CocoaPods:
+            ```bash
+            rbenv install 3.0.0
+            ```
 
-    ```bash
-    sudo gem install -n /usr/local/bin cocoapods
-    ```
+        3. Set the Ruby version as local for a particular directory or global for the whole machine:
 
-</tab>
-<tab title="Rbenv">
+            ```bash
+            rbenv global 3.0.0
+            ```
+                
+        4. Install CocoaPods:
 
-1. Install [rbenv from GitHub](https://github.com/rbenv/rbenv#installation) in case you don't have it yet.
-2. Install Ruby. You can choose a specific version:
-
-    ```bash
-    rbenv install 3.0.0
-    ```
-
-3. Set the Ruby version as local for a particular directory or global for the whole machine:
-
-    ```bash
-    rbenv global 3.0.0
-    ```
-    
-4. Install CocoaPods:
-
-    ```bash
-    sudo gem install -n /usr/local/bin cocoapods
-    ```
-
-</tab>
-<tab title="Default Ruby">
-
-> This way of installation doesn't work on devices with Apple M chips. Use other tools to set up an environment to work
-> with CocoaPods.
->
-{type="note"}
-
-You can install the CocoaPods dependency manager with the default Ruby that should be available on macOS:
-
-```bash
-sudo gem install cocoapods
-```
-
-</tab>
-<tab title="Homebrew">
-
-> The CocoaPods installation with Homebrew might result in compatibility issues.
->
-> When installing CocoaPods, Homebrew also installs the [Xcodeproj](https://github.com/CocoaPods/Xcodeproj) gem that is
-> necessary for working with Xcode.
-> However, it cannot be updated with Homebrew, and if the installed Xcodeproj doesn't support the newest Xcode version yet,
-> you'll get errors with Pod installation. If this is the case, try other tools to install CocoaPods.
->
-{type="warning"}
-
-1. Install [Homebrew](https://brew.sh/) in case you don't have it yet.
-
-2. Install CocoaPods:
-
-    ```bash
-    brew install cocoapods
-    ```
-
-</tab>
-</tabs>
-
-If you encounter problems during the installation, check the [Possible issues and solutions](#possible-issues-and-solutions) section.
+            ```bash
+            sudo gem install -n /usr/local/bin cocoapods
+            ```
+      * Default Ruby
+        * NOT valid | Apple M chips
+        * 
+          ```bash
+          sudo gem install cocoapods
+          ```
+      * Homebrew
+        * POSSIBLE compatibility issues
+          * Reason: 🧠 installs the [Xcodeproj](https://github.com/CocoaPods/Xcodeproj) gem / can NOT be updated -- via -- Homebrew & if the installed Xcodeproj does NOT support the newest Xcode version yet -> failure 🧠
+        1.
+            ```bash
+            brew install cocoapods
+            ```
 
 ## Add and configure Kotlin CocoaPods Gradle plugin
 

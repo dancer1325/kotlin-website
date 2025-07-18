@@ -1,5 +1,6 @@
 [//]: # (title: Enum classes)
 
+* TODO: Check notion notes
 The most basic use case for enum classes is the implementation of type-safe enums:
 
 ```kotlin

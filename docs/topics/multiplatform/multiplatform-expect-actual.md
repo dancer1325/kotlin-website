@@ -1,60 +1,67 @@
 [//]: # (title: Expected and actual declarations)
 
-Expected and actual declarations allow you to access platform-specific APIs from Kotlin Multiplatform modules.
-You can provide platform-agnostic APIs in the common code.
+* goal
+  * language mechanism of expected and actual declarations
 
-> This article describes the language mechanism of expected and actual declarations. For general recommendations on
-> different ways to use platform-specific APIs, see [Use platform-specific APIs](https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-connect-to-apis.html).
->
-{type="tip"}
+* Expected and actual declarations
+  * allow 
+    * from Kotlin Multiplatform modules -- access -- platform-specific APIs
+      * == use platform-agnostic APIs | common code
 
-## Rules for expected and actual declarations
+* see [Use platform-specific APIs](https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-connect-to-apis.html)
 
-To define expected and actual declarations, follow these rules:
+## Rules -- for -- defining expected and actual declarations
 
-1. In the common source set, declare a standard Kotlin construct. This can be a function, property, class, interface,
-   enumeration, or annotation.
-2. Mark this construct with the `expect` keyword. This is your _expected declaration_. These declarations can be used in the
-   common code, but shouldn't include any implementation. Instead, the platform-specific code provides this implementation.
-3. In each platform-specific source set, declare the same construct in the same package and mark it with the `actual`
-   keyword. This is your _actual declaration_, which typically contains an implementation using platform-specific libraries.
+* rules for defining
+  1. | common source set, declare a standard Kotlin construct (function, property, class, interface,
+     enumeration, or annotation)
+     1. NOT include any implementation -- Reason: 🧠implementation | platform-specific code 🧠 --
+  2. Mark this construct with the `expect` keyword
+     1. 👀== _expected declaration_ 👀
+     2. ❌can NOT have a body❌
+  3. | EACH platform-specific source set's SAME package, declare the same construct & mark it with the `actual`
+     keyword
+     1. 👀== _actual declaration_ 👀
+     2. implementation -- via -- platform-specific libraries
+  4. | intermediate source sets / shared between different target platforms, declare `actual` declarations 
 
-During compilation for a specific target, the compiler tries to match each _actual_ declaration it finds with the
-corresponding _expected_ declaration in the common code. The compiler ensures that:
+* intermediate source set
+  * == intermediate between shared source set -- & -- platform source set 
+  * contain
+    * actual declarations
+  * _Example:_ `/iosMain` == intermediate source set shared between the `iosX64Main`, `iosArm64Main`,
+-- & -- `iosSimulatorArm64Main`platform source sets
 
-* Every expected declaration in the common source set has a matching actual declaration in every platform-specific
-  source set.
-* Expected declarations don't contain any implementation.
-* Every actual declaration shares the same package as the corresponding expected declaration, such as `org.mygroup.myapp.MyType`.
+* IDE
+  * highlight if
+    * Missing declarations
+    * Expected declarations / contain implementations
+    * Mismatched declaration signatures
+    * Declarations | different packages
+  * enable navigate from expected -- to -- actual declarations
 
-While generating the resulting code for different platforms, the Kotlin compiler merges the expected and actual
-declarations that correspond to each other. It generates one declaration with its actual implementation for each platform.
-Every use of the expected declaration in the common code calls the correct actual declaration in the
-resulting platform code.
+    ![IDE navigation from expected to actual declarations](/docs/images/multiplatform/expect-actual-gutter.png)
 
-You can declare actual declarations when you use intermediate source sets shared between different target platforms.
-Consider, for example, `iosMain` as an intermediate source set shared between the `iosX64Main`, `iosArm64Main`,
-and `iosSimulatorArm64Main`platform source sets. Only `iosMain` typically contains the actual declarations and not the
-platform source sets. The Kotlin compiler will then use these actual declarations to produce the resulting code for the
-corresponding platforms.
-
-The IDE assists with common issues, including:
-
-* Missing declarations
-* Expected declarations that contain implementations
-* Mismatched declaration signatures
-* Declarations in different packages
-
-You can also use the IDE to navigate from expected to actual declarations. Select the gutter icon to view actual
-declarations or use [shortcuts](https://www.jetbrains.com/help/idea/navigating-through-the-source-code.html#go_to_implementation).
-
-![IDE navigation from expected to actual declarations](expect-actual-gutter.png){width=500}
+* how does it work?
+  * | compilation 
+    * / specific target,
+      * compiler tries to match EACH _actual_ declaration -- with the corresponding -- _expected_ declaration | common code / ensures that
+        * EVERY expected declaration | common source set -- has a matching -- actual declaration | EVERY platform-specific source set
+        * Expected declarations do NOT contain any implementation
+        * EVERY actual declaration's package == corresponding expected declaration's package
+    * 👀Kotlin compiler -- merges the -- expected & actual declarations / correspond to each other 👀
+      * -> 💡generates 1 declaration with its actual implementation / each platform 💡
+      * EVERY use of the expected declaration | common code -- calls the -- correct actual declaration |
+resulting platform code
 
 ## Different approaches for using expected and actual declarations
 
-Let's explore the different options of using the expect/actual mechanism to solve the problem of accessing
-platform APIs while still providing a way to work with them in the common code.
+* goal
+  * options of using the expect/actual mechanism -- to --
+    * access platform APIs &
+    * work with them | common code
 
+* TODO:
 Consider a Kotlin Multiplatform project where you need to implement the `Identity` type, which should contain the user's
 login name and the current process ID. The project has the `commonMain`, `jvmMain`, and `nativeMain` source sets to make
 the application work on the JVM and in native environments like iOS.

@@ -31,7 +31,7 @@ fun main() {
     val mutableShapesInferType = mutableListOf("triangle", "square", "circle")
     println("mutableShapesInferType ${mutableShapesInferType::class.simpleName}")
     println("mutableShapesInferType ${mutableShapesInferType::class.java.typeName}")
-    // 2. Although it's declared as var, you can add entries
+    // 2. Although it's declared as val, you can add entries
     mutableShapesInferType.add("rectangle")
     println("mutableShapesInferType.get(3) ${mutableShapesInferType.get(3)}")
     // 3. Declaring type
@@ -40,7 +40,7 @@ fun main() {
     println("mutableShapesDeclaredType ${mutableShapesDeclaredType::class.java.typeName}")
     // 4. Read-only view of mutable list
     val mutableShapesCastedToReadOnly: List<String> = mutableShapesDeclaredType
-    //mutableShapesCastedToReadOnly.add("star") // Compilation error
+    //mutableShapesCastedToReadOnly.add("star") // Compilation error, because it's indeed read-only
     // 5. Functions
     // 5.1 .remove()                    -- It can be applied now, because it's mutable --
     println("mutableShapesDeclaredType.count() ${mutableShapesDeclaredType.count()}")

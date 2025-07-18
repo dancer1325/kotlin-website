@@ -1,5 +1,9 @@
 [//]: # (title: Create an app using C Interop and libcurl – tutorial)
 
+* goal
+  * how to create a native HTTP client & interoperate with C libraries
+
+* TODO:
 This tutorial demonstrates how to use IntelliJ IDEA to create a command-line application. You'll learn how to create
 a simple HTTP client that can run natively on specified platforms using Kotlin/Native and the `libcurl` library.
 

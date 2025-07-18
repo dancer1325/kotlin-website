@@ -1,17 +1,22 @@
 [//]: # (title: kapt compiler plugin)
 
-> kapt is in maintenance mode. We are keeping it up-to-date with recent Kotlin and Java releases 
-> but have no plans to implement new features. Please use the [Kotlin Symbol Processing API (KSP)](ksp-overview.md) for annotation processing.
-> [See the list of libraries supported by KSP](ksp-overview.md#supported-libraries).
+> * ⚠️| maintenance mode ⚠️/ 
+>   * up-to-date -- with -- recent releases
+>     * Kotlin & 
+>     * Java
+>   * NO plans -- to implement -- new features
+> * alternative for annotation processing
+>   * [Kotlin Symbol Processing API (KSP)](ksp-overview.md)
 >
 {type="warning"}
 
-Annotation processors (see [JSR 269](https://jcp.org/en/jsr/detail?id=269)) are supported in Kotlin with the _kapt_ compiler plugin.
+* Annotation processors
+  * Check [JSR 269](https://jcp.org/en/jsr/detail?id=269))
+  * -- supported in Kotlin with -- _kapt_ compiler plugin
+* libraries / -- can be used -- | Kotlin projects
+  * [Dagger](https://google.github.io/dagger/) or
+  * [Data Binding](https://developer.android.com/topic/libraries/data-binding/index.html)
 
-In a nutshell, you can use libraries such as [Dagger](https://google.github.io/dagger/) or
-[Data Binding](https://developer.android.com/topic/libraries/data-binding/index.html) in your Kotlin projects.
-
-Please read below about how to apply the *kapt* plugin to your Gradle/Maven build.
 
 ## Use in Gradle
 
@@ -299,6 +304,7 @@ that you want to be used for all your projects. You use the [`extendsFrom()`](ht
 method to add `commonAnnotationProcessors` as a superconfiguration. kapt sees that the `commonAnnotationProcessors` 
 Gradle configuration has a dependency on the Dagger annotation processor. Therefore, kapt includes the Dagger annotation processor
 in its configuration for annotation processing.
+
  
 ## Java compiler options
 
@@ -329,7 +335,7 @@ kapt {
 
 ## Use in Maven
 
-Add an execution of the `kapt` goal from kotlin-maven-plugin before `compile`: 
+* Add an execution of the `kapt` goal | `kotlin-maven-plugin` / -- before -- `compile` 
 
 ```xml
 <execution>
@@ -355,13 +361,16 @@ Add an execution of the `kapt` goal from kotlin-maven-plugin before `compile`:
 </execution>
 ```
 
-To configure the level of annotation processing, set one of the following as the `aptMode` in the `<configuration>` block:
-
-   * `stubs` – only generate stubs needed for annotation processing.
-   * `apt` – only run annotation processing.
-   * `stubsAndApt` – (default) generate stubs and run annotation processing.
-
-For example:
+* allowed level of annotation processing | `<configuration>` block
+   * `stubs`
+     * -- ONLY generate -- stubs / needed for annotation processing
+   * `apt`
+     * -- ONLY run -- annotation processing
+   * `stubsAndApt`
+     * default one
+     * -- generate -- stubs 
+     * run annotation processing
+* _Example:_
 
 ```xml
 <configuration>

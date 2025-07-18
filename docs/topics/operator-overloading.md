@@ -1,24 +1,34 @@
 [//]: # (title: Operator overloading)
 
-Kotlin allows you to provide custom implementations for the predefined set of operators on types. These operators have
-predefined symbolic representation (like `+` or `*`) and precedence. To implement an operator, provide a [member function](functions.md#member-functions)
-or an [extension function](extensions.md) with a specific name for the corresponding type. This type becomes the left-hand side type
-for binary operations and the argument type for the unary ones.
+* operators | types
+  * have
+    * predefined symbolic representation (_Example:_ `+` or `*`)
+    * precedence
+  * 👀built-in 👀
+    * [unary operators](#unary-operations)
+    * [binary operators](#binary-operations)
+  * 👀ALLOWED to customize👀-- via --
+    * [member function](functions.md#member-functions) OR
+    * [extension function](extensions.md) / specific name -- for the -- corresponding type
+  * if 
+    * binary operators → type == left hand side
+    * unary ones → type == argument type
 
-To overload an operator, mark the corresponding function with the `operator` modifier:
+* `operator fun …`
+  * overload an operator
 
-```kotlin
-interface IndexedContainer {
-    operator fun get(index: Int)
-}
-```
-When [overriding](inheritance.md#overriding-methods) your operator overloads, you can omit `operator`:
+    ```kotlin
+    interface IndexedContainer {
+        operator fun get(index: Int)
+    }
+    ```
+  * if you [override](inheritance.md#overriding-methods) -> you can omit `operator` overloads
 
-```kotlin
-class OrdersList: IndexedContainer {
-    override fun get(index: Int) { /*...*/ }   
-}
-```
+    ```kotlin
+    class OrdersList: IndexedContainer {
+        override fun get(index: Int) { /*...*/ }   
+    }
+    ```
 
 ## Unary operations
 
@@ -30,33 +40,21 @@ class OrdersList: IndexedContainer {
 | `-a` | `a.unaryMinus()` |
 | `!a` | `a.not()` |
 
-This table says that when the compiler processes, for example, an expression `+a`, it performs the following steps:
+* expression
+  * == | code
+* translated to
+  * == translated -- by the -- compiler
+  * _Example:_ let's have `+a` / type `T`
+    * determines the type of `a` 
+    * | `T`,
+      * looks up a function `unaryPlus()` / has
+        * `operator` modifier & NO parameters
+          * == member function OR extension function
+    * ⚠️if the function is absent or ambiguous -> compilation error⚠️
+    * if the function is present & return type `R` -> expression `+a`'s type == `R`
 
-* Determines the type of `a`, let it be `T`.
-* Looks up a function `unaryPlus()` with the `operator` modifier and no parameters for the receiver `T`, that means a member 
-function or an extension function.
-* If the function is absent or ambiguous, it is a compilation error.
-* If the function is present and its return type is `R`, the expression `+a` has type `R`.
-
-> These operations, as well as all the others, are optimized for [basic types](basic-types.md) and do not introduce 
-> overhead of function calls for them.
->
-{type="note"}
-
-As an example, here's how you can overload the unary minus operator:
-
-```kotlin
-data class Point(val x: Int, val y: Int)
-
-operator fun Point.unaryMinus() = Point(-x, -y)
-
-val point = Point(10, 20)
-
-fun main() {
-   println(-point)  // prints "Point(x=-10, y=-20)"
-}
-```
-{kotlin-runnable="true"}
+* | [basic types](basic-types.md),
+  * 👀these operations are optimized == | call them, NOT overhead👀
 
 ### Increments and decrements
 
@@ -144,7 +142,7 @@ Square brackets are translated to calls to `get` and `set` with appropriate numb
 | `a(i, j)`  | `a.invoke(i, j)` |
 | `a(i_1, ...,  i_n)`  | `a.invoke(i_1, ...,  i_n)` |
 
-Parentheses are translated to calls to `invoke` with appropriate number of arguments.
+* 👀`()` are translated -- to -- calls to `invoke()`👀
 
 ### Augmented assignments
 

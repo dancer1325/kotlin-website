@@ -1,10 +1,9 @@
 [//]: # (title: Calling Kotlin from Java)
 
-Kotlin code can be easily called from Java.
-For example, instances of a Kotlin class can be seamlessly created and operated in Java methods.
-However, there are certain differences between Java and Kotlin that require attention when
-integrating Kotlin code into Java. 
-On this page, we'll describe the ways to tailor the interop of your Kotlin code with its Java clients.
+* from Java -- can easily call -> Kotlin code 
+  * _Example:_ instances of a Kotlin class -- can be seamlessly -- created and operated | ".java"
+* if you integrate Kotlin code | Java -> check differences Java vs Kotlin
+  * ⭐goal of this document ⭐
 
 ## Properties
 
@@ -35,25 +34,10 @@ This rule applies for properties of any type, not just `Boolean`.
 
 ## Package-level functions
 
-All the functions and properties declared in a file `app.kt` inside a package `org.example`, including extension functions,
-are compiled into static methods of a Java class named `org.example.AppKt`.
+* 👁️ ALL the functions (also extension) & properties | package `packageName` | file `fileName.kt` -- are compiled into -- static methods | `packageName.FileNameKt.class` (Java class) 👁️
 
-```kotlin
-// app.kt
-package org.example
 
-class Util
-
-fun getTime() { /*...*/ }
-
-```
-
-```java
-// Java
-new org.example.Util();
-org.example.AppKt.getTime();
-```
-
+* TODO:
 To set a custom name to the generated Java class, use the `@JvmName` annotation:
 
 ```kotlin
@@ -136,48 +120,16 @@ The visibility of the field will be the same as the visibility of `lateinit` pro
 
 ## Static fields
 
-Kotlin properties declared in a named object or a companion object will have static backing fields
-either in that named object or in the class containing the companion object.
+* Kotlin properties | named object OR a companion object -- will have -- static backing fields
+  * fields' privacy
+    * private
+    * public -- via | Kotlin code --
+      * [`@JvmField`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-field/index.html) annotation
+      * `lateinit` modifier
+      * `const` modifier
 
-Usually these fields are private but they can be exposed in one of the following ways:
 
- - [`@JvmField`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-field/index.html) annotation
- - `lateinit` modifier
- - `const` modifier
- 
-Annotating such a property with `@JvmField` makes it a static field with the same visibility as the property itself.
-
-```kotlin
-class Key(val value: Int) {
-    companion object {
-        @JvmField
-        val COMPARATOR: Comparator<Key> = compareBy<Key> { it.value }
-    }
-}
-```
-
-```java
-// Java
-Key.COMPARATOR.compare(key1, key2);
-// public static final field in Key class
-```
-
-A [late-initialized](properties.md#late-initialized-properties-and-variables) property in an object or a companion object
-has a static backing field with the same visibility as the property setter.
-
-```kotlin
-object Singleton {
-    lateinit var provider: Provider
-}
-```
-
-```java
-
-// Java
-Singleton.provider = new Provider();
-// public static non-final field in Singleton class
-```
-
+* TODO:
 Properties declared as `const` (in classes as well as at the top level) are turned into static fields in Java:
 
 ```kotlin
@@ -207,69 +159,16 @@ int version = C.VERSION;
 
 ## Static methods
 
-As mentioned above, Kotlin represents package-level functions as static methods.
-Kotlin can also generate static methods for functions defined in named objects or companion objects if you annotate those
-functions as [`@JvmStatic`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-static/index.html).
-If you use this annotation, the compiler will generate both a static method in the enclosing class of the object and
-an instance method in the object itself. For example:
-
-```kotlin
-class C {
-    companion object {
-        @JvmStatic fun callStatic() {}
-        fun callNonStatic() {}
-    }
-}
-```
-
-Now, `callStatic()` is static in Java while `callNonStatic()` is not:
-
-```java
-
-C.callStatic(); // works fine
-C.callNonStatic(); // error: not a static method
-C.Companion.callStatic(); // instance method remains
-C.Companion.callNonStatic(); // the only way it works
-```
-
-Same for named objects:
-
-```kotlin
-object Obj {
-    @JvmStatic fun callStatic() {}
-    fun callNonStatic() {}
-}
-```
-
-In Java:
-
-```java
-
-Obj.callStatic(); // works fine
-Obj.callNonStatic(); // error
-Obj.INSTANCE.callNonStatic(); // works, a call through the singleton instance
-Obj.INSTANCE.callStatic(); // works too
-```
-
-Starting from Kotlin 1.3, `@JvmStatic` applies to functions defined in companion objects of interfaces as well.
-Such functions compile to static methods in interfaces. Note that static method in interfaces were introduced in Java 1.8,
-so be sure to use the corresponding targets.  
-
-```kotlin
-interface ChatBot {
-    companion object {
-        @JvmStatic fun greet(username: String) {
-            println("Hello, $username")
-        }
-    }
-}
-```
-
-`@JvmStatic` annotation can also be applied on a property of an object or a companion object
-making its getter and setter methods static members in that object or the class containing the companion object.
+* if you add [`@JvmStatic`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-static/index.html) | functions in named objects OR companion objects -- generate -> 
+  * static method | enclosing class of the object & 
+  * instance method | object itself
+* if Kotlin v1.3+ & you add `@JvmStatic` | functions in interface's companion objects -- generate -> static methods | interfaces
+  * static methods | interfaces -> Java v1.8+
+* if you add `@JvmStatic` | property of an object or a companion object -- generate -> static getter and setter methods | object or class / contains the companion object
 
 ## Default methods in interfaces
 
+* TODO:
 >Default methods are available only for targets JVM 1.8 and above.
 >
 {type="note"}
@@ -455,37 +354,39 @@ var x: Int = 23
 
 ## Overloads generation
 
-Normally, if you write a Kotlin function with default parameter values, it will be visible in Java only as a full
-signature, with all parameters present. If you wish to expose multiple overloads to Java callers, you can use the
-[`@JvmOverloads`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html) annotation.
+* [`@JvmOverloads`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html)
+  * allows
+    * expose MULTIPLE overloads -- to -- Java callers
+      * if Kotlin function / default parameter values -> | Java, visible ONLY as a FULL signature 
+  * uses
+    * | 
+      * constructors,
+      * static methods 
+    * ❌NOT valid | ❌
+      * abstract methods
+      * methods / defined | interfaces
+  * _Example:_ 1 additional overload / EVERY parameter -- with a -- default value
+    ```kotlin
+    class Circle @JvmOverloads constructor(centerX: Int, centerY: Int, radius: Double = 1.0) {
+        @JvmOverloads fun draw(label: String, lineWidth: Int = 1, color: String = "red") { /*...*/ }
+    }
+    ```
 
-The annotation also works for constructors, static methods, and so on. It can't be used on abstract methods, including
-methods defined in interfaces.
+    generate
 
-```kotlin
-class Circle @JvmOverloads constructor(centerX: Int, centerY: Int, radius: Double = 1.0) {
-    @JvmOverloads fun draw(label: String, lineWidth: Int = 1, color: String = "red") { /*...*/ }
-}
-```
+    ```java
+    // Constructors:
+    Circle(int centerX, int centerY, double radius)
+    Circle(int centerX, int centerY)
+    
+    // Methods
+    void draw(String label, int lineWidth, String color) { }
+    void draw(String label, int lineWidth) { }
+    void draw(String label) { }
+    ```
 
-For every parameter with a default value, this will generate one additional overload, which has this parameter and
-all parameters to the right of it in the parameter list removed. In this example, the following will be
-generated:
-
-```java
-// Constructors:
-Circle(int centerX, int centerY, double radius)
-Circle(int centerX, int centerY)
-
-// Methods
-void draw(String label, int lineWidth, String color) { }
-void draw(String label, int lineWidth) { }
-void draw(String label) { }
-```
-
-Note that, as described in [Secondary constructors](classes.md#secondary-constructors), if a class has default
-values for all constructor parameters, a public constructor with no arguments will be generated for it. This works even
-if the `@JvmOverloads` annotation is not specified.
+  * if a class has default values / ALL constructor parameters & `@JvmOverloads` NOT use it -> it will generate a public constructor / NO arguments
+    * see [Secondary constructors](classes.md#secondary-constructors)
 
 ## Checked exceptions
 

@@ -1,10 +1,12 @@
 [//]: # (title: Object expressions and declarations)
 
-Sometimes you need to create an object that is a slight modification of some class, without explicitly declaring a new
-subclass for it. Kotlin can handle this with _object expressions_ and _object declarations_.
+* 👀Ways to create an object / slight modification of some class & NOT new subclass 👀
+  * object expressions
+  * object declarations
 
 ## Object expressions
 
+* TODO:
 _Object expressions_ create objects of anonymous classes, that is, classes that aren't explicitly declared with the `class`
 declaration. Such classes are useful for one-time use. You can define them from scratch, inherit from existing classes,
 or implement interfaces. Instances of anonymous classes are also called _anonymous objects_ because they are defined by
@@ -284,71 +286,34 @@ fun main() {
 
 ### Companion objects
 
-An object declaration inside a class can be marked with the `companion` keyword:
+* := object declaration | class / marked with `companion`
 
-```kotlin
-class MyClass {
-    companion object Factory {
-        fun create(): MyClass = MyClass()
+    ```
+    class ClassName {
+      companion object ObjectName { 
+        CompanionObjectMembers
+      }
+      classMembers
     }
-}
-```
-
-Members of the companion object can be called simply by using the class name as the qualifier:
-
-```kotlin
-val instance = MyClass.create()
-```
-
-The name of the companion object can be omitted, in which case the name `Companion` will be used:
-
-```kotlin
-class MyClass {
-    companion object { }
-}
-
-val x = MyClass.Companion
-```
-
-Class members can access the private members of the corresponding companion object.
-
-The name of a class used by itself (not as a qualifier to another name) acts as a reference to the companion
-object of the class (whether named or not):
-
-```kotlin
-class MyClass1 {
-    companion object Named { }
-}
-
-val x = MyClass1
-
-class MyClass2 {
-    companion object { }
-}
-
-val y = MyClass2
-```
-
-Note that even though the members of companion objects look like static members in other languages, at runtime those
-are still instance members of real objects, and can, for example, implement interfaces:
-
-```kotlin
-interface Factory<T> {
-    fun create(): T
-}
-
-class MyClass {
-    companion object : Factory<MyClass> {
-        override fun create(): MyClass = MyClass()
-    }
-}
-
-val f: Factory<MyClass> = MyClass
-```
-
-However, on the JVM you can have members of companion objects generated as real static methods and fields if you use
-the `@JvmStatic` annotation. See the [Java interoperability](java-to-kotlin-interop.md#static-fields) section
-for more detail.
+    ```
+    * ways to refer to `companion` object
+      * ⚠️if ObjectName (name of the companion object) is omitted -> `ClassName.Companion` ⚠️
+      * ⚠️if ObjectName is declared -> `ClassName.ObjectName` ⚠️
+        * `ClassName.Companion` NOT valid here
+    * 👁️1! companion object allowed / class 👁️
+    * `classMembers` -- can access to -- private `CompanionObjectMembers`
+    * `ClassName` is used as reference to the companion object -- `print(companionObject)`--
+    * `CompanionObjectMembers`
+      * seem statics
+      * ⚠️ are instances of real objects | runtime  ⚠️
+        * == own state & behavior + implement interfaces
+        * == companion objects == objects
+* `ClassName.CompanionObjectMember`
+  * way to call companion object’s members
+    * ONLY valid if `CompanionObjectMember` is public
+  * 👁️!= `instanceClassName.CompanionObjectMember`, does NOT work 👁️ 
+* `@JvmStatic CompanionObjectMembers` -> real static members | JVM
+  * Check [Java interoperability](java-to-kotlin-interop.md#static-fields)
 
 ### Semantic difference between object expressions and declarations
 

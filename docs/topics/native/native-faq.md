@@ -2,55 +2,63 @@
 
 ## How do I run my program?
 
-Define a top-level function `fun main(args: Array<String>)` or just  `fun main()` if you are not interested
-in passed arguments, please ensure it's not in a package.
-Also, compiler switch `-entry` could be used to make any function taking `Array<String>` or no arguments
-and return `Unit` as an entry point.
+* 👀define a top-level function `fun main(args: Array<String>)` or just  `fun main()`👀 /
+  * NOT | a package
 
 ## What is Kotlin/Native memory management model?
 
-Kotlin/Native uses an automated memory management scheme that is similar to what Java or Swift provide.
-
-[Learn about the Kotlin/Native memory manager](native-memory-manager.md)
+* see [Kotlin/Native memory manager](native-memory-manager.md)
 
 ## How do I create a shared library?
 
-Use the `-produce dynamic` compiler switch, or `binaries.sharedLib()` in Gradle.
+* ways
+  * use the `-produce dynamic` compiler switch, or
+  * | Gradle, `binaries.sharedLib()`
 
-```kotlin
-kotlin {
-    iosArm64("mylib") {
-        binaries.sharedLib()
+    ```kotlin
+    kotlin {
+        iosArm64("mylib") {
+            binaries.sharedLib()
+        }
     }
-}
-```
+    ```
 
-It will produce a platform-specific shared object (`.so` on Linux, `.dylib` on macOS, and `.dll` on Windows targets) and a
-C language header, allowing the use of all public APIs available in your Kotlin/Native program from C/C++ code.
+* produce a
+  * platform-specific shared object (`.so` on Linux, `.dylib` on macOS, and `.dll` on Windows targets)
+  * C language header,
+    * -> ALL public APIs | your Kotlin/Native program -- can be used -- | C/C++ code
 
 ## How do I create a static library or an object file?
 
-Use the `-produce static` compiler switch, or `binaries.staticLib()` in Gradle.
+* ways
+  * use the `-produce static` compiler switch, or
+  * | Gradle, `binaries.staticLib()`
 
-```kotlin
-kotlin {
-    iosArm64("mylib") {
-        binaries.staticLib()
+    ```kotlin
+    kotlin {
+        iosArm64("mylib") {
+            binaries.staticLib()
+        }
     }
-}
-```
+    ```
 
-It will produce a platform-specific static object (`.a` library format) and a C language header, allowing you to
-use all the public APIs available in your Kotlin/Native program from C/C++ code.
+* produce a
+  * platform-specific shared object (`.a` library format)
+  * C language header,
+    * -> ALL public APIs | your Kotlin/Native program -- can be used -- | C/C++ code
 
 ## How do I run Kotlin/Native behind a corporate proxy?
 
-As Kotlin/Native needs to download a platform specific toolchain, you need to specify
-`-Dhttp.proxyHost=xxx -Dhttp.proxyPort=xxx` as the compiler's or `gradlew` arguments,
-or set it via the `JAVA_OPTS` environment variable.
+* specify 
+  * `-Dhttp.proxyHost=xxx -Dhttp.proxyPort=xxx` -- as the -- 
+    * compiler's or
+    * `gradlew` arguments,
+    * set it | `JAVA_OPTS` environment variable
+    * Reason: 🧠 Kotlin/Native -- needs to download a -- platform specific toolchain 🧠
 
 ## How do I specify a custom Objective-C prefix/name for my Kotlin framework?
 
+* TODO:
 Use the `-module-name` compiler option or matching Gradle DSL statement.
 
 <tabs group="build-script">
@@ -149,9 +157,9 @@ good practise to have the global state immutable. If for some reason you need a 
 object, use the `@konan.ThreadLocal` annotation on the object. Also, the `kotlin.native.concurrent.AtomicReference` class could be
 used to store different pointers to frozen objects in a frozen object and automatically update them.
 
-## How can I compile my project with unreleased versions of Kotlin/Native?
+## How can I compile my project -- via -- unreleased versions of Kotlin/Native?
 
-First, please consider trying [preview versions](eap.md).
-
-In case you need an even more recent development version, you can build Kotlin/Native from source code:
-clone [Kotlin repository](https://github.com/JetBrains/kotlin) and follow [these steps](https://github.com/JetBrains/kotlin/blob/master/kotlin-native/README.md#building-from-source).
+* see [preview versions](/docs/topics/eap.md)
+* build Kotlin/Native -- from -- source code
+  * clone [Kotlin repository](https://github.com/JetBrains/kotlin)
+  * follow [these steps](https://github.com/JetBrains/kotlin/blob/master/kotlin-native/README.md#building-from-source)

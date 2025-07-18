@@ -1,10 +1,13 @@
 [//]: # (title: Coding conventions)
 
-Commonly known and easy-to-follow coding conventions are vital for any programming language.
-Here we provide guidelines on the code style and code organization for projects that use Kotlin.
+* goal
+  * guidelines on the
+    * code style
+    * code organization
 
 ## Configure style in IDE
 
+* TODO:
 Two most popular IDEs for Kotlin - [IntelliJ IDEA](https://www.jetbrains.com/idea/) and [Android Studio](https://developer.android.com/studio/)
 provide powerful support for code styling. You can configure them to automatically format your code in consistence with
 the given code style. 
@@ -131,44 +134,56 @@ Always put overloads next to each other in a class.
 
 ## Naming rules
 
-Package and class naming rules in Kotlin are quite simple:
+* | package
+  * ALWAYS lowercase
+  * NOT underscores (_Example:_`org.example.project`)
+  * multi-word
+    * discouraged
+    * if you do need to use them -> 
+      * concatenate them together or
+      * camel case (_Example:_`org.example.myProject`)
+* | class & objects
+  * start with an uppercase letter
+  * camel case
+  * _Example:_
 
-* Names of packages are always lowercase and do not use underscores (`org.example.project`). Using multi-word
-names is generally discouraged, but if you do need to use multiple words, you can either just concatenate them together
-or use the camel case (`org.example.myProject`).
-
-* Names of classes and objects start with an uppercase letter and use the camel case:
-
-```kotlin
-open class DeclarationProcessor { /*...*/ }
-
-object EmptyDeclarationProcessor : DeclarationProcessor() { /*...*/ }
-```
+    ```kotlin
+    open class DeclarationProcessor { /*...*/ }
+    
+    object EmptyDeclarationProcessor : DeclarationProcessor() { /*...*/ }
+    ```
 
 ### Function names
  
-Names of functions, properties and local variables start with a lowercase letter and use the camel case and no underscores:
+* | functions, | properties and | local variables
+  * start with a lowercase letter
+  * camel case
+  * NO underscores
+  * _Example:_
 
-```kotlin
-fun processDeclarations() { /*...*/ }
-var declarationCount = 1
-```
+    ```kotlin
+    fun processDeclarations() { /*...*/ }
+    var declarationCount = 1
+    ```
 
-Exception: factory functions used to create instances of classes can have the same name as the abstract return type:
+  * exception
+    * | factory functions / create instances of classes
+      * name == abstract return type name
 
-```kotlin
-interface Foo { /*...*/ }
-
-class FooImpl : Foo { /*...*/ }
-
-fun Foo(): Foo { return FooImpl() }
-```
+    ```kotlin
+    interface Foo { /*...*/ }
+    
+    class FooImpl : Foo { /*...*/ }
+    
+    fun Foo(): Foo { return FooImpl() }     // function name starts with an UPPERCASE letter
+    ```
 
 ### Names for test methods
 
-In tests (and **only** in tests), you can use method names with spaces enclosed in backticks.
-Note that such method names are only supported by Android runtime from API level 30. Underscores
-in method names are also allowed in test code.
+* | test methods, can contain
+  * ` ` / wrapped in ``
+    * | Android runtime API v30+ 
+  * `_`
 
 ```kotlin
 class MyTestCase {
@@ -180,6 +195,7 @@ class MyTestCase {
 
 ### Property names
 
+* TODO:
 Names of constants (properties marked with `const`, or top-level or object `val` properties with no custom `get` function
 that hold deeply immutable data) should use uppercase underscore-separated ([screaming snake case](https://en.wikipedia.org/wiki/Snake_case))
 names:
