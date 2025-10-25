@@ -35,7 +35,4 @@
   * [Latest news](/templates/inc/pages/index/latest-news.md)
   * [Code examples](/templates/inc/pages/index/code-examples.md)
   * [Kotlin values](/templates/inc/pages/index/kotlin-values.md)
-
-    {% include 'inc/pages/index/kotlin-values.html' %}
-
-    {% include 'inc/pages/index/why-section.html' %}
+  * [Why](/templates/inc/pages/index/why-section.md)
