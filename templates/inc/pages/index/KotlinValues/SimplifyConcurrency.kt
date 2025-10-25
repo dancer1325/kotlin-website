@@ -1,25 +1,24 @@
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
-//sampleStart
-// More than 50% of professional developers who use coroutines
-// report increased productivity
-// (based on Google's internal data)
-
 fun main() = runBlocking {
     val start = System.currentTimeMillis()
-    coroutineScope {                                 // Create a scope for coroutines
-        val waitingJob = launch {                    // Launching a coroutine
+    // 3. structure concurrency -- via -- scopes
+    coroutineScope {
+        // 1. launch        launch a coroutine
+        val waitingJob = launch {
             waiting(start, 150)
         }
-        countdownSignals(10, 300).collect { value -> // Collecting flow elements
+        // 4. flow of data stream
+        countdownSignals(10, 300).collect { value ->    // collect flow elements
             log(start, "Countdown: $value")
         }
-        waitingJob.cancel()                          // Cancelling a coroutine
+        // 5. cancel a coroutine
+        waitingJob.cancel()
     }
     log(start, "Liftoff!")                           // Execution continues when all
 }                                                    // coroutines have finished
-//sampleEnd
+
 fun countdownSignals(n: Int, delayMillis: Long): Flow&lt;Int> = flow { // Flow builder
     for (i in (1..n).reversed()) {
         delay(delayMillis)                           // Delay in emitting signals
@@ -27,7 +26,7 @@ fun countdownSignals(n: Int, delayMillis: Long): Flow&lt;Int> = flow { // Flow b
     }
 }
 
-// A function that can be suspended and resumed later
+// 2. suspend & resumed later functions
 suspend fun waiting(start: Long, delayMillis: Long) {
     while (currentCoroutineContext().isActive) {     // Check coroutine's context
         log(start, "Waiting...")

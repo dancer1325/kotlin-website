@@ -15,8 +15,20 @@
       * cross-platform
         * _Examples:_ [here](/templates/inc/pages/index/KotlinValues/Interoperable.kt)
           * valid any JVM library OR framework
-      * [safe](/templates/inc/pages/index/KotlinValues/Safe.kt)
-      * [concurrency simple](/templates/inc/pages/index/KotlinValues/SimplifyConcurrency.kt)
+      * safe
+        * _Examples:_ [here](/templates/inc/pages/index/KotlinValues/Safe.kt)
+          * null safety
+          * ❌`val` can NOT be reassigned❌
+          * collections read-only vs mutable
+          * smart casts
+      * concurrency simple
+        * -> increase productivity
+        * _Examples:_ [here](/templates/inc/pages/index/KotlinValues/SimplifyConcurrency.kt)
+          * simple syntax
+          * suspend & resumed later functions
+          * structure concurrency -- via -- scopes
+          * flow of data stream
+          * cancel a coroutine
   * uses
     * Android app development
   * [Get started](/docs/topics/getting-started.md)
