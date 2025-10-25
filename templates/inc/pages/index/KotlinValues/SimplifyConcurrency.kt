@@ -16,21 +16,21 @@ fun main() = runBlocking {
         // 5. cancel a coroutine
         waitingJob.cancel()
     }
-    log(start, "Liftoff!")                           // Execution continues when all
-}                                                    // coroutines have finished
+    log(start, "Liftoff!")
+}
 
-fun countdownSignals(n: Int, delayMillis: Long): Flow&lt;Int> = flow { // Flow builder
+fun countdownSignals(n: Int, delayMillis: Long): Flow<Int> = flow {
     for (i in (1..n).reversed()) {
-        delay(delayMillis)                           // Delay in emitting signals
-        emit(i)                                      // Emit the flow element
+        delay(delayMillis)
+        emit(i)
     }
 }
 
 // 2. suspend & resumed later functions
 suspend fun waiting(start: Long, delayMillis: Long) {
-    while (currentCoroutineContext().isActive) {     // Check coroutine's context
+    while (currentCoroutineContext().isActive) {
         log(start, "Waiting...")
-        delay(delayMillis)                           // Waiting concurrently
+        delay(delayMillis)
     }
 }
 
