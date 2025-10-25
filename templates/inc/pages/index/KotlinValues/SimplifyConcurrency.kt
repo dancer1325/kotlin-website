@@ -10,9 +10,9 @@ fun main() = runBlocking {
             waiting(start, 150)
         }
         // 4. flow of data stream
-        countdownSignals(10, 300).collect { value ->    // collect flow elements
-            log(start, "Countdown: $value")
-        }
+        countdownSignals(10, 300)
+            .onEach { value: Int -> log(start, "Countdown: $value") }
+            .collect()    // collect without lambda
         // 5. cancel a coroutine
         waitingJob.cancel()
     }
