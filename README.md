@@ -1,15 +1,6 @@
 # Kotlin website
-[![Official project][project-badge]][project-url]
-[![Qodana Code Quality Check](https://github.com/JetBrains/kotlin-web-site/actions/workflows/qodana-code-quality-check.yml/badge.svg)](https://github.com/JetBrains/kotlin-web-site/actions/workflows/qodana-code-quality-check.yml)
 
-This repository is the source for [https://kotlinlang.org](https://kotlinlang.org).
-
-* [Website structure](#website-structure)
-* [Contribution](#contribution)
-* [Local deployment](#local-deployment)
-* [Feedback and issues](#feedback-and-issues)
-
-<a id="project-structure"></a>
+* == [https://kotlinlang.org website](https://kotlinlang.org)
 
 ## Website structure 
 
