@@ -1,26 +1,22 @@
 [//]: # (title: Data classes)
 
-Data classes in Kotlin are primarily used to hold data. For each data class, the compiler automatically generates 
-additional member functions that allow you to print an instance to readable output, compare instances, copy instances, and more.
-Data classes are marked with `data`:
+* Data classes
+  * uses
+    * hold data
+  * `data class DataClassName()`
+    * syntax
+  * compiler AUTOMATICALLY generates ADDITIONAL member functions / ALL properties
+    * `.equals()`/`.hashCode()` pair
+    * `.toString()`
+    * [`.componentN()` functions](destructuring-declarations.md)
+    * `.copy()`
+  * requirements
+    * primary constructor 
+      * have >= 1 parameter
+      * 's ALL parameters marked as `val` or `var`
+    * can NOT be abstract, open, sealed, or inner
 
-```kotlin
-data class User(val name: String, val age: Int)
-```
-
-The compiler automatically derives the following members from all properties declared in the primary constructor:
-
-* `.equals()`/`.hashCode()` pair.
-* `.toString()` of the form `"User(name=John, age=42)"`.
-* [`.componentN()` functions](destructuring-declarations.md) corresponding to the properties in their order of declaration.
-* `.copy()` function (see below).
-
-To ensure consistency and meaningful behavior of the generated code, data classes have to fulfill the following requirements:
-
-* The primary constructor must have at least one parameter.
-* All primary constructor parameters must be marked as `val` or `var`.
-* Data classes can't be abstract, open, sealed, or inner.
-
+* TODO:
 Additionally, the generation of data class members follows these rules with regard to the members' inheritance:
 
 * If there are explicit implementations of `.equals()`, `.hashCode()`, or `.toString()` in the data class body or
