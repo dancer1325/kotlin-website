@@ -1,9 +1,31 @@
+## requirements
+* download & install [IntelliJ IDEA Ultimate Edition](https://www.jetbrains.com/idea/download/index.html)
+
 ## How has it been created?
-* Following ALL "*.md" here
+* dependencies
+  * **Web / Spring Web**
+  * **SQL / Spring Data JDBC**
+  * **SQL / H2 Database**
+### ways
+#### [Spring Initialzr](https://start.spring.io)
+* select dependencies
+#### -- via -- IDE
+* | IntelliJ IDEA,
+  * **File** > **New** > **Project** > **New Project**
+  * **Name**: getStartedSpringBoot
+  * **Language**: Kotlin
+  * **Build system**: Gradle
+  * **JDK**: Java 17 JDK -- Amazon Corretto v8
+  * **Java**: 17
 
 ## How to run it locally?
 * via IDE
-  * click the green **Run** icon in the gutter and select **Run 'MainKt'**
+  * | gutter, click the green **Run** icon
+    * Problems:
+      * Problem1: it does NOT identify it
+        * Solution: | this path, Mark directory as > Sources root
+      * Problem2: "Unresolved reference 'springframework'."
+        * Solution: | build.gradle.kts, link gradle project
 * via CL
   * `./gradlew bootRun`
 
