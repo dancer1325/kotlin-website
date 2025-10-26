@@ -2,79 +2,36 @@
 
 ## Declaring properties
 
-Properties in Kotlin classes can be declared either as mutable, using the `var` keyword, or as read-only, using the `val` keyword.
+* Properties declaration
+  * types
+    * mutable -- via -- `var` keyword
+    * read-only -- via -- `val` keyword
+  * syntax
 
-```kotlin
-class Address {
-    var name: String = "Holmes, Sherlock"
-    var street: String = "Baker"
-    var city: String = "London"
-    var state: String? = null
-    var zip: String = "123456"
-}
-```
-
-To use a property, simply refer to it by its name:
-
-```kotlin
-fun copyAddress(address: Address): Address {
-    val result = Address() // there's no 'new' keyword in Kotlin
-    result.name = address.name // accessors are called
-    result.street = address.street
-    // ...
-    return result
-}
-```
+    ```kotlin
+    var <propertyName>[: <PropertyType>] [= <property_initializer>]
+        [<getter>]
+        [<setter>]
+    ```
+    * `[]`
+      * == OPTIONAL
+    * requirements
+      * ⚠️specify `[: <PropertyType>]` OR `[= <property_initializer>]`⚠️
+        * OTHERWISE, error
+    * `[: <PropertyType>]` can be inferred -- from -- 
+      * `[= <property_initializer>]` OR
+      * `[<getter>]`'s return type
+    * `[<getter>]` & `[<setter>]`
+      * | local variables (| functions)
+        * ❌NOT ALLOWED❌
+      * | class' properties
+        * ALLOWED
+      * | `val`
+        * ❌NOT ALLOWED❌
 
 ## Getters and setters
 
-The full syntax for declaring a property is as follows:
-
-```kotlin
-var <propertyName>[: <PropertyType>] [= <property_initializer>]
-    [<getter>]
-    [<setter>]
-```
-
-The initializer, getter, and setter are optional. The property type is optional if it can be inferred from the initializer
-or the getter's return type, as shown below:
-
-```kotlin
-var initialized = 1 // has type Int, default getter and setter
-// var allByDefault // ERROR: explicit initializer required, default getter and setter implied
-```
-
-The full syntax of a read-only property declaration differs from a mutable one in two ways: it starts with `val` instead
-of `var` and does not allow a setter:
-
-```kotlin
-val simple: Int? // has type Int, default getter, must be initialized in constructor
-val inferredType = 1 // has type Int and a default getter
-```
-
-You can define custom accessors for a property. If you define a custom getter, it will be called every time you access
-the property (this way you can implement a computed property). Here's an example of a custom getter:
-
-```kotlin
-//sampleStart
-class Rectangle(val width: Int, val height: Int) {
-    val area: Int // property type is optional since it can be inferred from the getter's return type
-        get() = this.width * this.height
-}
-//sampleEnd
-fun main() {
-    val rectangle = Rectangle(3, 4)
-    println("Width=${rectangle.width}, height=${rectangle.height}, area=${rectangle.area}")
-}
-```
-{kotlin-runnable="true"}
-
-You can omit the property type if it can be inferred from the getter:
-
-```kotlin
-val area get() = this.width * this.height
-```
-
+* TODO:
 If you define a custom setter, it will be called every time you assign a value to the property, except its initialization.
 A custom setter looks like this:
 
@@ -101,8 +58,10 @@ var setterWithAnnotation: Any? = null
 
 ### Backing fields
 
-In Kotlin, a field is only used as a part of a property to hold its value in memory. Fields cannot be declared directly.
-However, when a property needs a backing field, Kotlin provides it automatically. This backing field can be referenced in
+In Kotlin, a field is only used as a part of a property to hold its value in memory
+Fields cannot be declared directly.
+However, when a property needs a backing field, Kotlin provides it automatically
+This backing field can be referenced in
 the accessors using the `field` identifier:
 
 ```kotlin
