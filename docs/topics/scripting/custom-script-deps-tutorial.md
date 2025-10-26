@@ -1,83 +1,33 @@
 [//]: # (title: Get started with Kotlin custom scripting – tutorial)
 
-> Kotlin scripting is [Experimental](components-stability.md). It may be dropped or changed at any time.
-> Use it only for evaluation purposes. We appreciate your feedback on it in [YouTrack](https://kotl.in/issue).
->
-{type="warning"}
+* goal
+  * create a Kotlin scripting project / executes arbitrary Kotlin code -- with -- Maven dependencies 
 
-_Kotlin scripting_ is the technology that enables executing Kotlin code as scripts without prior compilation or
-packaging into executables.
-
-For an overview of Kotlin scripting with examples, check out the talk [Implementing the Gradle Kotlin DSL](https://kotlinconf.com/2019/talks/video/2019/126701/)
-by Rodrigo Oliveira from KotlinConf'19.
-
-In this tutorial, you'll create a Kotlin scripting project that executes arbitrary Kotlin code with Maven dependencies.
-You'll be able to execute scripts like this:
-
-
-```kotlin
-@file:Repository("https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven")
-@file:DependsOn("org.jetbrains.kotlinx:kotlinx-html-jvm:0.7.3")
-
-import kotlinx.html.*
-import kotlinx.html.stream.*
-import kotlinx.html.attributes.*
-
-val addressee = "World"
-
-print(
-    createHTML().html {
-        body {
-            h1 { +"Hello, $addressee!" }
-        }
-    }
-)
-```
-
-The specified Maven dependency (`kotlinx-html-jvm` for this example) will be resolved from the specified Maven
-repository or local cache during execution and used for the rest of the script.
+* Kotlin scripting
+  * [Experimental](components-stability.md)
+  * allows
+    * 👀executing Kotlin code -- as -- scripts👀 / 
+      * WITHOUT PRIOR compilation OR packaging | executables 
+  * uses
+    * evaluation purposes
+  * [talk ](https://kotlinconf.com/2019/talks/video/2019/126701/)
 
 ## Project structure
 
-A minimal Kotlin custom scripting project contains two parts:
+* == _Script definition_ + _Scripting host_  
+  * _Script definition_
+    * == set of parameters + configurations /
+      * define how this script type should be recognized,handled, compiled, and executed
+  * _Scripting host_ 
+    * == application or component / 
+      * handles script compilation & execution
 
-* _Script definition_ – a set of parameters and configurations that define how this script type should be recognized,
-  handled, compiled, and executed.
-* _Scripting host_ – an application or component that handles script compilation and execution – actually
-  running scripts of this type.
-
-With all of this in mind, it's best to split the project into two modules.
-
-## Before you start
-
-Download and install the latest version of [IntelliJ IDEA](https://www.jetbrains.com/idea/download/index.html).
-
-## Create a project
-
-1. In IntelliJ IDEA, select **File** | **New** | **Project**.
-2. In the panel on the left, select **New Project**.
-3. Name the new project and change its location if necessary.
-
-   > Select the **Create Git repository** checkbox to place the new project under version control. You will be able to do
-   > it later at any time.
-   >
-   {type="tip"}
-
-4. From the **Language** list, select **Kotlin**.
-5. Select the **Gradle** build system.
-6. From the **JDK** list, select the [JDK](https://www.oracle.com/java/technologies/downloads/) that you want to use in
-   your project.
-   * If the JDK is installed on your computer, but not defined in the IDE, select **Add JDK** and specify the path to the
-     JDK home directory.
-   * If you don't have the necessary JDK on your computer, select **Download JDK**.
-
-7. Select the Kotlin or Gradle language for the **Gradle DSL**.
-8. Click **Create**.
-
-![Create a root project for custom Kotlin scripting](script-deps-create-root-project.png){width=700}
+* recommendations
+  * split the project | 2 modules
 
 ## Add scripting modules
 
+* TODO:
 Now you have an empty Kotlin/JVM Gradle project. Add the required modules, script definition and scripting host:
 
 1. In IntelliJ IDEA, select **File | New | Module**.
@@ -349,12 +299,11 @@ printing the results of calling its functions:
 </html>
 ```
 
-Resolving dependencies may take some time on the first run. Subsequent runs will complete much faster because they use
+Resolving dependencies may take some time on the first run
+* Subsequent runs will complete much faster because they use
 downloaded dependencies from the local Maven repository.
 
 ## What's next?
 
-Once you've created a simple Kotlin scripting project, find more information on this topic:
-* Read the [Kotlin scripting KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/scripting-support.md)
-* Browse more [Kotlin scripting examples](https://github.com/Kotlin/kotlin-script-examples)
-* Watch the talk [Implementing the Gradle Kotlin DSL](https://kotlinconf.com/2019/talks/video/2019/126701/) by Rodrigo Oliveira
+* [Kotlin scripting KEEP](https://github.com/Kotlin/KEEP/blob/master/proposals/scripting-support.md)
+* [Kotlin scripting examples](https://github.com/Kotlin/kotlin-script-examples)
