@@ -15,10 +15,21 @@ fun main(args: Array<String>) {
 	// *		spread operator
 }
 
+// uses
+//		transfer data
+data class Message(val id: String?, val text: String)
+
 @RestController
 class MessageController {
 	@GetMapping("/")
-	fun index(@RequestParam("name") name: String) = "Hello, $name!"	// $name	String template
-	// single expression function
-	// returnType omitted -> typer inference by Kotlin
+	fun index(@RequestParam("name") name: String?) {
+		val messageWithNullableId = Message(null, "Hello!")
+		println("Hello, $name!")
+		listOf(
+			Message("1", "Hello!"),
+			Message("2", "Bonjour!"),
+			Message("3", "Privet!")
+		)
+	}
+
 }

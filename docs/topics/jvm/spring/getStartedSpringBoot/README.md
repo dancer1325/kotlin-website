@@ -28,6 +28,3 @@
         * Solution: | build.gradle.kts, link gradle project
 * via CL
   * `./gradlew bootRun`
-
-## Sample requests
-* http://localhost:8080?name=John
