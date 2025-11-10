@@ -1,34 +1,47 @@
 [//]: # (title: Collections overview)
 
-The Kotlin Standard Library provides a comprehensive set of tools for managing _collections_ – groups of a variable number 
-of items (possibly zero) that are significant to the problem being solved and are commonly operated on.
+* Collections
+  * == common concept | MOST programming languages (Java, Python)
+  * == group of items /
+    * variable number (>= 0)
+  * uses
+    * operate | it
 
-Collections are a common concept for most programming languages, so if you're familiar with, for example, Java or Python 
-collections, you can skip this introduction and proceed to the detailed sections. 
+* elements OR items
+  * == collection's objects
 
-A collection usually contains a number of objects of the same type (and its subtypes). Objects in a collection
-are called _elements_ or _items_. For example, all the students in a department form a collection that can be used to
-calculate their average age.
+* Kotlin Standard Library
+  * provides
+    * set of tools -- for -- managing collections 
+      * _Example:_ factory functions / create collections instances
+  * built-in collection types
+    * _List_
+      * is an ordered collection with access to elements by indices – integer numbers that reflect their position
+      * Elements can occur more than once in a list
+      * An example of a list is a telephone number: it's a group of digits, their
+      order is important, and they can repeat. 
+    * _Set_
+      * is a collection of unique elements
+      * It reflects the mathematical abstraction of set: a group of objects without 
+      repetitions
+      * Generally, the order of set elements has no significance
+      * For example, the numbers on lottery tickets form a
+      set: they are unique, and their order is not important.
+    * _Map_ OR _Dictionary_
+      * is a set of key-value pairs
+      * Keys are unique, and each of them maps to exactly one value
+      * The values can be duplicates
+      * Maps are useful for storing logical connections between objects, for example, an employee's ID and their position.
+  * | `kotlin.collections` package
 
-The following collection types are relevant for Kotlin:
 
-* _List_ is an ordered collection with access to elements by indices – integer numbers that reflect their position. 
-Elements can occur more than once in a list. An example of a list is a telephone number: it's a group of digits, their
-order is important, and they can repeat. 
-* _Set_ is a collection of unique elements. It reflects the mathematical abstraction of set: a group of objects without 
-repetitions. Generally, the order of set elements has no significance. For example, the numbers on lottery tickets form a
-set: they are unique, and their order is not important.
-* _Map_ (or _dictionary_) is a set of key-value pairs. Keys are unique, and each of them maps to exactly one value. The
- values can be duplicates. Maps are useful for storing logical connections between objects, for example, an employee's ID 
- and their position.
+
 
 Kotlin lets you manipulate collections independently of the exact type of objects stored in them. In other words, you add 
 a `String` to a list of `String`s the same way as you would do with `Int`s or a user-defined class.
 So, the Kotlin Standard Library offers generic interfaces, classes, and functions for creating, populating, and managing 
 collections of any type.
 
-The collection interfaces and related functions are located in the `kotlin.collections` package. Let's get an overview 
-of its contents.
 
 > Arrays are not a type of collection. For more information, see [Arrays](arrays.md).
 >
@@ -36,12 +49,18 @@ of its contents.
 
 ## Collection types
 
-The Kotlin Standard Library provides implementations for basic collection types: sets, lists, and maps.
-A pair of interfaces represent each collection type: 
-
-* A _read-only_ interface that provides operations for accessing collection elements.
-* A _mutable_ interface that extends the corresponding read-only interface with write operations: adding, removing, and 
-updating its elements.
+* Kotlin Standard Library
+  * provides
+    * 👀2 implementations / EACH basic collection types (sets, lists, and maps) 👀
+      * _read-only_ interface
+        * 's operations
+          * access collection elements
+        * ❌NOT ALLOWED❌
+          * write operations
+        * _Example:_ `listOf()`
+      * _mutable_ interface
+        * 's operations == read-only interface's operations + write operations (add, remove, update)
+        * _Example:_ `mutableListOf()`
 
 Note that a mutable collection doesn't have to be assigned to a [`var`](basic-syntax.md#variables). Write operations with
 a mutable collection are still possible even if it is assigned to a `val`. The benefit of assigning mutable collections to

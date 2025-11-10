@@ -18,7 +18,7 @@
     * [create a basic JVM application -- via -- IntelliJ IDEA project wizard](jvm/jvm-get-started)
     * via frameworks
       * Spring
-        * [Create a RESTful web service with Spring Boot](jvm-get-started-spring-boot.md)
+        * [Create a RESTful web service with Spring Boot](jvm/spring/jvm-get-started-spring-boot.md)
         * [Build web applications with Spring Boot and Kotlin](https://spring.io/guides/tutorials/spring-boot-kotlin/)
         * [Use Spring Boot with Kotlin and RSocket](https://spring.io/guides/tutorials/spring-webflux-kotlin-rsocket/)
       * Ktor

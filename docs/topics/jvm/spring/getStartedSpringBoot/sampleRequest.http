@@ -1,8 +1,21 @@
-### 1. Con parámetro name
-GET http://localhost:8080?name=John
+### 1. WITH parameter
+GET http://localhost:8080/?name=John
 
-### 2. null
+### 2. WITHOUT parameter
 GET http://localhost:8080
 
 ### 3. empty parameter
-GET http://localhost:8080?name=
+GET http://localhost:8080/?name=
+
+### 4.
+GET http://localhost:8080/anotherList
+
+### 5. services
+GET http://localhost:8080/services
+
+### 5. services
+POST http://localhost:8080/services
+
+{
+
+}

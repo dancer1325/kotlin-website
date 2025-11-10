@@ -2,25 +2,25 @@
 
 ## Nullable types and non-nullable types
 
-Kotlin's type system is aimed at eliminating the danger of null references, also known as [The Billion Dollar Mistake](https://en.wikipedia.org/wiki/Null_pointer#History).
+* Kotlin's type system
+  * 👀eliminates the null references👀
+    * == [The Billion Dollar Mistake](https://en.wikipedia.org/wiki/Null_pointer#History)
+    * ⚠️ALTHOUGH `NullPointerException` can happe⚠️
 
-One of the most common pitfalls in many programming languages, including Java, is that accessing a member of a null
-reference will result in a null reference exception. In Java this would be the equivalent of a `NullPointerException`,
-or an _NPE_ for short.
-
-The only possible causes of an NPE in Kotlin are:
-
-* An explicit call to `throw NullPointerException()`.
-* Usage of the `!!` operator that is described below.
-* Data inconsistency with regard to initialization, such as when:
-  * An uninitialized `this` available in a constructor is passed and used somewhere (a "leaking `this`").
-  * A [superclass constructor calls an open member](inheritance.md#derived-class-initialization-order) whose implementation
-  in the derived class uses an uninitialized state.
-* Java interoperation:
-  * Attempts to access a member of a `null` reference of a [platform type](java-interop.md#null-safety-and-platform-types);
-  * Nullability issues with generic types being used for Java interoperation. For example, a piece of Java code might add
-  `null` into a Kotlin `MutableList<String>`, therefore requiring a `MutableList<String?>` for working with it.
-  * Other issues caused by external Java code.
+* 👀NPE | Kotlin, 
+  * root causes👀
+    * explicit call -- to -- `throw NullPointerException()`
+    * use `!!` operator
+    * | initialize, data inconsistency
+      * _Examples:_ 
+        * TODO: An uninitialized `this` available in a constructor is passed and used somewhere (a "leaking `this`").
+        * A [superclass constructor calls an open member](inheritance.md#derived-class-initialization-order) whose implementation
+        in the derived class uses an uninitialized state.
+    * Java interoperation:
+      * Attempts to access a member of a `null` reference of a [platform type](java-interop.md#null-safety-and-platform-types);
+      * Nullability issues with generic types being used for Java interoperation. For example, a piece of Java code might add
+      `null` into a Kotlin `MutableList<String>`, therefore requiring a `MutableList<String?>` for working with it.
+      * Other issues caused by external Java code.
 
 In Kotlin, the type system distinguishes between references that can hold `null` (nullable references) and those that
 cannot (non-nullable references).
@@ -165,34 +165,15 @@ if (isoTimestamp == null) {
 }
 ```
 
-## Elvis operator
+## Elvis operator -- `?:` --
 
-When you have a nullable reference, `b`, you can say "if `b` is not `null`, use it, otherwise use some non-null value":
-
-```kotlin
-val l: Int = if (b != null) b.length else -1
-```
-
-Instead of writing the complete `if` expression, you can also express this with the Elvis operator `?:`:
-
-```kotlin
-val l = b?.length ?: -1
-```
-
-If the expression to the left of `?:` is not `null`, the Elvis operator returns it, otherwise it returns the expression
-to the right.
-Note that the expression on the right-hand side is evaluated only if the left-hand side is `null`.
-
-Since `throw` and `return` are expressions in Kotlin, they can also be used on
-the right-hand side of the Elvis operator. This can be handy, for example, when checking function arguments:
-
-```kotlin
-fun foo(node: Node): String? {
-    val parent = node.getParent() ?: return null
-    val name = node.getName() ?: throw IllegalArgumentException("name expected")
-    // ...
-}
-```
+* `somethingWhichCanBeNull ?: returnedIfPreviousIsNull`
+  * `returnedIfPreviousIsNull`
+    * == any Kotlin's expression
+      * -> ALSO valid `throw` & `return`
+        * uses
+          * check function arguments
+* == ternary operator
 
 ## The `!!` operator
 

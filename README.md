@@ -7,7 +7,7 @@
 ### Content
 
 |Main content|
-|------------|--------|
+|------------|
 | [Main page](templates/pages/index.md)|
 | [Kotlin docs](docs/topics/home.md) | 
 | [Community](pages/community) | 
@@ -36,12 +36,12 @@
 
 ### Configuration files
 
-|Configuration| File                                                                                 |
-|-----|--------------------------------------------------------------------------------------|
-|Navigation and structure| [kr.tree](docs/kr.tree) for docs and [_nav.yml](data/_nav.yml) for other pages       |
+|Configuration| File                                                             |
+|-----------------------------------|--------------------------------------------|
+|Navigation and structure           | [kr.tree](docs/kr.tree) for docs and [_nav.yml](data/_nav.yml) for other pages       |
 |Variables, such as release version | [v.list](docs/v.list) for docs and [releases.yml](data/releases.yml) for other pages |
-|Community events on the map | [events.xml](data/events.yml)                                                          |
-|Video list (outdated) | [videos.yml](data/videos.yml)                                                        |
+|Community events on the map        | [events.xml](data/events.yml)|
+|Video list (outdated)              | [videos.yml](data/videos.yml)|
 
 ### Templates
 

@@ -1,7 +1,7 @@
 [//]: # (title: Coding conventions)
 
 * goal
-  * guidelines on the
+  * guidelines |
     * code style
     * code organization
 
@@ -637,7 +637,7 @@ foo {
 
 ### Trailing commas
 
-A trailing comma is a comma symbol after the last item in a series of elements:
+* `,` AFTER series of elements's last item 
 
 ```kotlin
 class Person(
@@ -647,13 +647,17 @@ class Person(
 )
 ```
 
-Using trailing commas has several benefits:
+* benefits
+  * version-control diffs cleaner 
+    * as all the focus is on the changed value.
+  * easy to add and reorder elements 
+    * there is no need to add or delete the comma if you manipulate elements.
+  * simplifies code generation
+    * for example, for object initializers. The last element can also have a comma.
 
-* It makes version-control diffs cleaner – as all the focus is on the changed value.
-* It makes it easy to add and reorder elements – there is no need to add or delete the comma if you manipulate elements.
-* It simplifies code generation, for example, for object initializers. The last element can also have a comma.
-
-Trailing commas are entirely optional – your code will still work without them. The Kotlin style guide encourages the use of trailing commas at the declaration site and leaves it at your discretion for the call site.
+* OPTIONAL
+  * == your code STILL works
+* The Kotlin style guide encourages the use of trailing commas at the declaration site and leaves it at your discretion for the call site.
 
 To enable trailing commas in the IntelliJ IDEA formatter, go to **Settings/Preferences | Editor | Code Style | Kotlin**, 
 open the **Other** tab and select the **Use trailing comma** option.

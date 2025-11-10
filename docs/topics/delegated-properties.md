@@ -74,9 +74,16 @@ The Kotlin standard library provides factory methods for several useful kinds of
 
 ### Lazy properties
 
-[`lazy()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/lazy.html) is a function that takes a lambda and returns an instance of `Lazy<T>`, which can serve as a delegate for implementing a lazy property.
-The first call to `get()` executes the lambda passed to `lazy()` and remembers the result.
-Subsequent calls to `get()` simply return the remembered result. 
+* [`lazy()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/lazy.html)
+  * == function /
+    * 's inputs
+      * lambda
+    * 's return
+      * instance of `Lazy<T>`
+  * uses
+    * delegate -- for -- implementing a lazy property
+* The first call to `get()` executes the lambda passed to `lazy()` and remembers the result
+* Subsequent calls to `get()` simply return the remembered result. 
 
 ```kotlin
 val lazyValue: String by lazy {

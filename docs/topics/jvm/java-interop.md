@@ -769,37 +769,19 @@ Other supported cases include acquiring a Java getter/setter method or a backing
 
 ## SAM conversions
 
-Kotlin supports SAM conversions for both Java and [Kotlin interfaces](fun-interfaces.md). 
-This support for Java means that Kotlin function literals can be automatically converted
-into implementations of Java interfaces with a single non-default method, as long as the parameter types of the interface
-method match the parameter types of the Kotlin function.
+* Kotlin 
+  * supports
+    * 👀SAM conversions | Java & [Kotlin interfaces](fun-interfaces.md)👀 
+      * SAM conversions | Java 
+        * 💡if parameter types of the interface method == Kotlin function parameter types -> Kotlin function literals can be AUTOMATICALLY converted -- into -- implementations of Java interfaces / 1! non-default method💡
+          * if there are MULTIPLE methods / take functional interfaces -> choose one -- by
+ using an -- adapter function / converts a lambda -- to a -- specific SAM type 
+      * uses
+        * create SAM interfaces instances
 
-You can use this for creating instances of SAM interfaces:
-
-```kotlin
-val runnable = Runnable { println("This runs in a runnable") }
-```
-
-...and in method calls:
-
-```kotlin
-val executor = ThreadPoolExecutor()
-// Java signature: void execute(Runnable command)
-executor.execute { println("This runs in a thread pool") }
-```
-
-If the Java class has multiple methods taking functional interfaces, you can choose the one you need to call by
-using an adapter function that converts a lambda to a specific SAM type. Those adapter functions are also generated
-by the compiler when needed:
-
-```kotlin
-executor.execute(Runnable { println("This runs in a thread pool") })
-```
-
-> SAM conversions only work for interfaces, not for abstract classes, even if those also have just a single
-abstract method.
->
-{type="note"}
+* requirements
+  * interfaces
+    * ❌NOT valid | abstract classes (ALTHOUGH they have 1! abstract method)❌
 
 ## Using JNI with Kotlin
 
